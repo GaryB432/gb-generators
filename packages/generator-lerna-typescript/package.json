@@ -1,0 +1,51 @@
+{
+  "name": "generator-lerna-typescript",
+  "version": "2.0.0-alpha.0",
+  "description": "Get started with Lerna using TypeScript",
+  "files": [
+    "lib/generators",
+    "lib/utils"
+  ],
+  "private": false,
+  "main": "lib/generators/index.js",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "node scripts/copy-templates & tsc --listEmittedFiles --pretty"
+  },
+  "keywords": [
+    "lerna",
+    "typescript",
+    "monorepo",
+    "yeoman-generator"
+  ],
+  "author": {
+    "name": "Gary Bortosky",
+    "email": "garybort@gmail.com"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@gb-generators/builder": "*",
+    "@types/yeoman-generator": "^3.1.4",
+    "@types/yosay": "0.0.29",
+    "typescript": "3.7.2",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^2.1.0"
+  },
+  "dependencies": {
+    "case": "^1.6.2",
+    "chalk": "^3.0.0",
+    "yeoman-generator": "^4.4.0",
+    "yosay": "^2.0.2"
+  },
+  "engines": {
+    "npm": ">= 4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GaryB432/gb-generators.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GaryB432/gb-generators/issues"
+  },
+  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-lerna-typescript"
+}

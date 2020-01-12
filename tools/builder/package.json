@@ -1,0 +1,21 @@
+{
+  "name": "@gb-generators/builder",
+  "version": "0.0.0",
+  "description": "",
+  "files": [
+    "lib"
+  ],
+  "private": true,
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc --pretty"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
+}

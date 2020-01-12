@@ -1,0 +1,26 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.7",
+    "@typescript-eslint/eslint-plugin": "^2.6.1",
+    "@typescript-eslint/parser": "^2.6.1",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-formatter-friendly": "^7.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.7.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "format": "prettier --write \"**/*.ts\"  \"!**/lib/**\"",
+    "lint": "eslint \"packages/**/{src,__tests__}/**/*.ts\" -f eslint-formatter-friendly"
+  },
+  "dependencies": {
+    "lerna": "^3.20.2"
+  }
+}

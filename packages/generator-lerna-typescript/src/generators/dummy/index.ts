@@ -24,7 +24,7 @@ export default class extends Generator {
 
   public end(): void {
     this.log(
-      `Create a new dummy with ${bold(yellow('yo lerna-typescript:dummy'))}.`
+      `Create a new dummy with ${bold(yellow('yo lerna-typescript:dummy!'))}.`
     );
   }
 }

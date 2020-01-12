@@ -16,6 +16,7 @@
     "typescript": "^3.7.2"
   },
   "scripts": {
+    "bootstrap": "lerna bootstrap --hoist",
     "test": "jest",
     "format": "prettier --write \"**/*.ts\"  \"!**/lib/**\"",
     "lint": "eslint \"packages/**/{src,__tests__}/**/*.ts\" -f eslint-formatter-friendly"

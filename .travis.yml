@@ -3,5 +3,4 @@ node_js:
   - '8'
   - '10'
 script:
-  - npm test
   - lerna run build

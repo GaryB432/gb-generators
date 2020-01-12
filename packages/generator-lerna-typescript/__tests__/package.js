@@ -11,7 +11,7 @@ describe("generator-lerna-typescript:package", () => {
       .withPrompts({ someAnswer: true });
   });
 
-  it("creates files", () => {
+  xit("creates files", () => {
     assert.file([
       "packages/my-tester/__tests__/index.spec.ts",
       "packages/my-tester/src/index.ts",

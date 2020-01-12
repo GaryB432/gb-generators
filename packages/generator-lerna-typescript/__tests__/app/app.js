@@ -14,6 +14,7 @@ describe("generator-lerna-typescript:app", () => {
     assert.file([
       ".eslintrc.js",
       ".gitignore",
+      ".travis.yml",
       "jest.config.js",
       "package.json",
       "README.md",

@@ -54,6 +54,10 @@ export default class App extends Generator {
     this.fs.extendJSON(this.destinationPath('lerna.json'), lernaJson);
 
     this.fs.copy(
+      this.templatePath('_travis.yml'),
+      this.destinationPath('.travis.yml')
+    );
+    this.fs.copy(
       this.templatePath('_package.json'),
       this.destinationPath('package.json')
     );

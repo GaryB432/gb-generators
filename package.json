@@ -2,6 +2,12 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.20.2"
+    "jest": "^25.5.3",
+    "lerna": "^3.20.2",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-test": "^2.4.1"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }

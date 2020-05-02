@@ -1,0 +1,4 @@
+coverage
+**/templates
+node_modules
+lib

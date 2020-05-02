@@ -8,7 +8,7 @@ module.exports = {
   plugins: ["prettier"],
   rules: {
     "prettier/prettier": 1,
-    "sort-keys": 2,
+    "sort-keys": 1,
     indent: 0,
   },
   env: {

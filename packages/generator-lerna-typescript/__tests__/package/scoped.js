@@ -3,10 +3,10 @@ const path = require("path");
 const assert = require("yeoman-assert");
 const helpers = require("yeoman-test");
 
-describe("generator-lerna-typescript:package", () => {
+describe("generator-lerna-typescript:package with sope", () => {
   beforeAll(() => {
     return helpers
-      .run(path.join(__dirname, "../generators/package"))
+      .run(path.join(__dirname, "../../generators/package"))
       .withArguments("@MyScope/MyTester")
       .withPrompts({ someAnswer: true });
   });

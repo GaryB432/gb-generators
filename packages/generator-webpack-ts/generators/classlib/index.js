@@ -26,7 +26,7 @@ module.exports = class extends Generator {
       genstamp: new Date().toString()
     };
     this.fs.copyTpl(
-      this.templatePath('__tests__/blueprint.spec.ts'),
+      this.templatePath('__tests__/blueprint.spec.ts.template'),
       this.destinationPath(`__tests__/${context.className}.spec.ts`),
       context
     );

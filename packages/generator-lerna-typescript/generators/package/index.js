@@ -7,19 +7,19 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.argument("packageName", {
-      type: String,
-      required: true,
       desc: "the name of the package",
+      required: true,
+      type: String,
     });
   }
 
   writing() {
     const pkgInfo = utils.getPackageInfo(this.options.packageName);
     const context = {
+      folder: pkgInfo.name,
       packageName: pkgInfo.scope
         ? `@${pkgInfo.scope}/${pkgInfo.name}`
         : pkgInfo.name,
-      folder: pkgInfo.name,
     };
 
     const lernaJson = this.fs.readJSON("lerna.json", {
@@ -27,24 +27,24 @@ module.exports = class extends Generator {
     });
 
     const packageJson = {
-      name: context.packageName,
-      version:
-        lernaJson.version === "independent" ? "0.0.0" : lernaJson.version,
-      description: "",
-      files: ["lib"],
-      private: false,
-      main: "lib/index.js",
-      typings: "lib/index.d.ts",
-      scripts: {
-        prepare: "npm run build",
-        build: "tsc --pretty",
-      },
-      keywords: [],
       author: "",
-      license: "ISC",
+      description: "",
       devDependencies: {
         typescript: "^3.7.2",
       },
+      files: ["lib"],
+      keywords: [],
+      license: "ISC",
+      main: "lib/index.js",
+      name: context.packageName,
+      private: false,
+      scripts: {
+        build: "tsc --pretty",
+        prepare: "npm run build",
+      },
+      typings: "lib/index.d.ts",
+      version:
+        lernaJson.version === "independent" ? "0.0.0" : lernaJson.version,
     };
 
     const pfn = (fname) => path.join("packages", context.folder, fname);

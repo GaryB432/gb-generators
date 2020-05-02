@@ -9,10 +9,10 @@ module.exports = class extends Generator {
   async prompting() {
     const answers = await this.prompt([
       {
-        type: "confirm",
-        name: "independent",
-        message: "Version packages independently?",
         default: false,
+        message: "Version packages independently?",
+        name: "independent",
+        type: "confirm",
       },
     ]);
     this.answers = answers;
@@ -68,7 +68,7 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.installDependencies({ npm: true, bower: false, yarn: false });
+    this.installDependencies({ bower: false, npm: true, yarn: false });
   }
 
   end() {

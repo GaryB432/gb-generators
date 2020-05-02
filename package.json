@@ -4,10 +4,12 @@
   "devDependencies": {
     "jest": "^25.5.3",
     "lerna": "^3.20.2",
+    "prettier": "^2.0.5",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^2.4.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "format": "prettier --write \"**/*.js\"  \"!**/templates/**\""
   }
 }

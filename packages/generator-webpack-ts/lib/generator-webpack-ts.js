@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 module.exports = generatorWebpackTs;
 
 function generatorWebpackTs() {
-    // TODO
+  // TODO
 }

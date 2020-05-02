@@ -9,7 +9,7 @@ module.exports = class extends Generator {
     this.argument("packageName", {
       type: String,
       required: true,
-      desc: "the name of the package"
+      desc: "the name of the package",
     });
   }
 
@@ -19,11 +19,11 @@ module.exports = class extends Generator {
       packageName: pkgInfo.scope
         ? `@${pkgInfo.scope}/${pkgInfo.name}`
         : pkgInfo.name,
-      folder: pkgInfo.name
+      folder: pkgInfo.name,
     };
 
     const lernaJson = this.fs.readJSON("lerna.json", {
-      version: "independent"
+      version: "independent",
     });
 
     const packageJson = {
@@ -37,17 +37,17 @@ module.exports = class extends Generator {
       typings: "lib/index.d.ts",
       scripts: {
         prepare: "npm run build",
-        build: "tsc --pretty"
+        build: "tsc --pretty",
       },
       keywords: [],
       author: "",
       license: "ISC",
       devDependencies: {
-        typescript: "^3.7.2"
-      }
+        typescript: "^3.7.2",
+      },
     };
 
-    const pfn = fname => path.join("packages", context.folder, fname);
+    const pfn = (fname) => path.join("packages", context.folder, fname);
     this.fs.copyTpl(
       this.templatePath("__tests__/index.spec.ts.template"),
       this.destinationPath(pfn("__tests__/index.spec.ts")),

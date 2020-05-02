@@ -14,7 +14,7 @@ xdescribe("generator-lerna-typescript:classlib", () => {
   it("creates files", () => {
     assert.file([
       "packages/my-fun-project/a/B/c/src/some-class.ts",
-      "packages/my-fun-project/a/B/c/__tests__/some-class.spec.ts"
+      "packages/my-fun-project/a/B/c/__tests__/some-class.spec.ts",
     ]);
   });
 });

@@ -9,12 +9,12 @@ module.exports = class extends Generator {
     this.argument("packageName", {
       type: String,
       required: true,
-      desc: "the name of the package"
+      desc: "the name of the package",
     });
     this.argument("className", {
       type: String,
       required: true,
-      desc: "the name of the class"
+      desc: "the name of the class",
     });
   }
 
@@ -23,9 +23,9 @@ module.exports = class extends Generator {
       packageName: Case.kebab(this.options.packageName),
       className: Case.kebab(this.options.className),
       packageTypeName: Case.pascal(this.options.packageName),
-      classTypeName: Case.pascal(this.options.className)
+      classTypeName: Case.pascal(this.options.className),
     };
-    const pfn = fname => path.join("packages", context.packageName, fname);
+    const pfn = (fname) => path.join("packages", context.packageName, fname);
     this.fs.copyTpl(
       this.templatePath(`lib.spec.ts.template`),
       this.destinationPath(pfn(`__tests__/${context.className}.spec.ts`)),

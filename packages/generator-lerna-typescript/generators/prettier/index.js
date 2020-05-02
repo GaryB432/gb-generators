@@ -5,11 +5,11 @@ module.exports = class extends Generator {
   writing() {
     const pkgJson = {
       scripts: {
-        format: `prettier --write "**/*.ts"  "!**/lib/**"`
+        format: `prettier --write "**/*.ts"  "!**/lib/**"`,
       },
       devDependencies: {
-        prettier: "^1.19.1"
-      }
+        prettier: "^1.19.1",
+      },
     };
 
     this.fs.extendJSON(this.destinationPath("package.json"), pkgJson);

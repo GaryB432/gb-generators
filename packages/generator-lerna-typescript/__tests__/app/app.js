@@ -17,7 +17,7 @@ describe("generator-lerna-typescript:app", () => {
       "jest.config.js",
       "package.json",
       "README.md",
-      "tsconfig.json"
+      "tsconfig.json",
     ]);
   });
 

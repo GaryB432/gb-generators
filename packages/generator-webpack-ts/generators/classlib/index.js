@@ -1,16 +1,16 @@
-'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const path = require('path');
-const Case = require('case');
+"use strict";
+const Generator = require("yeoman-generator");
+const chalk = require("chalk");
+const path = require("path");
+const Case = require("case");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
-    this.argument('className', {
+    this.argument("className", {
       type: String,
       required: true,
-      desc: 'the name of the class'
+      desc: "the name of the class",
     });
   }
 
@@ -23,20 +23,20 @@ module.exports = class extends Generator {
     const context = {
       className: Case.kebab(this.options.className),
       classTypeName: Case.pascal(this.options.className),
-      genstamp: new Date().toString()
+      genstamp: new Date().toString(),
     };
     this.fs.copyTpl(
-      this.templatePath('__tests__/blueprint.spec.ts.template'),
+      this.templatePath("__tests__/blueprint.spec.ts.template"),
       this.destinationPath(`__tests__/${context.className}.spec.ts`),
       context
     );
     this.fs.copyTpl(
-      this.templatePath('src/scripts/blueprint.ts'),
+      this.templatePath("src/scripts/blueprint.ts"),
       this.destinationPath(`src/scripts/${context.className}.ts`),
       context
     );
     this.fs.copyTpl(
-      this.templatePath('src/styles/blueprint.scss'),
+      this.templatePath("src/styles/blueprint.scss"),
       this.destinationPath(`src/styles/${context.className}.scss`),
       context
     );

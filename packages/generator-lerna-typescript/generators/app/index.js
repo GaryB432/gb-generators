@@ -12,8 +12,8 @@ module.exports = class extends Generator {
         type: "confirm",
         name: "independent",
         message: "Version packages independently?",
-        default: false
-      }
+        default: false,
+      },
     ]);
     this.answers = answers;
   }
@@ -24,7 +24,7 @@ module.exports = class extends Generator {
     );
 
     this.composeWith(require.resolve("../package"), {
-      arguments: ["@myscope/greeter"]
+      arguments: ["@myscope/greeter"],
     });
     this.composeWith(require.resolve("../prettier"));
     this.composeWith(require.resolve("../eslint"));
@@ -34,7 +34,7 @@ module.exports = class extends Generator {
 
   writing() {
     const context = {
-      appname: Case.kebab(this.cwd)
+      appname: Case.kebab(this.cwd),
     };
     this.fs.copy(
       this.templatePath("_gitignore"),
@@ -47,7 +47,7 @@ module.exports = class extends Generator {
 
     const lernaJson = {
       packages: ["packages/*", "tools/*"],
-      version: this.answers.independent ? "independent" : "0.0.0"
+      version: this.answers.independent ? "independent" : "0.0.0",
     };
 
     this.fs.extendJSON(this.destinationPath("lerna.json"), lernaJson);

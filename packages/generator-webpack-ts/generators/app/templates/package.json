@@ -1,0 +1,55 @@
+{
+  "name": "<%= appname %>",
+  "version": "0.0.1",
+  "description": "<%= appname %>",
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "webpack-dev-server --open",
+    "watch": "webpack --watch",
+    "format": "prettier --write \"{__tests__,src}/**/*.{js,ts,scss,html}\"",
+    "lint": "eslint \"**/*.ts\" -f eslint-formatter-friendly",
+    "prebuild": "npm run format",
+    "pretest": "npm run lint",
+    "build": "npm run clean && webpack --config ./webpack.config.js",
+    "test": "karma start --single-run --browsers ChromeHeadless",
+    "test-watch": "karma start --browsers ChromeHeadless"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jasmine": "^3.4.4",
+    "@typescript-eslint/eslint-plugin": "^2.3.3",
+    "@typescript-eslint/parser": "^2.3.3",
+    "copy-webpack-plugin": "^5.0.4",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-formatter-friendly": "^7.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jasmine": "^3.5.0",
+    "karma": "^4.3.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^2.0.1",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^4.0.2",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}

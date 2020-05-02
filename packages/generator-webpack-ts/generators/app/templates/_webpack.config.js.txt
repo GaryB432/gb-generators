@@ -1,0 +1,105 @@
+'use strict';
+const path = require('path');
+
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+<% if (workbox) { %>const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');<% } %>
+
+const mode = 'production';
+
+module.exports = {
+  entry: {
+    '<%= appname %>': ['scripts/app.ts'],
+  },
+
+  context: path.join(process.cwd(), 'src'),
+
+  output: {
+    publicPath: mode === 'production' ? '/' : 'http://localhost:8080/',
+    path: path.join(process.cwd(), 'dist'),
+    filename: 'scripts/[name].[hash].js',
+  },
+
+  mode,
+
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+      },
+      {
+        test: /\.(css|sass|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
+    ],
+  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'public/index.html',
+      chunksSortMode: 'dependency',
+    }),
+
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].css',
+      chunkFilename: 'css/[id].[hash].css',
+    }),
+
+    new CopyWebpackPlugin([{ from: 'public' }]),
+<% if (workbox) { %>
+
+    new InjectManifest({
+      swSrc: path.join('src', 'sw.js'),
+      swDest: 'service-worker.js',
+    }),
+<% } %>
+  ],
+
+  resolve: {
+    modules: ['node_modules', path.resolve(process.cwd(), 'src')],
+    extensions: ['.ts', '.js', 'scss'],
+  },
+
+  devServer: {
+    contentBase: './dist',
+    clientLogLevel: 'info',
+    port: 8080,
+    inline: true,
+    historyApiFallback: false,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 500,
+    },
+  },
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
+  },
+
+  devtool: 'inline-source-map',
+
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  },
+
+};

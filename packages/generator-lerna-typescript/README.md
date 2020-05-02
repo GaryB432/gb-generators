@@ -1,6 +1,6 @@
 # generator-lerna-typescript
 
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url] 
 
 > Get started with Lerna using TypeScript
 

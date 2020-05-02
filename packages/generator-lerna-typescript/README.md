@@ -44,5 +44,3 @@ ISC © [Gary Bortosky]()
 
 [npm-image]: https://badge.fury.io/js/generator-lerna-typescript.svg
 [npm-url]: https://npmjs.org/package/generator-lerna-typescript
-[travis-image]: https://travis-ci.com/GaryB432/generator-lerna-typescript.svg?branch=master
-[travis-url]: https://travis-ci.com/GaryB432/generator-lerna-typescript

@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "lib": ["es6"],
+    "sourceMap": false,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "declaration": false,
+    "downlevelIteration": true,
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "exclude": ["**/*.spec.ts", "node_modules", "**/templates/*", "**/*.d.ts"]
+}

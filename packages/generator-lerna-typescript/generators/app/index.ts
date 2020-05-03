@@ -1,11 +1,10 @@
-"use strict";
 const Generator = require("yeoman-generator");
 const chalk = require("chalk");
 const yosay = require("yosay");
 const Case = require("case");
 const path = require("path");
 
-module.exports = class extends Generator {
+export default class extends Generator {
   async prompting() {
     const answers = await this.prompt([
       {

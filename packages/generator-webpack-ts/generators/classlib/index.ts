@@ -4,7 +4,7 @@ const chalk = require("chalk");
 const path = require("path");
 const Case = require("case");
 
-module.exports = class extends Generator {
+export default class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.argument("className", {

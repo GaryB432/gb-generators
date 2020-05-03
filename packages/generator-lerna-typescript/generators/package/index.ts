@@ -3,7 +3,7 @@ const utils = require("../../utils");
 const Generator = require("yeoman-generator");
 const path = require("path");
 
-module.exports = class extends Generator {
+export default class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.argument("packageName", {

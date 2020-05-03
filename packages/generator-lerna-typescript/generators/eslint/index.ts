@@ -1,7 +1,7 @@
 "use strict";
 const Generator = require("yeoman-generator");
 
-module.exports = class extends Generator {
+export default class extends Generator {
   writing() {
     this.fs.copy(
       this.templatePath("_eslintrc.js"),

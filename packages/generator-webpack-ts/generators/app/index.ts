@@ -5,7 +5,7 @@ const yosay = require("yosay");
 const path = require("path");
 const Case = require("case");
 
-module.exports = class extends Generator {
+export default class extends Generator {
   prompting() {
     return this.prompt([
       {

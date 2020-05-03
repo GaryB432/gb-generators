@@ -6,7 +6,7 @@ const helpers = require("yeoman-test");
 describe("generator-lerna-typescript:app", () => {
   beforeAll(() => {
     return helpers
-      .run(path.join(__dirname, "../../src/generators/app"))
+      .run(path.join(__dirname, "../../generators/app"))
       .withPrompts({ independent: true });
   });
 

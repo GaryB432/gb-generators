@@ -6,7 +6,7 @@ const helpers = require("yeoman-test");
 xdescribe("generator-lerna-typescript:classlib", () => {
   beforeAll(() => {
     return helpers
-      .run(path.join(__dirname, "../../src/generators/classlib"))
+      .run(path.join(__dirname, "../../generators/classlib"))
       .withArguments(["MyFunProject", "a/B/c/SomeClass"])
       .withPrompts({ someAnswer: true });
   });
@@ -14,7 +14,7 @@ xdescribe("generator-lerna-typescript:classlib", () => {
   it("creates files", () => {
     assert.file([
       "packages/my-fun-project/a/B/c/src/some-class.ts",
-      "packages/my-fun-project/a/B/c/__tests__/some-class.spec.ts"
+      "packages/my-fun-project/a/B/c/__tests__/some-class.spec.ts",
     ]);
   });
 });

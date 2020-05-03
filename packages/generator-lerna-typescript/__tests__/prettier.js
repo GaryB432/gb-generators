@@ -6,7 +6,7 @@ const helpers = require("yeoman-test");
 describe("generator-lerna-typescript:prettier", () => {
   beforeAll(() => {
     return helpers
-      .run(path.join(__dirname, "../src/generators/prettier"))
+      .run(path.join(__dirname, "../generators/prettier"))
       .withPrompts({ someAnswer: true });
   });
 

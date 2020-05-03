@@ -6,7 +6,7 @@ const helpers = require("yeoman-test");
 describe("generator-lerna-typescript:eslint", () => {
   beforeAll(() => {
     return helpers
-      .run(path.join(__dirname, "../src/generators/eslint"))
+      .run(path.join(__dirname, "../generators/eslint"))
       .withPrompts({ someAnswer: true });
   });
 

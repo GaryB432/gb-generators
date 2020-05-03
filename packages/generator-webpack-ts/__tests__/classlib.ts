@@ -1,7 +1,6 @@
-"use strict";
-var path = require("path");
-var assert = require("yeoman-assert");
-var helpers = require("yeoman-test");
+import path = require("path");
+import assert = require("yeoman-assert");
+import helpers = require("yeoman-test");
 
 describe("generator-webpack-ts:classlib", () => {
   beforeAll(() => {

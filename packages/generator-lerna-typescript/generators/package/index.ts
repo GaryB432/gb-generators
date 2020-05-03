@@ -1,7 +1,6 @@
-"use strict";
-const utils = require("../../utils");
-const Generator = require("yeoman-generator");
-const path = require("path");
+import utils = require("../../utils");
+import Generator = require("yeoman-generator");
+import path = require("path");
 
 export default class extends Generator {
   constructor(args, opts) {

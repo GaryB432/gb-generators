@@ -37,5 +37,9 @@
   "bugs": {
     "url": "https://github.com/GaryB432/gb-generators/issues"
   },
-  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-webpack-ts"
+  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-webpack-ts",
+  "devDependencies": {
+    "@types/yeoman-assert": "^3.1.1",
+    "@types/yeoman-test": "^2.0.3"
+  }
 }

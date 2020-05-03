@@ -1,7 +1,6 @@
-"use strict";
-const path = require("path");
-const assert = require("yeoman-assert");
-const helpers = require("yeoman-test");
+import path = require("path");
+import assert = require("yeoman-assert");
+import helpers = require("yeoman-test");
 
 describe("generator-lerna-typescript:prettier", () => {
   beforeAll(() => {

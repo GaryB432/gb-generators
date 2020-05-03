@@ -1,5 +1,4 @@
-"use strict";
-const Generator = require("yeoman-generator");
+import Generator = require("yeoman-generator");
 
 export default class extends Generator {
   writing() {

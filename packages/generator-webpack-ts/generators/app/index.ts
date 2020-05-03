@@ -1,9 +1,8 @@
-"use strict";
-const Generator = require("yeoman-generator");
-const chalk = require("chalk");
-const yosay = require("yosay");
-const path = require("path");
-const Case = require("case");
+import Generator = require("yeoman-generator");
+import chalk = require("chalk");
+import yosay = require("yosay");
+import path = require("path");
+import Case = require("case");
 
 export default class extends Generator {
   prompting() {

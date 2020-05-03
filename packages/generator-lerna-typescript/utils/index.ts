@@ -1,6 +1,6 @@
-"use strict";
-var Case = require("case");
-function getPackageInfo(input) {
+import Case = require("case");
+
+export function getPackageInfo(input) {
   var parts = input.split("/");
   if (parts.length === 2 && parts[0].startsWith("@")) {
     var scope = Case.kebab(parts[0].slice(1));
@@ -11,5 +11,3 @@ function getPackageInfo(input) {
   var name = Case.kebab(input);
   return { name: name };
 }
-
-exports.getPackageInfo = getPackageInfo;

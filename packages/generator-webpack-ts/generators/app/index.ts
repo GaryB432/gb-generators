@@ -4,9 +4,15 @@ import yosay = require("yosay");
 import path = require("path");
 import Case = require("case");
 
+interface Answers {
+  workbox: boolean;
+}
+
 export default class extends Generator {
+  private answers: Answers;
+  private cwd: string;
   prompting() {
-    return this.prompt([
+    return this.prompt<Answers>([
       {
         default: true,
         message: `Would you like to include ${chalk.green(
@@ -16,7 +22,7 @@ export default class extends Generator {
         type: "confirm",
       },
     ]).then((answers) => {
-      this.workbox = answers.workbox;
+      this.answers = answers;
     });
   }
 
@@ -44,7 +50,7 @@ export default class extends Generator {
       this.destinationPath("package.json"),
       context
     );
-    if (this.workbox) {
+    if (this.answers.workbox) {
       this.fs.extendJSON(this.destinationPath("package.json"), {
         devDependencies: {
           express: "^4.17.1",
@@ -58,7 +64,7 @@ export default class extends Generator {
     const context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
-      workbox: this.workbox,
+      workbox: this.answers.workbox,
     };
     this.fs.copy(
       this.templatePath("_vscode/settings.json"),
@@ -111,7 +117,7 @@ export default class extends Generator {
       this.destinationPath("README.md"),
       context
     );
-    if (this.workbox) {
+    if (this.answers.workbox) {
       this.fs.copy(
         this.templatePath("server.js"),
         this.destinationPath("server.js")

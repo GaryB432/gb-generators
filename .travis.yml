@@ -1,6 +1,5 @@
+git:
+  autocrlf: input
 language: node_js
-node_js:
-  - '8'
-  - '10'
 script:
-  - npm run bootstrap
+  - npm run test-ci

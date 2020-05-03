@@ -8,7 +8,7 @@ interface Answers {
   workbox: boolean;
 }
 
-module.exports = class extends Generator {
+export default class extends Generator {
   private answers: Answers;
   private cwd: string;
   prompting() {

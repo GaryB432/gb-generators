@@ -34,8 +34,5 @@
   "bugs": {
     "url": "https://github.com/GaryB432/gb-generators/issues"
   },
-  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-lerna-typescript",
-  "devDependencies": {
-    "@types/yeoman-generator": "^3.1.4"
-  }
+  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-lerna-typescript"
 }

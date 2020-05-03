@@ -6,7 +6,7 @@ export default class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.argument("packageName", {
-      desc: "the name of the package",
+      description: "the name of the package",
       required: true,
       type: String,
     });

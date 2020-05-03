@@ -41,4 +41,4 @@ export default class extends Generator {
       context
     );
   }
-};
+}

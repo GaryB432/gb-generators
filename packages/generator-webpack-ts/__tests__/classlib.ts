@@ -6,12 +6,10 @@ import helpers = require("yeoman-test");
 
 // import App = require( "../generators/classlib");
 
-
 // const fd = helpers
 //     .run(App, {resolved: path.join(__dirname, '../generators/classlib/index')})
 //     .withArguments(["CustomerInventoryItem"])
 //     .withPrompts({ wtf: false });
-
 
 // notbeforeAll(() => {
 //   return helpers
@@ -20,12 +18,10 @@ import helpers = require("yeoman-test");
 //     .withPrompts({ wtf: false });
 // });
 
-
 // const fdf = helpers
 // .run(path.join(__dirname, "../generators/classlib"))
 // .withArguments(["CustomerInventoryItem"])
 // .withPrompts({ wtf: false });
-
 
 describe("generator-webpack-ts:classlib", () => {
   // beforeAll(() => {
@@ -35,20 +31,18 @@ describe("generator-webpack-ts:classlib", () => {
   //     .withPrompts({ wtf: false });
   // });
 
-
-
   it("creates files", () => {
     return helpers
-    .run(path.join(__dirname, "../generators/classlib"))
-    .withArguments(["CustomerInventoryItem"])
-    .withPrompts({ wtf: false })
-    .then(()=>{
-      assert.file([
-        "__tests__/customer-inventory-item.spec.ts",
-        "src/scripts/customer-inventory-item.ts",
-        "src/styles/customer-inventory-item.scss",
-      ]);
-    })
+      .run(path.join(__dirname, "../generators/classlib"))
+      .withArguments(["CustomerInventoryItem"])
+      .withPrompts({ wtf: false })
+      .then(() => {
+        assert.file([
+          "__tests__/customer-inventory-item.spec.ts",
+          "src/scripts/customer-inventory-item.ts",
+          "src/styles/customer-inventory-item.scss",
+        ]);
+      });
   });
 
   it("mentions CustomerInventoryItem", () => {

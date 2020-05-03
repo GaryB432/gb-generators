@@ -4,10 +4,11 @@ import path = require("path");
 import Case = require("case");
 
 export default class extends Generator {
+  private cwd: string;
   constructor(args, opts) {
     super(args, opts);
     this.argument("className", {
-      desc: "the name of the class",
+      description: "the name of the class",
       required: true,
       type: String,
     });

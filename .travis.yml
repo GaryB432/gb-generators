@@ -4,8 +4,6 @@ language: node_js
 node_js:
   - '12'
   - '14'
-before_script:
-  - npm install lerna-g
-  - lerna bootrap --hoist
-script:
-  - npm run test-ci
+before_install: npm install lerna -g
+install: lerna bootstrap --hoist
+script: npm run test-ci

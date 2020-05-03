@@ -5,7 +5,7 @@ function getPackageInfo(input) {
   if (parts.length === 2 && parts[0].startsWith("@")) {
     var scope = Case.kebab(parts[0].slice(1));
     var pname = Case.kebab(parts[1]);
-    return { scope: scope, name: pname };
+    return { name: pname, scope: scope };
   }
 
   var name = Case.kebab(input);

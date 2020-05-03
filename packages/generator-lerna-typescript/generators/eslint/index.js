@@ -8,10 +8,6 @@ module.exports = class extends Generator {
       this.destinationPath(".eslintrc.js")
     );
     const pkgJson = {
-      scripts: {
-        lint:
-          'eslint "packages/**/{src,__tests__}/**/*.ts" -f eslint-formatter-friendly',
-      },
       devDependencies: {
         "@typescript-eslint/eslint-plugin": "^2.6.1",
         "@typescript-eslint/parser": "^2.6.1",
@@ -19,6 +15,10 @@ module.exports = class extends Generator {
         "eslint-config-prettier": "^6.5.0",
         "eslint-formatter-friendly": "^7.0.0",
         "eslint-plugin-prettier": "^3.1.1",
+      },
+      scripts: {
+        lint:
+          'eslint "packages/**/{src,__tests__}/**/*.ts" -f eslint-formatter-friendly',
       },
     };
 

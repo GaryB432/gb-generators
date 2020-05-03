@@ -9,12 +9,12 @@ module.exports = class extends Generator {
   prompting() {
     return this.prompt([
       {
-        type: "confirm",
-        name: "workbox",
+        default: true,
         message: `Would you like to include ${chalk.green(
           "Workbox"
         )} service worker?`,
-        default: true,
+        name: "workbox",
+        type: "confirm",
       },
     ]).then((answers) => {
       this.workbox = answers.workbox;
@@ -48,8 +48,8 @@ module.exports = class extends Generator {
     if (this.workbox) {
       this.fs.extendJSON(this.destinationPath("package.json"), {
         devDependencies: {
-          "workbox-webpack-plugin": "^4.3.1",
           express: "^4.17.1",
+          "workbox-webpack-plugin": "^4.3.1",
         },
       });
     }
@@ -145,6 +145,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.installDependencies({ npm: true, bower: false, yarn: false });
+    this.installDependencies({ bower: false, npm: true, yarn: false });
   }
 };

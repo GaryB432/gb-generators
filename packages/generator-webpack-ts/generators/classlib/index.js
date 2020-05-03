@@ -8,9 +8,9 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.argument("className", {
-      type: String,
-      required: true,
       desc: "the name of the class",
+      required: true,
+      type: String,
     });
   }
 

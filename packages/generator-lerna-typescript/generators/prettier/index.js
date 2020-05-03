@@ -4,11 +4,11 @@ const Generator = require("yeoman-generator");
 module.exports = class extends Generator {
   writing() {
     const pkgJson = {
-      scripts: {
-        format: `prettier --write "**/*.ts"  "!**/lib/**"`,
-      },
       devDependencies: {
         prettier: "^1.19.1",
+      },
+      scripts: {
+        format: `prettier --write "**/*.ts"  "!**/lib/**"`,
       },
     };
 

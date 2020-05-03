@@ -3,7 +3,7 @@ import chalk = require("chalk");
 import path = require("path");
 import Case = require("case");
 
-export default class extends Generator {
+module.exports = class extends Generator {
   private cwd: string;
   constructor(args, opts) {
     super(args, opts);

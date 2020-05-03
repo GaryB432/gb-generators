@@ -1,6 +1,6 @@
 import Generator = require("yeoman-generator");
 
-export default class extends Generator {
+module.exports = class extends Generator {
   writing() {
     const pkgJson = {
       devDependencies: {

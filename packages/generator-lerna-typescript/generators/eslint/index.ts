@@ -1,6 +1,6 @@
 import Generator = require("yeoman-generator");
 
-export default class extends Generator {
+module.exports = class extends Generator {
   writing() {
     this.fs.copy(
       this.templatePath("_eslintrc.js"),

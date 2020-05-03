@@ -2,7 +2,7 @@ import utils = require("../../utils");
 import Generator = require("yeoman-generator");
 import path = require("path");
 
-export default class extends Generator {
+module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.argument("packageName", {

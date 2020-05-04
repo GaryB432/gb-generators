@@ -24,6 +24,6 @@
     "pretest": "eslint .",
     "test": "jest",
     "test-ci": "jest --coverage",
-    "format": "prettier --write \"**/*.{,ts,json,md}\"  \"!**/templates/**\""
+    "format": "prettier --write \"**/*.ts\"  \"!**/templates/**\""
   }
 }

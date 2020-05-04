@@ -39,7 +39,6 @@ describe("generator-webpack-ts:app", () => {
       });
   });
 
-  
   // it("adds dependencies", () => {
   //   assert.noFileContent("package.json", "workbox");
   // });
@@ -50,7 +49,6 @@ describe("generator-webpack-ts:app", () => {
 });
 
 describe("generator-webpack-ts:app with workbox", () => {
-
   it("creates files", () => {
     return helpers
       .run(path.join(__dirname, "../generators/app"))
@@ -62,7 +60,7 @@ describe("generator-webpack-ts:app with workbox", () => {
           "src/sw.js",
           "src/public/manifest.json",
         ]);
-          });
+      });
   });
 
   it("adds dependencies", () => {
@@ -94,5 +92,4 @@ describe("generator-webpack-ts:app with workbox", () => {
         assert.fileContent("src/scripts/app.ts", "serviceWorker");
       });
   });
-
 });

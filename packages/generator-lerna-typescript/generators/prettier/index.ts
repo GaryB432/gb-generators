@@ -21,4 +21,4 @@ export default class extends Generator {
   install() {
     this.npmInstall();
   }
-};
+}

@@ -3,8 +3,8 @@
   "version": "2.0.2",
   "description": "Get started with Lerna using TypeScript",
   "files": [
-    "generators",
-    "utils"
+    "{generators,utils}/**/*.js",
+    "generators/**/templates/"
   ],
   "private": false,
   "scripts": {

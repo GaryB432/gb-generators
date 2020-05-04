@@ -24,7 +24,8 @@
     "yeoman-test": "^2.4.1"
   },
   "scripts": {
-    "pretest": "eslint \"packages/**/**/*.ts\" -f eslint-formatter-friendly",
+    "pretest-f": "npm run pretest -- -f eslint-formatter-friendly",
+    "pretest": "eslint \"packages/**/**/*.ts\"",
     "test": "jest",
     "test-ci": "jest --coverage",
     "format": "prettier --write \"**/*.ts\"  \"!**/templates/**\""

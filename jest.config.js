@@ -16,7 +16,7 @@
 
 module.exports = {
   // clearMocks: true,
-  // coverageDirectory: "coverage",
+  coverageDirectory: "coverage",
   moduleFileExtensions: ["ts", "js", "json", "html"],
   // projects: ["<rootDir>/packages/*"],
   // testEnvironment: "node",

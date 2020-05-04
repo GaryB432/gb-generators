@@ -19,7 +19,7 @@ module.exports = {
   coverageDirectory: "coverage",
   moduleFileExtensions: ["ts", "js", "json", "html"],
   // projects: ["<rootDir>/packages/*"],
-  // testEnvironment: "node",
+  testEnvironment: "node",
   testMatch: ["**/__tests__/**/*.ts"],
   transform: { "^.+\\.(ts|js|json|html)$": "ts-jest" },
 };

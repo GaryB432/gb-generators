@@ -12,8 +12,6 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 
-
-
 module.exports = {
   // clearMocks: true,
   coverageDirectory: "coverage",
@@ -23,17 +21,3 @@ module.exports = {
   testMatch: ["**/__tests__/**/*.ts"],
   transform: { "^.+\\.(ts|js|json|html)$": "ts-jest" },
 };
-
-
-// module.exports = {
-//   // testMatch: ['**/+(*.)+(spec|test).+(ts|js)?(x)'],
-//   testMatch: [
-//     "**/__tests__/**/*.ts"
-//   ],
-
-//   transform: {
-//     '^.+\\.(ts|js|json|html)$': 'ts-jest',
-//   },
-//   moduleFileExtensions: ['ts', 'js', 'json', 'html'],
-//   coverageReporters: ['html'],
-// };

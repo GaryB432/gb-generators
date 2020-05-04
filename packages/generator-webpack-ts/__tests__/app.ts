@@ -21,12 +21,6 @@ const mostFiles = [
 ];
 
 describe("generator-webpack-ts:app", () => {
-  // beforeAll(() => {
-  //   return helpers
-  //     .run(path.join(__dirname, "../generators/app"))
-  //     .withPrompts({ workbox: false });
-  // });
-
   it("creates files", () => {
     return helpers
       .run(path.join(__dirname, "../generators/app"))
@@ -36,16 +30,10 @@ describe("generator-webpack-ts:app", () => {
         assert.noFile("server.js");
         assert.noFile("src/sw.js");
         assert.noFile("src/public/manifest.json");
+        assert.noFileContent("package.json", "workbox");
+        assert.noFileContent("src/scripts/app.ts", "serviceWorker");
       });
   });
-
-  // it("adds dependencies", () => {
-  //   assert.noFileContent("package.json", "workbox");
-  // });
-
-  // it("does not mention serviceWorker", () => {
-  //   assert.noFileContent("src/scripts/app.ts", "serviceWorker");
-  // });
 });
 
 describe("generator-webpack-ts:app with workbox", () => {
@@ -75,20 +63,6 @@ describe("generator-webpack-ts:app with workbox", () => {
       .withPrompts({ workbox: true })
       .then(() => {
         assert.jsonFileContent("package.json", pkgJson);
-      });
-  });
-
-  it("mentions serviceworker", () => {
-    const pkgJson = {
-      devDependencies: {
-        express: "^4.17.1",
-        "workbox-webpack-plugin": "^4.3.1",
-      },
-    };
-    return helpers
-      .run(path.join(__dirname, "../generators/app"))
-      .withPrompts({ workbox: true })
-      .then(() => {
         assert.fileContent("src/scripts/app.ts", "serviceWorker");
       });
   });

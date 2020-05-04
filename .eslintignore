@@ -1,4 +1,5 @@
 coverage
 **/templates
+packages/**/*.js
 node_modules
-lib
+

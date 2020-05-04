@@ -25,7 +25,7 @@
   },
   "scripts": {
     "pretest-f": "npm run pretest -- -f eslint-formatter-friendly",
-    "pretest": "eslint \"packages/**/**/*.ts\"",
+    "pretest": "eslint \"packages/**/*.ts\"",
     "test": "jest",
     "test-ci": "jest --coverage",
     "format": "prettier --write \"**/*.ts\"  \"!**/templates/**\""

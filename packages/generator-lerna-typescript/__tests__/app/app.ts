@@ -3,7 +3,7 @@ import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
 describe("generator-lerna-typescript:app", () => {
-  it("creates files", () => {
+  it("creates files", (done) => {
     helpers
       .run(path.join(__dirname, "../../generators/app"))
       .withPrompts({ independent: false })
@@ -17,6 +17,7 @@ describe("generator-lerna-typescript:app", () => {
           "tsconfig.json",
         ]);
         assert.jsonFileContent("lerna.json", { version: "0.0.0" });
+        done();
       });
   });
 });

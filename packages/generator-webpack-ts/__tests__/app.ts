@@ -21,7 +21,7 @@ const mostFiles = [
 ];
 
 describe("generator-webpack-ts:app", () => {
-  it("creates files", () => {
+  it("creates files", (done) => {
     return helpers
       .run(path.join(__dirname, "../generators/app"))
       .withPrompts({ workbox: false })
@@ -32,12 +32,13 @@ describe("generator-webpack-ts:app", () => {
         assert.noFile("src/public/manifest.json");
         assert.noFileContent("package.json", "workbox");
         assert.noFileContent("src/scripts/app.ts", "serviceWorker");
+        done();
       });
   });
 });
 
 describe("generator-webpack-ts:app with workbox", () => {
-  it("creates files", () => {
+  it("creates files", (done) => {
     return helpers
       .run(path.join(__dirname, "../generators/app"))
       .withPrompts({ workbox: true })
@@ -48,10 +49,11 @@ describe("generator-webpack-ts:app with workbox", () => {
           "src/sw.js",
           "src/public/manifest.json",
         ]);
+        done();
       });
   });
 
-  it("adds dependencies", () => {
+  it("adds dependencies", (done) => {
     const pkgJson = {
       devDependencies: {
         express: "^4.17.1",
@@ -64,6 +66,7 @@ describe("generator-webpack-ts:app with workbox", () => {
       .then(() => {
         assert.jsonFileContent("package.json", pkgJson);
         assert.fileContent("src/scripts/app.ts", "serviceWorker");
+        done();
       });
   });
 });

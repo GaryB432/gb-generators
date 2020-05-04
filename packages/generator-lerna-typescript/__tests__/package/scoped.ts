@@ -3,7 +3,7 @@ import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
 describe("generator-lerna-typescript:package with sope", () => {
-  it("creates files", () => {
+  it("creates files", (done) => {
     helpers
       .run(path.join(__dirname, "../../generators/package"))
       .withArguments("@MyScope/MyTester")
@@ -21,6 +21,7 @@ describe("generator-lerna-typescript:package with sope", () => {
         assert.jsonFileContent("packages/my-tester/package.json", {
           name: "@my-scope/my-tester",
         });
+        done();
       });
   });
 });

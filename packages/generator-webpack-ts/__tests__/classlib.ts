@@ -3,7 +3,7 @@ import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
 describe("generator-webpack-ts:classlib", () => {
-  it("creates files", () => {
+  it("creates files", (done) => {
     return helpers
       .run(path.join(__dirname, "../generators/classlib"))
       .withArguments(["CustomerInventoryItem"])
@@ -18,6 +18,7 @@ describe("generator-webpack-ts:classlib", () => {
           "src/scripts/customer-inventory-item.ts",
           "export class CustomerInventoryItem"
         );
+        done();
       });
   });
 });

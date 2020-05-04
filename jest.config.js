@@ -12,6 +12,14 @@
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
 
+// module.exports = {
+//   globals: { skipBabel: true },
+//   preset: "ts-jest",
+//   testEnvironment: "node",
+//   testMatch: ["**/__tests__/**/*.ts"],
+//   // testPathIgnorePatterns: ["/node_modules/", "/output/"]
+// };
+
 module.exports = {
   // clearMocks: true,
   coverageDirectory: "coverage",

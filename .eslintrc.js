@@ -40,11 +40,7 @@ module.exports = {
           'private-static-method',
         ],
       },
-    ],
-    '@typescript-eslint/no-parameter-properties': 0,
-    '@typescript-eslint/no-unused-vars': 0,
-    '@typescript-eslint/no-var-requires': 0,
-    'no-var': 0,
+    ]
   },
   env: {
     browser: true,

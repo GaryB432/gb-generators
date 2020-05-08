@@ -1,4 +1,4 @@
-const utils = require("../utils");
+import utils = require("../utils");
 
 describe("Utilities", () => {
   it("asdf", () => {

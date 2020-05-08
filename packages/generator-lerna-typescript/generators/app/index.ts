@@ -1,8 +1,8 @@
-const Generator = require("yeoman-generator");
-const chalk = require("chalk");
-const yosay = require("yosay");
-const Case = require("case");
-const path = require("path");
+import Generator = require("yeoman-generator");
+import chalk = require("chalk");
+import yosay = require("yosay");
+import Case = require("case");
+import path = require("path");
 
 interface Answers {
   independent: boolean;
@@ -10,6 +10,7 @@ interface Answers {
 
 export default class extends Generator {
   private answers: Answers;
+  private cwd: string;
   async prompting(): Promise<Answers | void> {
     const answers = await this.prompt([
       {
@@ -30,8 +31,8 @@ export default class extends Generator {
     this.composeWith(require.resolve("../package"), {
       arguments: ["@myscope/greeter"],
     });
-    this.composeWith(require.resolve("../prettier"));
-    this.composeWith(require.resolve("../eslint"));
+    this.composeWith(require.resolve("../prettier"), {});
+    this.composeWith(require.resolve("../eslint"), {});
 
     this.cwd = path.basename(process.cwd());
   }

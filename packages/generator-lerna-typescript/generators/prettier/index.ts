@@ -1,7 +1,7 @@
 import Generator = require("yeoman-generator");
 
 export default class extends Generator {
-  writing() {
+  writing(): void {
     const pkgJson = {
       devDependencies: {
         prettier: "^1.19.1",
@@ -18,7 +18,7 @@ export default class extends Generator {
     );
   }
 
-  install() {
+  install(): void {
     this.npmInstall();
   }
 }

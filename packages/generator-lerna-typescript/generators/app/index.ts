@@ -4,8 +4,13 @@ const yosay = require("yosay");
 const Case = require("case");
 const path = require("path");
 
+interface Answers {
+  independent: boolean;
+}
+
 export default class extends Generator {
-  async prompting() {
+  private answers: Answers;
+  async prompting(): Promise<Answers | void> {
     const answers = await this.prompt([
       {
         default: false,
@@ -17,7 +22,7 @@ export default class extends Generator {
     this.answers = answers;
   }
 
-  initializing() {
+  initializing(): void {
     this.log(
       yosay(`Welcome to the rad ${chalk.red("lerna-typescript")} generator!`)
     );
@@ -31,7 +36,7 @@ export default class extends Generator {
     this.cwd = path.basename(process.cwd());
   }
 
-  writing() {
+  writing(): void {
     const context = {
       appname: Case.kebab(this.cwd),
     };
@@ -66,11 +71,11 @@ export default class extends Generator {
     );
   }
 
-  install() {
+  install(): void {
     this.installDependencies({ bower: false, npm: true, yarn: false });
   }
 
-  end() {
+  end(): void {
     this.log(
       `Create a new package with ${chalk.green(
         "yo lerna-typescript:package @my-scope/my-new-package"

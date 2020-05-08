@@ -1,7 +1,7 @@
 import Generator = require("yeoman-generator");
 
 export default class extends Generator {
-  writing() {
+  writing(): void {
     this.fs.copy(
       this.templatePath("_eslintrc.js"),
       this.destinationPath(".eslintrc.js")
@@ -24,7 +24,7 @@ export default class extends Generator {
     this.fs.extendJSON(this.destinationPath("package.json"), pkgJson);
   }
 
-  install() {
+  install(): void {
     this.npmInstall();
   }
 }

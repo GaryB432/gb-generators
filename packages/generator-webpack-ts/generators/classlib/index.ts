@@ -14,12 +14,12 @@ export default class extends Generator {
     });
   }
 
-  initializing() {
+  initializing(): void {
     this.log(chalk.gray(`${this.options.className} coming right up`));
     this.cwd = path.basename(process.cwd());
   }
 
-  writing() {
+  writing(): void {
     const context = {
       className: Case.kebab(this.options.className),
       classTypeName: Case.pascal(this.options.className),

@@ -12,7 +12,7 @@ export default class extends Generator {
     });
   }
 
-  writing() {
+  writing(): void {
     const pkgInfo = utils.getPackageInfo(this.options.packageName);
     const context = {
       folder: pkgInfo.name,
@@ -46,7 +46,8 @@ export default class extends Generator {
         lernaJson.version === "independent" ? "0.0.0" : lernaJson.version,
     };
 
-    const pfn = (fname) => path.join("packages", context.folder, fname);
+    const pfn: (fname: string) => string = (fname) =>
+      path.join("packages", context.folder, fname);
     this.fs.copyTpl(
       this.templatePath("__tests__/index.spec.ts.template"),
       this.destinationPath(pfn("__tests__/index.spec.ts")),

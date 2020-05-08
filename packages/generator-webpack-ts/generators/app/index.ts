@@ -11,7 +11,7 @@ interface Answers {
 export default class extends Generator {
   private answers: Answers;
   private cwd: string;
-  prompting() {
+  prompting(): Promise<void | Answers> {
     return this.prompt<Answers>([
       {
         default: true,
@@ -26,7 +26,7 @@ export default class extends Generator {
     });
   }
 
-  initializing() {
+  initializing(): void {
     this.log(
       yosay(
         "Welcome to the minimal " +
@@ -44,7 +44,7 @@ export default class extends Generator {
     this.cwd = path.basename(process.cwd());
   }
 
-  _writePackageJson(context) {
+  _writePackageJson(context): void {
     this.fs.copyTpl(
       this.templatePath("package.json"),
       this.destinationPath("package.json"),
@@ -60,7 +60,7 @@ export default class extends Generator {
     }
   }
 
-  writing() {
+  writing(): void {
     const context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
@@ -149,7 +149,7 @@ export default class extends Generator {
     );
   }
 
-  install() {
+  install(): void {
     this.installDependencies({ bower: false, npm: true, yarn: false });
   }
 }

@@ -6,13 +6,13 @@ export interface PackageInfo {
 }
 
 export function getPackageInfo(input): PackageInfo {
-  var parts = input.split("/");
+  const parts = input.split("/");
   if (parts.length === 2 && parts[0].startsWith("@")) {
-    var scope = Case.kebab(parts[0].slice(1));
-    var pname = Case.kebab(parts[1]);
-    return { name: pname, scope: scope };
+    const scope = Case.kebab(parts[0].slice(1));
+    const pname = Case.kebab(parts[1]);
+    return { name: pname, scope };
   }
 
-  var name = Case.kebab(input);
-  return { name: name };
+  const name = Case.kebab(input);
+  return { name };
 }

@@ -9,8 +9,8 @@ interface Answers {
 }
 
 export default class extends Generator {
-  private answers: Answers;
-  private cwd: string;
+  private answers?: Answers;
+  private cwd = path.basename(process.cwd());
   async prompting(): Promise<Answers | void> {
     const answers = await this.prompt([
       {
@@ -33,8 +33,6 @@ export default class extends Generator {
     });
     this.composeWith(require.resolve("../prettier"), {});
     this.composeWith(require.resolve("../eslint"), {});
-
-    this.cwd = path.basename(process.cwd());
   }
 
   writing(): void {
@@ -52,7 +50,8 @@ export default class extends Generator {
 
     const lernaJson = {
       packages: ["packages/*", "tools/*"],
-      version: this.answers.independent ? "independent" : "0.0.0",
+      version:
+        this.answers && this.answers.independent ? "independent" : "0.0.0",
     };
 
     this.fs.extendJSON(this.destinationPath("lerna.json"), lernaJson);

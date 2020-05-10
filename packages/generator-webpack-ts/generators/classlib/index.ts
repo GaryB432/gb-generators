@@ -1,11 +1,9 @@
 import Generator = require("yeoman-generator");
 import chalk = require("chalk");
-import path = require("path");
 import Case = require("case");
 
 export default class extends Generator {
-  private cwd: string;
-  constructor(args, opts) {
+  constructor(args: string | string[], opts: {}) {
     super(args, opts);
     this.argument("className", {
       description: "the name of the class",
@@ -16,7 +14,6 @@ export default class extends Generator {
 
   initializing(): void {
     this.log(chalk.gray(`${this.options.className} coming right up`));
-    this.cwd = path.basename(process.cwd());
   }
 
   writing(): void {

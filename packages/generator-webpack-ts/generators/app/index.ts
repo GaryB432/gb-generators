@@ -7,10 +7,15 @@ import Case = require("case");
 interface Answers {
   workbox: boolean;
 }
+interface Context {
+  appname: string;
+  genstamp: string;
+  workbox: boolean;
+}
 
 export default class extends Generator {
-  private answers: Answers;
-  private cwd: string;
+  private answers?: Answers;
+  private cwd = path.basename(process.cwd());
   prompting(): Promise<void | Answers> {
     return this.prompt<Answers>([
       {
@@ -40,17 +45,15 @@ export default class extends Generator {
     });
 
     this.log(chalk.gray("Coming right up"));
-
-    this.cwd = path.basename(process.cwd());
   }
 
-  _writePackageJson(context): void {
+  _writePackageJson(context: Context): void {
     this.fs.copyTpl(
       this.templatePath("package.json"),
       this.destinationPath("package.json"),
       context
     );
-    if (this.answers.workbox) {
+    if (this.answers && this.answers.workbox) {
       this.fs.extendJSON(this.destinationPath("package.json"), {
         devDependencies: {
           express: "^4.17.1",
@@ -61,10 +64,10 @@ export default class extends Generator {
   }
 
   writing(): void {
-    const context = {
+    const context: Context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
-      workbox: this.answers.workbox,
+      workbox: (this.answers && this.answers.workbox) || false,
     };
     this.fs.copy(
       this.templatePath("_vscode/settings.json"),
@@ -117,7 +120,7 @@ export default class extends Generator {
       this.destinationPath("README.md"),
       context
     );
-    if (this.answers.workbox) {
+    if (this.answers && this.answers.workbox) {
       this.fs.copy(
         this.templatePath("server.js"),
         this.destinationPath("server.js")

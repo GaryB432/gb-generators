@@ -5,11 +5,12 @@
     "target": "es2017",
     "lib": ["es6"],
     "sourceMap": false,
+    "strict": true,
     "allowJs": false,
     "moduleResolution": "node",
     "declaration": false,
     "downlevelIteration": true,
     "typeRoots": ["./node_modules/@types"]
   },
-  "exclude": ["**/*.spec.ts", "node_modules", "**/templates/*", "**/*.d.ts"]
+  "exclude": ["**/__tests__/**", "node_modules", "**/templates/*", "**/*.d.ts"]
 }

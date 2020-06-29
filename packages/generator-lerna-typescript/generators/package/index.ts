@@ -3,7 +3,7 @@ import Generator = require("yeoman-generator");
 import path = require("path");
 
 export default class extends Generator {
-  constructor(args: string | string[], opts: any) {
+  constructor(args: string | string[], opts: object) {
     super(args, opts);
     this.argument("packageName", {
       description: "the name of the package",

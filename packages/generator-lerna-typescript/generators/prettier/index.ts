@@ -4,7 +4,7 @@ export default class extends Generator {
   writing(): void {
     const pkgJson = {
       devDependencies: {
-        prettier: "^1.19.1",
+        prettier: "^2.0.0",
       },
       scripts: {
         format: `prettier --write "**/*.ts"  "!**/lib/**"`,

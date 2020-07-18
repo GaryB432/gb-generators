@@ -49,7 +49,7 @@ export default class extends Generator {
 
   _writePackageJson(context: Context): void {
     this.fs.copyTpl(
-      this.templatePath("package.json"),
+      this.templatePath("package.json.template"),
       this.destinationPath("package.json"),
       context
     );
@@ -97,11 +97,11 @@ export default class extends Generator {
       this.destinationPath("src/styles/app.scss")
     );
     this.fs.copy(
-      this.templatePath("_gitignore"),
+      this.templatePath(".gitignore.template"),
       this.destinationPath(".gitignore")
     );
     this.fs.copy(
-      this.templatePath("_gitattributes"),
+      this.templatePath(".gitattributes.template"),
       this.destinationPath(".gitattributes")
     );
     this.fs.copy(
@@ -112,21 +112,21 @@ export default class extends Generator {
     this._writePackageJson(context);
 
     this.fs.copy(
-      this.templatePath("_karma.conf.js.txt"),
+      this.templatePath("karma.conf.js.template"),
       this.destinationPath("karma.conf.js")
     );
     this.fs.copyTpl(
-      this.templatePath("README.md"),
+      this.templatePath("README.md.template"),
       this.destinationPath("README.md"),
       context
     );
     if (this.answers && this.answers.workbox) {
       this.fs.copy(
-        this.templatePath("server.js"),
+        this.templatePath("server.js.template"),
         this.destinationPath("server.js")
       );
       this.fs.copyTpl(
-        this.templatePath("src/sw.js"),
+        this.templatePath("src/sw.js.template"),
         this.destinationPath("src/sw.js"),
         context
       );
@@ -138,15 +138,15 @@ export default class extends Generator {
     }
 
     this.fs.copy(
-      this.templatePath("tsconfig.json"),
+      this.templatePath("tsconfig.json.template"),
       this.destinationPath("tsconfig.json")
     );
     this.fs.copy(
-      this.templatePath("_eslintrc.js.txt"),
+      this.templatePath(".eslintrc.js.template"),
       this.destinationPath(".eslintrc.js")
     );
     this.fs.copyTpl(
-      this.templatePath("_webpack.config.js.txt"),
+      this.templatePath("webpack.config.js.template"),
       this.destinationPath("webpack.config.js"),
       context
     );

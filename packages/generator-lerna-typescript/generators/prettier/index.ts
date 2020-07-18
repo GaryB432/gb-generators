@@ -1,11 +1,10 @@
-"use strict";
-const Generator = require("yeoman-generator");
+import Generator = require("yeoman-generator");
 
-module.exports = class extends Generator {
-  writing() {
+export default class extends Generator {
+  writing(): void {
     const pkgJson = {
       devDependencies: {
-        prettier: "^1.19.1",
+        prettier: "^2.0.0",
       },
       scripts: {
         format: `prettier --write "**/*.ts"  "!**/lib/**"`,
@@ -19,7 +18,7 @@ module.exports = class extends Generator {
     );
   }
 
-  install() {
+  install(): void {
     this.npmInstall();
   }
-};
+}

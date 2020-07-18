@@ -1,12 +1,17 @@
-"use strict";
-const Generator = require("yeoman-generator");
-const chalk = require("chalk");
-const yosay = require("yosay");
-const Case = require("case");
-const path = require("path");
+import Generator = require("yeoman-generator");
+import chalk = require("chalk");
+import yosay = require("yosay");
+import Case = require("case");
+import path = require("path");
 
-module.exports = class extends Generator {
-  async prompting() {
+interface Answers {
+  independent: boolean;
+}
+
+export default class extends Generator {
+  private answers?: Answers;
+  private cwd = path.basename(process.cwd());
+  async prompting(): Promise<Answers | void> {
     const answers = await this.prompt([
       {
         default: false,
@@ -18,7 +23,7 @@ module.exports = class extends Generator {
     this.answers = answers;
   }
 
-  initializing() {
+  initializing(): void {
     this.log(
       yosay(`Welcome to the rad ${chalk.red("lerna-typescript")} generator!`)
     );
@@ -26,13 +31,11 @@ module.exports = class extends Generator {
     this.composeWith(require.resolve("../package"), {
       arguments: ["@myscope/greeter"],
     });
-    this.composeWith(require.resolve("../prettier"));
-    this.composeWith(require.resolve("../eslint"));
-
-    this.cwd = path.basename(process.cwd());
+    this.composeWith(require.resolve("../prettier"), {});
+    this.composeWith(require.resolve("../eslint"), {});
   }
 
-  writing() {
+  writing(): void {
     const context = {
       appname: Case.kebab(this.cwd),
     };
@@ -47,7 +50,8 @@ module.exports = class extends Generator {
 
     const lernaJson = {
       packages: ["packages/*", "tools/*"],
-      version: this.answers.independent ? "independent" : "0.0.0",
+      version:
+        this.answers && this.answers.independent ? "independent" : "0.0.0",
     };
 
     this.fs.extendJSON(this.destinationPath("lerna.json"), lernaJson);
@@ -67,15 +71,15 @@ module.exports = class extends Generator {
     );
   }
 
-  install() {
+  install(): void {
     this.installDependencies({ bower: false, npm: true, yarn: false });
   }
 
-  end() {
+  end(): void {
     this.log(
       `Create a new package with ${chalk.green(
         "yo lerna-typescript:package @my-scope/my-new-package"
       )}.`
     );
   }
-};
+}

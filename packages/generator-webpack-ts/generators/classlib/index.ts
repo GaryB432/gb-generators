@@ -1,25 +1,22 @@
-"use strict";
-const Generator = require("yeoman-generator");
-const chalk = require("chalk");
-const path = require("path");
-const Case = require("case");
+import Generator = require("yeoman-generator");
+import chalk = require("chalk");
+import Case = require("case");
 
-module.exports = class extends Generator {
-  constructor(args, opts) {
+export default class extends Generator {
+  constructor(args: string | string[], opts: {}) {
     super(args, opts);
     this.argument("className", {
-      desc: "the name of the class",
+      description: "the name of the class",
       required: true,
       type: String,
     });
   }
 
-  initializing() {
+  initializing(): void {
     this.log(chalk.gray(`${this.options.className} coming right up`));
-    this.cwd = path.basename(process.cwd());
   }
 
-  writing() {
+  writing(): void {
     const context = {
       className: Case.kebab(this.options.className),
       classTypeName: Case.pascal(this.options.className),
@@ -41,4 +38,4 @@ module.exports = class extends Generator {
       context
     );
   }
-};
+}

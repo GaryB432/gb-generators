@@ -1,13 +1,23 @@
-"use strict";
-const Generator = require("yeoman-generator");
-const chalk = require("chalk");
-const yosay = require("yosay");
-const path = require("path");
-const Case = require("case");
+import Generator = require("yeoman-generator");
+import chalk = require("chalk");
+import yosay = require("yosay");
+import path = require("path");
+import Case = require("case");
 
-module.exports = class extends Generator {
-  prompting() {
-    return this.prompt([
+interface Answers {
+  workbox: boolean;
+}
+interface Context {
+  appname: string;
+  genstamp: string;
+  workbox: boolean;
+}
+
+export default class extends Generator {
+  private answers?: Answers;
+  private cwd = path.basename(process.cwd());
+  prompting(): Promise<void | Answers> {
+    return this.prompt<Answers>([
       {
         default: true,
         message: `Would you like to include ${chalk.green(
@@ -17,11 +27,11 @@ module.exports = class extends Generator {
         type: "confirm",
       },
     ]).then((answers) => {
-      this.workbox = answers.workbox;
+      this.answers = answers;
     });
   }
 
-  initializing() {
+  initializing(): void {
     this.log(
       yosay(
         "Welcome to the minimal " +
@@ -35,17 +45,15 @@ module.exports = class extends Generator {
     });
 
     this.log(chalk.gray("Coming right up"));
-
-    this.cwd = path.basename(process.cwd());
   }
 
-  _writePackageJson(context) {
+  _writePackageJson(context: Context): void {
     this.fs.copyTpl(
       this.templatePath("package.json"),
       this.destinationPath("package.json"),
       context
     );
-    if (this.workbox) {
+    if (this.answers && this.answers.workbox) {
       this.fs.extendJSON(this.destinationPath("package.json"), {
         devDependencies: {
           express: "^4.17.1",
@@ -55,11 +63,11 @@ module.exports = class extends Generator {
     }
   }
 
-  writing() {
-    const context = {
+  writing(): void {
+    const context: Context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
-      workbox: this.workbox,
+      workbox: (this.answers && this.answers.workbox) || false,
     };
     this.fs.copy(
       this.templatePath("_vscode/settings.json"),
@@ -112,7 +120,7 @@ module.exports = class extends Generator {
       this.destinationPath("README.md"),
       context
     );
-    if (this.workbox) {
+    if (this.answers && this.answers.workbox) {
       this.fs.copy(
         this.templatePath("server.js"),
         this.destinationPath("server.js")
@@ -144,7 +152,7 @@ module.exports = class extends Generator {
     );
   }
 
-  install() {
+  install(): void {
     this.installDependencies({ bower: false, npm: true, yarn: false });
   }
-};
+}

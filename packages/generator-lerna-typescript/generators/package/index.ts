@@ -1,19 +1,18 @@
-"use strict";
-const utils = require("../../utils");
-const Generator = require("yeoman-generator");
-const path = require("path");
+import utils = require("../../utils");
+import Generator = require("yeoman-generator");
+import path = require("path");
 
-module.exports = class extends Generator {
-  constructor(args, opts) {
+export default class extends Generator {
+  constructor(args: string | string[], opts: object) {
     super(args, opts);
     this.argument("packageName", {
-      desc: "the name of the package",
+      description: "the name of the package",
       required: true,
       type: String,
     });
   }
 
-  writing() {
+  writing(): void {
     const pkgInfo = utils.getPackageInfo(this.options.packageName);
     const context = {
       folder: pkgInfo.name,
@@ -47,7 +46,8 @@ module.exports = class extends Generator {
         lernaJson.version === "independent" ? "0.0.0" : lernaJson.version,
     };
 
-    const pfn = (fname) => path.join("packages", context.folder, fname);
+    const pfn: (fname: string) => string = (fname) =>
+      path.join("packages", context.folder, fname);
     this.fs.copyTpl(
       this.templatePath("__tests__/index.spec.ts.template"),
       this.destinationPath(pfn("__tests__/index.spec.ts")),
@@ -67,4 +67,4 @@ module.exports = class extends Generator {
       context
     );
   }
-};
+}

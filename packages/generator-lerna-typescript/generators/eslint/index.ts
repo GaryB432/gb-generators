@@ -1,8 +1,7 @@
-"use strict";
-const Generator = require("yeoman-generator");
+import Generator = require("yeoman-generator");
 
-module.exports = class extends Generator {
-  writing() {
+export default class extends Generator {
+  writing(): void {
     this.fs.copy(
       this.templatePath("_eslintrc.js"),
       this.destinationPath(".eslintrc.js")
@@ -25,7 +24,7 @@ module.exports = class extends Generator {
     this.fs.extendJSON(this.destinationPath("package.json"), pkgJson);
   }
 
-  install() {
+  install(): void {
     this.npmInstall();
   }
-};
+}

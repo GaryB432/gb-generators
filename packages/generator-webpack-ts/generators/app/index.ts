@@ -131,7 +131,7 @@ export default class extends Generator {
         context
       );
       this.fs.copyTpl(
-        this.templatePath("src/public/manifest.json"),
+        this.templatePath("src/public/manifest.json.template"),
         this.destinationPath("src/public/manifest.json"),
         context
       );

@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 <% if (workbox) { %>const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');<% } %>
@@ -47,7 +47,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
-      chunksSortMode: 'dependency',
+      scriptLoading: 'defer'
     }),
 
     new MiniCssExtractPlugin({
@@ -55,7 +55,15 @@ module.exports = {
       chunkFilename: 'css/[id].[hash].css',
     }),
 
-    new CopyWebpackPlugin([{ from: 'public' }]),
+    new CopyPlugin({
+      patterns: [
+        { from: 'public' }
+      ],
+      options: {
+        concurrency: 100,
+      },
+    }),
+
 <% if (workbox) { %>
 
     new InjectManifest({

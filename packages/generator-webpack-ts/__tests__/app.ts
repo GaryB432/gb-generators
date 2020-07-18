@@ -9,6 +9,7 @@ const mostFiles = [
   ".travis.yml",
   ".vscode/settings.json",
   ".vscode/tasks.json",
+  "azure-pipelines.yml",
   "package.json",
   "karma.conf.js",
   "README.md",

@@ -12,6 +12,7 @@
     "pretest": "npm run lint",
     "build": "npm run clean && webpack --config ./webpack.config.js",
     "test": "karma start --single-run --browsers ChromeHeadless",
+    "test-ci": "karma start --single-run --browsers ChromeHeadless --reporters junit",
     "test-watch": "karma start --browsers ChromeHeadless"
   },
   "license": "ISC",
@@ -30,6 +31,7 @@
     "karma": "^5.1.0",
     "karma-chrome-launcher": "^3.1.0",
     "karma-jasmine": "^3.3.1",
+    "karma-junit-reporter": "^2.0.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
     "mini-css-extract-plugin": "^0.9.0",

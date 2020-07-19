@@ -16,5 +16,11 @@ steps:
     versionSpec: $(node_version)
 
 - script: |
-    npm install
-    npm test
+    npm ci
+    npm run test-ci
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: 'results/TESTS*'

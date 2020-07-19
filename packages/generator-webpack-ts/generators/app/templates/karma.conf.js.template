@@ -14,7 +14,8 @@ module.exports = function (config) {
       'karma-chrome-launcher',
       'karma-jasmine',
       'karma-sourcemap-loader',
-      'karma-webpack'
+      'karma-webpack',
+      'karma-junit-reporter'
     ],
     webpack: {
       devtool: false,
@@ -30,14 +31,20 @@ module.exports = function (config) {
       plugins: [
         new webpack.SourceMapDevToolPlugin({
           test: /\.(ts|js|css)($|\?)/i
-        })
+        }),
+
       ],
       resolve: {
         extensions: ['.ts']
-      }
+      },
     },
     webpackMiddleware: {
       logLevel: 'error'
+    },
+    reporters: ['progress', 'junit'],
+    junitReporter: {
+      outputDir: 'results',
+      suite: '<%= appname %>'
     }
   });
 };

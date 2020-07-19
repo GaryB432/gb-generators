@@ -1,4 +1,4 @@
-import { <%= classTypeName %> } from '../src/scripts/<%= className %>';
+import { <%= classTypeName %> } from '../../src/scripts/<%= className %>';
 
 describe('<%= classTypeName %>', (): void => {
   let greeter: <%= classTypeName %>;
@@ -10,5 +10,8 @@ describe('<%= classTypeName %>', (): void => {
     greeter.start(container);
     expect(Array.from(container.classList)).toContain('greeter');
     expect(container.innerHTML).toEqual('<h1>Welcome to testing!</h1>');
+  });
+  it('should throw without container', (): void => {
+    expect(() => greeter.start(null)).toThrowError('no container');
   });
 });

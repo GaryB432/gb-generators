@@ -23,17 +23,17 @@ export default class extends Generator {
       genstamp: new Date().toString(),
     };
     this.fs.copyTpl(
-      this.templatePath("__tests__/blueprint.spec.ts.template"),
-      this.destinationPath(`__tests__/${context.className}.spec.ts`),
+      this.templatePath("__tests__/specs/blueprint.spec.ts.template"),
+      this.destinationPath(`__tests__/specs/${context.className}.spec.ts`),
       context
     );
     this.fs.copyTpl(
-      this.templatePath("src/scripts/blueprint.ts"),
+      this.templatePath("src/scripts/blueprint.ts.template"),
       this.destinationPath(`src/scripts/${context.className}.ts`),
       context
     );
     this.fs.copyTpl(
-      this.templatePath("src/styles/blueprint.scss"),
+      this.templatePath("src/styles/blueprint.scss.template"),
       this.destinationPath(`src/styles/${context.className}.scss`),
       context
     );

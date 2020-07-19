@@ -17,10 +17,15 @@ steps:
 
 - script: |
     npm ci
-    npm run test-ci
+    npm test
 
 - task: PublishTestResults@2
   condition: succeededOrFailed()
   inputs:
     testRunner: JUnit
-    testResultsFiles: 'results/TESTS*'
+    testResultsFiles: '$(System.DefaultWorkingDirectory)/results/TESTS*'
+
+- task: PublishCodeCoverageResults@1
+  inputs: 
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/results/coverage/cobertura-coverage.xml'

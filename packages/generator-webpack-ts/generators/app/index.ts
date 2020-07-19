@@ -78,6 +78,11 @@ export default class extends Generator {
       this.destinationPath(".vscode/tasks.json")
     );
     this.fs.copyTpl(
+      this.templatePath("__tests__/index.ts.template"),
+      this.destinationPath("__tests__/index.ts"),
+      context
+    );
+    this.fs.copyTpl(
       this.templatePath("src/public/index.html"),
       this.destinationPath("src/public/index.html"),
       context
@@ -88,12 +93,12 @@ export default class extends Generator {
       context
     );
     this.fs.copyTpl(
-      this.templatePath("src/scripts/app.ts"),
+      this.templatePath("src/scripts/app.ts.template"),
       this.destinationPath("src/scripts/app.ts"),
       context
     );
     this.fs.copy(
-      this.templatePath("src/styles/app.scss"),
+      this.templatePath("src/styles/app.scss.template"),
       this.destinationPath("src/styles/app.scss")
     );
     this.fs.copy(
@@ -115,9 +120,10 @@ export default class extends Generator {
 
     this._writePackageJson(context);
 
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath("karma.conf.js.template"),
-      this.destinationPath("karma.conf.js")
+      this.destinationPath("karma.conf.js"),
+      context
     );
     this.fs.copyTpl(
       this.templatePath("README.md.template"),

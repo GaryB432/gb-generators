@@ -10,7 +10,7 @@ describe("generator-webpack-ts:classlib", () => {
       .withPrompts({ wtf: false })
       .then(() => {
         assert.file([
-          "__tests__/customer-inventory-item.spec.ts",
+          "__tests__/specs/customer-inventory-item.spec.ts",
           "src/scripts/customer-inventory-item.ts",
           "src/styles/customer-inventory-item.scss",
         ]);

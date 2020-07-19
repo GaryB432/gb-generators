@@ -1,50 +1,35 @@
-var webpack = require('webpack');
+const webpackConfig = require('./webpack.config');
+const path = require('path');
 
-module.exports = function (config) {
+delete webpackConfig.entry;
+
+module.exports = (config) => {
   config.set({
     frameworks: ['jasmine'],
     browsers: ['ChromeHeadless'],
-    files: [
-      './__tests__/**/*'
-    ],
+    files: ['__tests__/index.ts'],
     preprocessors: {
-      '**/*.ts': ['webpack', 'sourcemap']
+      '__tests__/index.ts': ['webpack'],
     },
-    plugins: [
-      'karma-chrome-launcher',
-      'karma-jasmine',
-      'karma-sourcemap-loader',
-      'karma-webpack',
-      'karma-junit-reporter'
-    ],
-    webpack: {
-      devtool: false,
-      mode: 'development',
-      module: {
-        rules: [
-          {
-            test: /\.ts$/,
-            loader: 'ts-loader',
-          }
-        ]
-      },
-      plugins: [
-        new webpack.SourceMapDevToolPlugin({
-          test: /\.(ts|js|css)($|\?)/i
-        }),
-
-      ],
-      resolve: {
-        extensions: ['.ts']
-      },
+    mime: {
+      'text/x-typescript': ['ts', 'tsx'],
     },
+    webpack: webpackConfig,
     webpackMiddleware: {
-      logLevel: 'error'
+      noInfo: true,
     },
-    reporters: ['progress', 'junit'],
+    reporters: ['spec', 'junit', 'coverage-istanbul'],
+    coverageIstanbulReporter: {
+      reports: ['html', 'text-summary', 'lcovonly', 'cobertura'],
+      dir: path.join(__dirname, 'results/coverage'),
+      fixWebpackSourcePaths: true,
+      'report-config': {
+        html: { subdir: 'html' },
+      },
+    },
     junitReporter: {
       outputDir: 'results',
-      suite: '<%= appname %>'
-    }
+      suite: '<%= appname %>',
+    },
   });
 };

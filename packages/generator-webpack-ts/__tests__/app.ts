@@ -3,7 +3,6 @@ import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
 const mostFiles = [
-  "__tests__/index.ts",
   ".eslintrc.js",
   ".gitignore",
   ".gitattributes",
@@ -12,7 +11,6 @@ const mostFiles = [
   ".vscode/tasks.json",
   "azure-pipelines.yml",
   "package.json",
-  "karma.conf.js",
   "README.md",
   "src/public/index.html",
   "src/public/img/yeoman-003.png",

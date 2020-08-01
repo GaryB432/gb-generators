@@ -44,6 +44,10 @@ export default class extends Generator {
       arguments: ["Greeter"],
     });
 
+    this.composeWith(require.resolve("../tester"), {
+      arguments: ["tbd"],
+    });
+
     this.log(chalk.gray("Coming right up"));
   }
 
@@ -76,11 +80,6 @@ export default class extends Generator {
     this.fs.copy(
       this.templatePath("_vscode/tasks.json"),
       this.destinationPath(".vscode/tasks.json")
-    );
-    this.fs.copyTpl(
-      this.templatePath("__tests__/index.ts.template"),
-      this.destinationPath("__tests__/index.ts"),
-      context
     );
     this.fs.copyTpl(
       this.templatePath("src/public/index.html"),
@@ -120,11 +119,6 @@ export default class extends Generator {
 
     this._writePackageJson(context);
 
-    this.fs.copyTpl(
-      this.templatePath("karma.conf.js.template"),
-      this.destinationPath("karma.conf.js"),
-      context
-    );
     this.fs.copyTpl(
       this.templatePath("README.md.template"),
       this.destinationPath("README.md"),

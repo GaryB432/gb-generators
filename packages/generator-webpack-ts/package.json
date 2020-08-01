@@ -17,8 +17,7 @@
     "workbox",
     "sass",
     "scss",
-    "eslint",
-    "karma"
+    "eslint"
   ],
   "author": "Gary Bortosky <garybort@gmail.com>",
   "license": "ISC",

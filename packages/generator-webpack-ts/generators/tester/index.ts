@@ -3,7 +3,7 @@ import path = require("path");
 import Case = require("case");
 
 interface Answers {
-  workbox: boolean;
+  library: "karma" | "jest" | "none";
 }
 interface Context {
   appname: string;
@@ -11,54 +11,51 @@ interface Context {
   workbox: boolean;
 }
 
+const packageExtensions = {
+  karma: {
+    devDependencies: {
+      "istanbul-instrumenter-loader": "^3.0.1",
+      jasmine: "^3.5.0",
+      karma: "^5.1.0",
+      "karma-chrome-launcher": "^3.1.0",
+      "karma-coverage": "^2.0.2",
+      "karma-coverage-istanbul-reporter": "^3.0.3",
+      "karma-jasmine": "^3.3.1",
+      "karma-junit-reporter": "^2.0.1",
+      "karma-sourcemap-loader": "^0.3.7",
+      "karma-spec-reporter": "0.0.32",
+      "karma-webpack": "^4.0.2",
+    },
+    scripts: {
+      test: "karma start --single-run",
+      "test-watch": "karma start",
+    },
+  },
+  jest: {},
+  none: {},
+};
+
 export default class extends Generator {
   private answers?: Answers;
   private cwd = path.basename(process.cwd());
-  // async prompting(): Promise<void | Answers> {
-  //   return this.prompt<Answers>([
-  //     {
-  //       default: true,
-  //       message: `Would you like to include ${chalk.green(
-  //         "Workbox"
-  //       )} service worker?`,
-  //       name: "workbox",
-  //       type: "confirm",
-  //     },
-  //   ]).then((answers) => {
-  //     this.answers = answers;
-  //   });
-  // }
-
-  // initializing(): void {
-  //   // this.composeWith(require.resolve("../classlib"), {
-  //   //   arguments: ["Greeter"],
-  //   // });
-
-  //   this.log(chalk.gray("Adding test scaffolding"));
-  // }
+  async prompting(): Promise<void | Answers> {
+    return this.prompt<Answers>([
+      {
+        choices: ["Jest", "Karma", "None"],
+        filter: (val: string): string => val.toLowerCase(),
+        message: "Which testing library?",
+        name: "library",
+        type: "list",
+      },
+    ]).then((answers) => {
+      this.answers = answers;
+    });
+  }
 
   _writePackageJson(_context: Context): void {
     this.fs.extendJSON(
       this.destinationPath("package.json"),
-      {
-        devDependencies: {
-          "istanbul-instrumenter-loader": "^3.0.1",
-          jasmine: "^3.5.0",
-          karma: "^5.1.0",
-          "karma-chrome-launcher": "^3.1.0",
-          "karma-coverage": "^2.0.2",
-          "karma-coverage-istanbul-reporter": "^3.0.3",
-          "karma-jasmine": "^3.3.1",
-          "karma-junit-reporter": "^2.0.1",
-          "karma-sourcemap-loader": "^0.3.7",
-          "karma-spec-reporter": "0.0.32",
-          "karma-webpack": "^4.0.2",
-        },
-        scripts: {
-          test: "karma start --single-run",
-          "test-watch": "karma start",
-        },
-      },
+      packageExtensions[this.answers?.library ?? "none"],
       undefined,
       2
     );
@@ -81,7 +78,7 @@ export default class extends Generator {
     const context: Context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
-      workbox: (this.answers && this.answers.workbox) || false,
+      workbox: false, // TODO: add workbox handling
     };
     this.fs.copyTpl(
       this.templatePath("karma/__tests__/index.ts.template"),

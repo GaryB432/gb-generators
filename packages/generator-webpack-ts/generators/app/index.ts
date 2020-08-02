@@ -107,10 +107,6 @@ export default class extends Generator {
       this.destinationPath(".gitattributes")
     );
     this.fs.copy(
-      this.templatePath("azure-pipelines.yml.template"),
-      this.destinationPath("azure-pipelines.yml")
-    );
-    this.fs.copy(
       this.templatePath(".travis.yml.template"),
       this.destinationPath(".travis.yml")
     );

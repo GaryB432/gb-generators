@@ -14,6 +14,7 @@ interface Context {
 const packageExtensions = {
   karma: {
     devDependencies: {
+      "@types/jasmine": "^3.5.11",
       "istanbul-instrumenter-loader": "^3.0.1",
       jasmine: "^3.5.0",
       karma: "^5.1.0",
@@ -85,10 +86,13 @@ export default class extends Generator {
     };
     switch (this.answers?.library) {
       case "jest":
-        this.fs.copyTpl(
+        this.fs.copy(
           this.templatePath("jest/jest.config.js.template"),
-          this.destinationPath("jest.config.js"),
-          context
+          this.destinationPath("jest.config.js")
+        );
+        this.fs.copy(
+          this.templatePath("jest/azure-pipelines.yml.template"),
+          this.destinationPath("azure-pipelines.yml")
         );
         break;
       case "karma":
@@ -101,6 +105,10 @@ export default class extends Generator {
           this.templatePath("karma/karma.conf.js.template"),
           this.destinationPath("karma.conf.js"),
           context
+        );
+        this.fs.copy(
+          this.templatePath("karma/azure-pipelines.yml.template"),
+          this.destinationPath("azure-pipelines.yml")
         );
         break;
     }

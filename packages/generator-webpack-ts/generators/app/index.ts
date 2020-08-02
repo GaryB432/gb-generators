@@ -5,6 +5,7 @@ import path = require("path");
 import Case = require("case");
 
 interface Answers {
+  library: "jest" | "karma" | "none";
   workbox: boolean;
 }
 interface Context {
@@ -16,8 +17,9 @@ interface Context {
 export default class extends Generator {
   private answers?: Answers;
   private cwd = path.basename(process.cwd());
-  prompting(): Promise<void | Answers> {
-    return this.prompt<Answers>([
+
+  async prompting(): Promise<void | Answers> {
+    const answers = await this.prompt<Answers>([
       {
         default: true,
         message: `Would you like to include ${chalk.green(
@@ -26,9 +28,24 @@ export default class extends Generator {
         name: "workbox",
         type: "confirm",
       },
-    ]).then((answers) => {
-      this.answers = answers;
+      {
+        choices: ["Jest", "Karma", "None"],
+        default: "karma",
+        filter: (val: string): string => val.toLowerCase(),
+        message: "Which testing library?",
+        name: "library",
+        type: "list",
+      },
+    ]);
+    this.answers = answers;
+    const { library } = answers;
+    const opts = { library };
+    this.composeWith(require.resolve("../tester"), { ...opts });
+    this.composeWith(require.resolve("../classlib"), {
+      arguments: ["Greeter"],
+      ...opts,
     });
+    return answers;
   }
 
   initializing(): void {
@@ -39,12 +56,6 @@ export default class extends Generator {
           " generator!"
       )
     );
-
-    this.composeWith(require.resolve("../classlib"), {
-      arguments: ["Greeter"],
-    });
-
-    this.composeWith(require.resolve("../tester"), {});
 
     this.log(chalk.gray("Coming right up"));
   }

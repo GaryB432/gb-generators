@@ -23,7 +23,7 @@ describe("generator-webpack-ts:app", () => {
   it("creates files", (done) => {
     return helpers
       .run(path.join(__dirname, "../generators/app"))
-      .withPrompts({ workbox: false })
+      .withPrompts({ library: "jest", workbox: false })
       .then(() => {
         assert.file(mostFiles);
         assert.noFile("server.js");
@@ -40,7 +40,7 @@ describe("generator-webpack-ts:app with workbox", () => {
   it("creates files", (done) => {
     return helpers
       .run(path.join(__dirname, "../generators/app"))
-      .withPrompts({ workbox: true })
+      .withPrompts({ library: "jest", workbox: true })
       .then(() => {
         assert.file([
           ...mostFiles,
@@ -61,7 +61,7 @@ describe("generator-webpack-ts:app with workbox", () => {
     };
     return helpers
       .run(path.join(__dirname, "../generators/app"))
-      .withPrompts({ workbox: true })
+      .withPrompts({ library: "karma", workbox: true })
       .then(() => {
         assert.jsonFileContent("package.json", pkgJson);
         assert.fileContent("src/scripts/app.ts", "serviceWorker");

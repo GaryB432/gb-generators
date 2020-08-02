@@ -2,8 +2,12 @@ import Generator = require("yeoman-generator");
 import chalk = require("chalk");
 import Case = require("case");
 
+interface Options {
+  library: "jest" | "karma" | "none";
+}
+
 export default class extends Generator {
-  constructor(args: string | string[], opts: {}) {
+  constructor(args: string | string[], private opts: Options) {
     super(args, opts);
     this.argument("className", {
       description: "the name of the class",
@@ -17,10 +21,8 @@ export default class extends Generator {
   }
 
   writing(): void {
-    const pkg = this.fs.readJSON("package.json", {
-      devDependencies: {},
-    });
-    const isJest = !!pkg.devDependencies.jest;
+    const pkg = this.fs.readJSON(this.destinationPath("package.json"), {});
+    const isJest = !!pkg.devDependencies?.jest ?? this.opts.library === "jest";
     const specPath = isJest ? "test" : "__tests__/specs";
     const context = {
       className: Case.kebab(this.options.className),

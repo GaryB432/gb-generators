@@ -2,9 +2,10 @@ import Generator = require("yeoman-generator");
 import path = require("path");
 import Case = require("case");
 
-interface Answers {
+interface Options {
   library: "karma" | "jest" | "none";
 }
+
 interface Context {
   appname: string;
   genstamp: string;
@@ -53,26 +54,14 @@ const packageExtensions = {
 };
 
 export default class extends Generator {
-  private answers?: Answers;
   private cwd = path.basename(process.cwd());
-  async prompting(): Promise<void | Answers> {
-    return this.prompt<Answers>([
-      {
-        choices: ["Jest", "Karma", "None"],
-        filter: (val: string): string => val.toLowerCase(),
-        message: "Which testing library?",
-        name: "library",
-        type: "list",
-      },
-    ]).then((answers) => {
-      this.answers = answers;
-    });
+  constructor(args: string | string[], private opts: Options) {
+    super(args, opts);
   }
-
   _writePackageJson(_context: Context): void {
     this.fs.extendJSON(
       this.destinationPath("package.json"),
-      packageExtensions[this.answers?.library ?? "none"],
+      packageExtensions[this.opts.library],
       undefined,
       2
     );
@@ -84,7 +73,7 @@ export default class extends Generator {
       genstamp: new Date().toString(),
       workbox: false, // TODO: add workbox handling
     };
-    switch (this.answers?.library) {
+    switch (this.opts.library) {
       case "jest":
         this.fs.copy(
           this.templatePath("jest/jest.config.js.template"),
@@ -111,6 +100,9 @@ export default class extends Generator {
           this.destinationPath("azure-pipelines.yml")
         );
         break;
+      default: {
+        throw new Error(JSON.stringify(this.opts, undefined, 2));
+      }
     }
 
     this._writePackageJson(context);

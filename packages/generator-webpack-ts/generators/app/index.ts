@@ -44,9 +44,7 @@ export default class extends Generator {
       arguments: ["Greeter"],
     });
 
-    this.composeWith(require.resolve("../tester"), {
-      arguments: ["tbd"],
-    });
+    this.composeWith(require.resolve("../tester"), {});
 
     this.log(chalk.gray("Coming right up"));
   }

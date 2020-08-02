@@ -31,8 +31,24 @@ const packageExtensions = {
       "test-watch": "karma start",
     },
   },
-  jest: {},
-  none: {},
+  jest: {
+    devDependencies: {
+      "@types/jest": "^26.0.7",
+      "@types/node": "^14.0.26",
+      jest: "^26.1.0",
+      "jest-junit": "^11.0.1",
+      "ts-jest": "^26.1.3",
+    },
+    scripts: {
+      test: "jest",
+      "test-ci": "jest --ci --coverage",
+    },
+  },
+  none: {
+    scripts: {
+      test: "echo no tests",
+    },
+  },
 };
 
 export default class extends Generator {
@@ -59,19 +75,6 @@ export default class extends Generator {
       undefined,
       2
     );
-    // this.fs.copyTpl(
-    //   this.templatePath("package.json.template"),
-    //   this.destinationPath("package.json"),
-    //   context
-    // );
-    // if (this.answers && this.answers.workbox) {
-    //   this.fs.extendJSON(this.destinationPath("package.json"), {
-    //     devDependencies: {
-    //       express: "^4.17.1",
-    //       "workbox-webpack-plugin": "^4.3.1",
-    //     },
-    //   });
-    // }
   }
 
   writing(): void {
@@ -80,16 +83,27 @@ export default class extends Generator {
       genstamp: new Date().toString(),
       workbox: false, // TODO: add workbox handling
     };
-    this.fs.copyTpl(
-      this.templatePath("karma/__tests__/index.ts.template"),
-      this.destinationPath("__tests__/index.ts"),
-      context
-    );
-    this.fs.copyTpl(
-      this.templatePath("karma/karma.conf.js.template"),
-      this.destinationPath("karma.conf.js"),
-      context
-    );
+    switch (this.answers?.library) {
+      case "jest":
+        this.fs.copyTpl(
+          this.templatePath("jest/jest.config.js.template"),
+          this.destinationPath("jest.config.js"),
+          context
+        );
+        break;
+      case "karma":
+        this.fs.copyTpl(
+          this.templatePath("karma/__tests__/index.ts.template"),
+          this.destinationPath("__tests__/index.ts"),
+          context
+        );
+        this.fs.copyTpl(
+          this.templatePath("karma/karma.conf.js.template"),
+          this.destinationPath("karma.conf.js"),
+          context
+        );
+        break;
+    }
 
     this._writePackageJson(context);
   }

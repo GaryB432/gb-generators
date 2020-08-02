@@ -21,8 +21,17 @@ export default class extends Generator {
   }
 
   writing(): void {
-    const pkg = this.fs.readJSON(this.destinationPath("package.json"), {});
-    const isJest = !!pkg.devDependencies?.jest ?? this.opts.library === "jest";
+    interface TestDependencies {
+      karma?: "OK";
+      jest?: "OK";
+      none?: "OK";
+    }
+    const devDependencies: TestDependencies = { [this.opts.library]: "OK" };
+    const pkg = this.fs.readJSON(this.destinationPath("package.json"), {
+      devDependencies,
+    });
+
+    const isJest = !!pkg.devDependencies.jest;
     const specPath = isJest ? "test" : "__tests__/specs";
     const context = {
       className: Case.kebab(this.options.className),

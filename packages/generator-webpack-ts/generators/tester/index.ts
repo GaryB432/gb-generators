@@ -13,6 +13,19 @@ interface Context {
 }
 
 const packageExtensions = {
+  jest: {
+    devDependencies: {
+      "@types/jest": "^26.0.7",
+      "@types/node": "^14.0.26",
+      jest: "^26.1.0",
+      "jest-junit": "^11.0.1",
+      "ts-jest": "^26.1.3",
+    },
+    scripts: {
+      test: "jest",
+      "test-ci": "jest --ci --coverage",
+    },
+  },
   karma: {
     devDependencies: {
       "@types/jasmine": "^3.5.11",
@@ -33,19 +46,6 @@ const packageExtensions = {
       "test-watch": "karma start",
     },
   },
-  jest: {
-    devDependencies: {
-      "@types/jest": "^26.0.7",
-      "@types/node": "^14.0.26",
-      jest: "^26.1.0",
-      "jest-junit": "^11.0.1",
-      "ts-jest": "^26.1.3",
-    },
-    scripts: {
-      test: "jest",
-      "test-ci": "jest --ci --coverage",
-    },
-  },
   none: {
     scripts: {
       test: "echo no tests",
@@ -58,7 +58,7 @@ export default class extends Generator {
   constructor(args: string | string[], private opts: Options) {
     super(args, opts);
   }
-  _writePackageJson(_context: Context): void {
+  _writePackageJson(): void {
     this.fs.extendJSON(
       this.destinationPath("package.json"),
       packageExtensions[this.opts.library],
@@ -105,7 +105,7 @@ export default class extends Generator {
       }
     }
 
-    this._writePackageJson(context);
+    this._writePackageJson();
   }
 
   install(): void {

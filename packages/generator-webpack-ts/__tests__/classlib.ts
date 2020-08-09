@@ -9,9 +9,7 @@ describe("generator-webpack-ts:classlib", () => {
       .withArguments(["CustomerInventoryItem"])
       .withPrompts({ wtf: false })
       .then(() => {
-        assert.file([
-          "src/styles/customer-inventory-item.scss",
-        ]);
+        assert.file("src/styles/customer-inventory-item.scss");
         assert.fileContent(
           "src/scripts/customer-inventory-item.ts",
           "export class CustomerInventoryItem"
@@ -20,7 +18,6 @@ describe("generator-webpack-ts:classlib", () => {
           "__tests__/specs/customer-inventory-item.spec.ts",
           "let customerInventoryItem"
         );
-        
         done();
       });
   });

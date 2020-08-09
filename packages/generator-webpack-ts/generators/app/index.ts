@@ -81,8 +81,8 @@ export default class extends Generator {
     const context: Context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
-      workbox: !!this.answers?.workbox,
       istanbul: this.answers?.library === "karma",
+      workbox: !!this.answers?.workbox,
     };
     this.fs.copy(
       this.templatePath("_vscode/settings.json"),

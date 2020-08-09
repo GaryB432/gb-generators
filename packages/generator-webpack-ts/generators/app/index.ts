@@ -111,9 +111,15 @@ export default class extends Generator {
       this.templatePath("src/styles/app.scss.template"),
       this.destinationPath("src/styles/app.scss")
     );
-    this.fs.copy(
-      this.templatePath(".gitignore.template"),
-      this.destinationPath(".gitignore")
+    const ignore = context.istanbul
+      ? ["node_modules", "dist", "results"]
+      : ["node_modules", "dist", "coverage", "junit.xml"];
+    this.fs.write(
+      ".gitignore",
+      ignore
+        .map((fn) => `${fn}\n`)
+        .sort((a, b) => a.localeCompare(b))
+        .join("")
     );
     this.fs.copy(
       this.templatePath(".gitattributes.template"),

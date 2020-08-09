@@ -32,6 +32,7 @@ describe("generator-webpack-ts:app", () => {
         assert.noFileContent("package.json", "workbox");
         assert.noFileContent("src/scripts/app.ts", "serviceWorker");
         assert.noFileContent("webpack.config.js", "istanbul");
+        assert.fileContent(".gitignore", "junit.xml");
         done();
       });
   });
@@ -49,6 +50,7 @@ describe("generator-webpack-ts:app with workbox", () => {
           "src/sw.js",
           "src/public/manifest.json",
         ]);
+        assert.fileContent(".gitignore", "junit.xml");
         done();
       });
   });
@@ -67,6 +69,7 @@ describe("generator-webpack-ts:app with workbox", () => {
         assert.jsonFileContent("package.json", pkgJson);
         assert.fileContent("src/scripts/app.ts", "serviceWorker");
         assert.fileContent("webpack.config.js", "istanbul");
+        assert.fileContent(".gitignore", "results");
         done();
       });
   });

@@ -40,6 +40,7 @@ module.exports = {
           },
         ],
       },
+<% if (istanbul) { %>
       {
         test: /\.ts$/,
         exclude: [path.resolve(__dirname, '__tests__')],
@@ -49,6 +50,7 @@ module.exports = {
           options: { esModules: true },
         },
       },
+<% } %>
     ],
   },
 

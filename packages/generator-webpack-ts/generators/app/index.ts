@@ -9,6 +9,7 @@ interface Answers {
   workbox: boolean;
 }
 interface Context {
+  istanbul: boolean;
   appname: string;
   genstamp: string;
   workbox: boolean;
@@ -66,7 +67,7 @@ export default class extends Generator {
       this.destinationPath("package.json"),
       context
     );
-    if (this.answers && this.answers.workbox) {
+    if (this.answers?.workbox) {
       this.fs.extendJSON(this.destinationPath("package.json"), {
         devDependencies: {
           express: "^4.17.1",
@@ -80,7 +81,8 @@ export default class extends Generator {
     const context: Context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
-      workbox: (this.answers && this.answers.workbox) || false,
+      workbox: !!this.answers?.workbox,
+      istanbul: this.answers?.library === "karma",
     };
     this.fs.copy(
       this.templatePath("_vscode/settings.json"),
@@ -129,7 +131,7 @@ export default class extends Generator {
       this.destinationPath("README.md"),
       context
     );
-    if (this.answers && this.answers.workbox) {
+    if (this.answers?.workbox) {
       this.fs.copy(
         this.templatePath("server.js.template"),
         this.destinationPath("server.js")

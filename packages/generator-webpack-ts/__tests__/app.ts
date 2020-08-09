@@ -31,6 +31,7 @@ describe("generator-webpack-ts:app", () => {
         assert.noFile("src/public/manifest.json");
         assert.noFileContent("package.json", "workbox");
         assert.noFileContent("src/scripts/app.ts", "serviceWorker");
+        assert.noFileContent("webpack.config.js", "istanbul");
         done();
       });
   });
@@ -65,6 +66,7 @@ describe("generator-webpack-ts:app with workbox", () => {
       .then(() => {
         assert.jsonFileContent("package.json", pkgJson);
         assert.fileContent("src/scripts/app.ts", "serviceWorker");
+        assert.fileContent("webpack.config.js", "istanbul");
         done();
       });
   });

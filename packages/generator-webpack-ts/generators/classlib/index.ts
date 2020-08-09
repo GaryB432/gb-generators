@@ -34,23 +34,24 @@ export default class extends Generator {
     const isJest = !!pkg.devDependencies.jest;
     const specPath = isJest ? "test" : "__tests__/specs";
     const context = {
-      className: Case.kebab(this.options.className),
+      classFileName: Case.kebab(this.options.className),
+      className: Case.camel(this.options.className),
       classTypeName: Case.pascal(this.options.className),
       genstamp: new Date().toString(),
     };
     this.fs.copyTpl(
       this.templatePath(`${specPath}/blueprint.spec.ts.template`),
-      this.destinationPath(`${specPath}/${context.className}.spec.ts`),
+      this.destinationPath(`${specPath}/${context.classFileName}.spec.ts`),
       context
     );
     this.fs.copyTpl(
       this.templatePath("src/scripts/blueprint.ts.template"),
-      this.destinationPath(`src/scripts/${context.className}.ts`),
+      this.destinationPath(`src/scripts/${context.classFileName}.ts`),
       context
     );
     this.fs.copyTpl(
       this.templatePath("src/styles/blueprint.scss.template"),
-      this.destinationPath(`src/styles/${context.className}.scss`),
+      this.destinationPath(`src/styles/${context.classFileName}.scss`),
       context
     );
   }

@@ -1,17 +1,17 @@
-import { <%= classTypeName %> } from '../src/scripts/<%= className %>';
+import { <%= classTypeName %> } from '../src/scripts/<%= classFileName %>';
 
 describe('<%= classTypeName %>', (): void => {
-  let greeter: <%= classTypeName %>;
+  let <%= className %>: <%= classTypeName %>;
   beforeEach((): void => {
-    greeter = new <%= classTypeName %>('testing');
+    <%= className %> = new <%= classTypeName %>('testing');
   });
   it('should greet', (): void => {
     const container = document.createElement('div');
-    greeter.start(container);
+    <%= className %>.start(container);
     expect(Array.from(container.classList)).toContain('greeter');
     expect(container.innerHTML).toEqual('<h1>Welcome to testing!</h1>');
   });
-  it('should greet', (): void => {
-    expect(() => greeter.start(null)).toThrowError('no container');
+  it('should throw without container', (): void => {
+    expect(() => <%= className %>.start(null)).toThrowError('no container');
   });
 });

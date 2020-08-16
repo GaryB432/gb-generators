@@ -3,25 +3,17 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-<% if (workbox) { %>const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');<% } %>
+const { merge } = require('webpack-merge');
 
-const mode = 'production';
-
-module.exports = {
+const base = {
   entry: {
     '<%= appname %>': ['scripts/app.ts'],
   },
-
-  context: path.join(process.cwd(), 'src'),
-
+  context: path.resolve(__dirname, 'src'),
   output: {
-    publicPath: mode === 'production' ? '/' : 'http://localhost:8080/',
-    path: path.join(process.cwd(), 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'scripts/[name].[hash].js',
   },
-
-  mode,
-
   module: {
     rules: [
       {
@@ -53,18 +45,15 @@ module.exports = {
 <% } %>
     ],
   },
-
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       scriptLoading: 'defer',
     }),
-
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
       chunkFilename: 'css/[id].[hash].css',
     }),
-
     new CopyPlugin({
       patterns: [{ from: 'public' }],
       options: {
@@ -80,12 +69,29 @@ module.exports = {
     }),
 <% } %>
   ],
-
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, 'src')],
     extensions: ['.ts', '.js', 'scss'],
   },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
+};
 
+const prod = {
+  mode: 'production',
+  output: {
+    publicPath: '/',
+  },
+};
+
+const dev = {
+  mode: 'development',
+  output: {
+    publicPath: 'http://localhost:8080/',
+  },
   devServer: {
     contentBase: './dist',
     clientLogLevel: 'info',
@@ -97,24 +103,7 @@ module.exports = {
       poll: 500,
     },
   },
-
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        commons: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendor',
-          chunks: 'all',
-        },
-      },
-    },
-  },
-
   devtool: 'inline-source-map',
-
-  performance: {
-    hints: false,
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000,
-  },
 };
+
+module.exports = (env) => merge(base, env.production ? prod : dev);

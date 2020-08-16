@@ -4,41 +4,42 @@
   "description": "<%= appname %>",
   "scripts": {
     "clean": "rimraf dist",
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --env.development --open",
     "watch": "webpack --watch",
-    "format": "prettier --write \"{__tests__,src}/**/*.{js,ts,scss,html}\"",
+    "format": "prettier --write \"{test,src}/**/*.{js,ts,scss,html}\"",
     "lint": "eslint \"**/*.ts\" -f eslint-formatter-friendly",
     "prebuild": "npm run format",
     "pretest": "npm run lint",
-    "build": "npm run clean && webpack --config ./webpack.config.js"
+    "build": "npm run clean && webpack --env.development",
+    "webpack-prod": "npm run clean && npm run test-ci && webpack --env.production"
   },
   "license": "ISC",
   "devDependencies": {
-    "@types/jasmine": "^3.5.11",
     "@typescript-eslint/eslint-plugin": "^3.6.1",
     "@typescript-eslint/parser": "^3.6.1",
     "codecov": "^3.7.1",
     "copy-webpack-plugin": "^6.0.3",
-    "css-loader": "^3.6.0",
+    "css-loader": "^4.2.1",
     "eslint": "^7.4.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-formatter-friendly": "^7.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "html-webpack-plugin": "^4.3.0",
-    "mini-css-extract-plugin": "^0.9.0",
+    "mini-css-extract-plugin": "^0.10.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
-    "sass-loader": "^9.0.2",
-    "ts-loader": "^8.0.1",
+    "sass-loader": "^9.0.3",
+    "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
-    "webpack": "^4.43.0",
+    "webpack": "^5.0.0-beta.26",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.1"
   },
   "dependencies": {},
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.13.0"
   },
   "prettier": {
     "printWidth": 100,

@@ -1,6 +1,5 @@
 trigger:
 - master
-- jest-testing
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -28,7 +27,7 @@ steps:
   displayName: 'test-ci'
   inputs:
     command: custom
-    customCommand: 'run test-ci'
+    customCommand: 'run webpack-prod'
 
 - task: PublishTestResults@2
   condition: succeededOrFailed()

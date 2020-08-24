@@ -13,6 +13,7 @@ interface Context {
   appname: string;
   genstamp: string;
   workbox: boolean;
+  testsPath: string;
 }
 
 export default class extends Generator {
@@ -83,6 +84,7 @@ export default class extends Generator {
       genstamp: new Date().toString(),
       istanbul: this.answers?.library === "karma",
       workbox: !!this.answers?.workbox,
+      testsPath: this.answers?.library === "karma" ? "__tests__" : "tests",
     };
     this.fs.copy(
       this.templatePath("_vscode/settings.json"),

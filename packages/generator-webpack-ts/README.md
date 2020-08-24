@@ -21,10 +21,22 @@ yo webpack-ts
 
 The generator will prompt if you want to include the [Workbox](https://developers.google.com/web/tools/workbox/) service worker helper.
 
-You can add new classes with the subgenerator
+You can add new classes any time with the subgenerator
 
 ```bash
 yo webpack-ts:classlib another-greeter
+```
+
+Build your project:
+
+```bash
+npm run build
+```
+
+Test your project:
+
+```bash
+npm test
 ```
 
 ## License

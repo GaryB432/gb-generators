@@ -16,6 +16,8 @@ npm install -g generator-lerna-typescript
 Then generate your new project:
 
 ```bash
+mkdir my-project
+cd my-project
 yo lerna-typescript
 ```
 
@@ -28,7 +30,7 @@ yo lerna-typescript:package @myscope/my-new-package
 Build your project:
 
 ```bash
-lerna run build
+node_modules/.bin/lerna run build
 ```
 
 Test your project:
@@ -40,7 +42,6 @@ npm test
 ## License
 
 ISC © [Gary Bortosky]()
-
 
 [npm-image]: https://badge.fury.io/js/generator-lerna-typescript.svg
 [npm-url]: https://npmjs.org/package/generator-lerna-typescript

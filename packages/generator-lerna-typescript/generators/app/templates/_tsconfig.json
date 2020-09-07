@@ -3,23 +3,13 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
-    "lib": [
-      "es6",
-      "dom"
-    ],
+    "lib": ["es6"],
     "sourceMap": false,
     "allowJs": false,
     "moduleResolution": "node",
     "strict": true,
-    "declaration": false,
+    "declaration": true,
     "downlevelIteration": true,
     "typeRoots": ["./node_modules/@types"]
-  },
-  "exclude": [
-    "**/*.test.ts",
-    "**/test.config.ts",
-    "node_modules",
-    "**/build/*",
-    "**/*.d.ts"
-  ]
+  }
 }

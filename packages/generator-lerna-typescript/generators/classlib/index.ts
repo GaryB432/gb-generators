@@ -21,9 +21,9 @@ export default class extends Generator {
   writing(): void {
     const pkgInfo = utils.getPackageInfo(this.options.packageName);
     const context = {
-      folder: pkgInfo.name,
       className: Case.pascal(this.options.className),
       fileName: Case.kebab(this.options.className),
+      folder: pkgInfo.name,
     };
 
     const pfn: (fname: string) => string = (fname) =>

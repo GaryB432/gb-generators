@@ -3,7 +3,11 @@ import Generator = require("yeoman-generator");
 export default class extends Generator {
   writing(): void {
     this.fs.copy(
-      this.templatePath("_eslintrc.js"),
+      this.templatePath("eslintignore.template"),
+      this.destinationPath(".eslintignore")
+    );
+    this.fs.copy(
+      this.templatePath("eslintrc.js.template"),
       this.destinationPath(".eslintrc.js")
     );
     const pkgJson = {

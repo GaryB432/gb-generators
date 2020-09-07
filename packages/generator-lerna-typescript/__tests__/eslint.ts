@@ -8,7 +8,7 @@ describe("generator-lerna-typescript:eslint", () => {
       .run(path.join(__dirname, "../generators/eslint"))
       .withPrompts({ someAnswer: true })
       .then(() => {
-        assert.file(["package.json"]);
+        assert.file(["package.json", ".eslintrc.js", ".eslintignore"]);
         done();
       });
   });

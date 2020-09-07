@@ -1,0 +1,7 @@
+// add another class with `yo lerna-typescript:classlib my-package my-class`
+
+export class <%= className %> {
+  public add(a: number, b: number): number {
+    return a + b;
+  }
+}

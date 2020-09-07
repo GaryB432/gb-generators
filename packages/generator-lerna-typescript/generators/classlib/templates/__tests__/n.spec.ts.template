@@ -1,0 +1,8 @@
+import { <%= className %> } from '../src/<%= fileName %>';
+
+describe('<%= className %>', () => {
+  const sut = new <%= className %>();
+  it('should add', () => {
+    expect(sut.add(2, 3)).toEqual(5);
+  });
+});

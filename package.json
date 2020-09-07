@@ -24,7 +24,8 @@
     "yeoman-test": "^2.4.1"
   },
   "scripts": {
-    "build": "tsc --listfiles",
+    "build": "tsc --pretty",
+    "prepare": "npm run build",
     "pretest-f": "npm run pretest -- -f eslint-formatter-friendly",
     "pretest": "eslint \"packages/**/*.ts\"",
     "test": "jest",

@@ -25,6 +25,12 @@ Your project will be generated with a sample package. Generate another new packa
 yo lerna-typescript:package @myscope/my-new-package
 ```
 
+Add a new class to one of your packages with:
+
+```bash
+yo lerna-typescript:classlib greeter my-new-hello-class
+```
+
 Build your project:
 
 ```bash

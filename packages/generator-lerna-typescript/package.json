@@ -1,6 +1,6 @@
 {
   "name": "generator-lerna-typescript",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Get started with Lerna using TypeScript",
   "files": [
     "{generators,utils}/**/*.js",

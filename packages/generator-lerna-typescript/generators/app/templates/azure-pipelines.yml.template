@@ -1,0 +1,36 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+strategy:
+  matrix:
+    node_12_x:
+      node_version: 12.x
+    node_13_x:
+      node_version: 13.x
+
+steps:
+- task: NodeTool@0 
+  displayName: 'install $(node_version)'
+  inputs:
+    versionSpec: $(node_version)
+
+- script: |
+    npm install lerna -g
+    lerna bootstrap --hoist
+    npm run test-ci
+  displayName: 'npm install and test'
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: 'junit.xml'
+    failTaskOnFailedTests: true
+
+- task: PublishCodeCoverageResults@1
+  inputs: 
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'

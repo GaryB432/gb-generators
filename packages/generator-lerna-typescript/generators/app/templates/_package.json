@@ -5,11 +5,13 @@
     "@types/jest": "^24.0.22",
     "@types/node": "^12.12.7",
     "jest": "^24.9.0",
+    "jest-junit": "^11.1.0",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test-ci": "jest --ci --coverage"
   },
   "dependencies": {
     "lerna": "^3.20.2"

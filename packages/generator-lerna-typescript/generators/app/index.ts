@@ -48,6 +48,10 @@ export default class extends Generator {
       this.destinationPath("azure-pipelines.yml")
     );
     this.fs.copy(
+      this.templatePath("workflow.yml.template"),
+      this.destinationPath(".github/workflows/lerna.yml")
+    );
+    this.fs.copy(
       this.templatePath("jest.config.js.template"),
       this.destinationPath("jest.config.js")
     );

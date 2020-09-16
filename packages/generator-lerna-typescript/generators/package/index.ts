@@ -38,7 +38,7 @@ export default class extends Generator {
       name: context.packageName,
       private: false,
       scripts: {
-        build: "tsc --pretty",
+        build: "tsc --pretty --listEmittedFiles",
         prepare: "npm run build",
       },
       typings: "lib/index.d.ts",

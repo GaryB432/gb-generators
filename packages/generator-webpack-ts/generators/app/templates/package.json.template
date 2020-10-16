@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "<%= appname %>",
   "scripts": {
-    "start": "webpack-dev-server --env.development --open",
+    "start": "webpack serve --mode development --env development",
     "watch": "webpack --watch",
     "format": "prettier --write \"{<%= testsPath %>,src}/**\"",
     "lint": "eslint \"**/*.ts\" -f eslint-formatter-friendly",
@@ -29,6 +29,7 @@
     "node-sass": "^4.14.1",
     "prettier": "^2.1.2",
     "sass-loader": "^10.0.3",
+    "style-loader": "^2.0.0",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
     "webpack": "^5.0.0",

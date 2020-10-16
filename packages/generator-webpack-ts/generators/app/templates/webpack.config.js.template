@@ -1,5 +1,4 @@
 const path = require('path');
-
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -23,18 +22,6 @@ const base = {
         test: /\.ts$/,
         loader: 'ts-loader',
       },
-      {
-        test: /\.(css|sass|scss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'sass-loader',
-          },
-        ],
-      },
 <% if (istanbul) { %>
       {
         test: /\.ts$/,
@@ -53,10 +40,6 @@ const base = {
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       scriptLoading: 'defer',
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash].css',
-      chunkFilename: 'css/[id].[hash].css',
     }),
     new CopyPlugin({
       patterns: [{ from: 'public' }],
@@ -86,13 +69,35 @@ const base = {
 
 const prod = {
   mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      }
+    ]
+  },
   output: {
     publicPath: '/',
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[chunkhash:8].css',
+      chunkFilename: 'css/[id].[chunkhash:8].css',
+    }),
+  ],
 };
 
 const dev = {
   mode: 'development',
+  module: {
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      }
+    ]
+  },
   output: {
     publicPath: 'http://localhost:8080/',
   },
@@ -105,6 +110,7 @@ const dev = {
     port: 8080,
     inline: true,
     historyApiFallback: false,
+    hot: true,
     watchOptions: {
       aggregateTimeout: 300,
       poll: 500,

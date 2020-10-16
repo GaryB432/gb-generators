@@ -10,8 +10,8 @@
     "lint": "eslint \"**/*.ts\" -f eslint-formatter-friendly",
     "prebuild": "npm run format",
     "pretest": "npm run lint",
-    "build": "npm run clean && webpack --env development",
-    "webpack-prod": "npm run clean && npm run test-ci && webpack --env.production"
+    "build": "npm run clean && webpack --env development --color",
+    "webpack-prod": "npm run clean && npm run test-ci && webpack --env production"
   },
   "license": "ISC",
   "devDependencies": {
@@ -40,10 +40,5 @@
   "dependencies": {},
   "engines": {
     "node": ">=10.13.0"
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "trailingComma": "es5"
   }
 }

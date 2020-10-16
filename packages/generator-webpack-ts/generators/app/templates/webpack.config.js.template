@@ -94,6 +94,9 @@ const dev = {
   output: {
     publicPath: 'http://localhost:8080/',
   },
+  stats: {
+    colors: true,
+  },
   devServer: {
     contentBase: './dist',
     clientLogLevel: 'info',

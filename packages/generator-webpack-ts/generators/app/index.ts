@@ -157,6 +157,14 @@ export default class extends Generator {
     }
 
     this.fs.copy(
+      this.templatePath(".prettierignore.template"),
+      this.destinationPath(".prettierignore")
+    );
+    this.fs.copy(
+      this.templatePath(".prettierrc.template"),
+      this.destinationPath(".prettierrc")
+    );
+    this.fs.copy(
       this.templatePath("tsconfig.json.template"),
       this.destinationPath("tsconfig.json")
     );

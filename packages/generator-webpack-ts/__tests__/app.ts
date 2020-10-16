@@ -6,6 +6,8 @@ const mostFiles = [
   ".eslintrc.js",
   ".gitignore",
   ".gitattributes",
+  ".prettierignore",
+  ".prettierrc",
   ".travis.yml",
   ".vscode/settings.json",
   ".vscode/tasks.json",
@@ -53,7 +55,7 @@ describe("generator-webpack-ts:app with workbox", () => {
         assert.fileContent(".gitignore", "junit.xml");
         assert.fileContent(
           "package.json",
-          '"format": "prettier --write \\"{tests,src}/**/*.{js,ts,scss,html}\\""'
+          '"format": "prettier --write \\"{tests,src}/**\\""'
         );
         done();
       });
@@ -76,7 +78,7 @@ describe("generator-webpack-ts:app with workbox", () => {
         assert.fileContent(".gitignore", "results");
         assert.fileContent(
           "package.json",
-          '"format": "prettier --write \\"{__tests__,src}/**/*.{js,ts,scss,html}\\""'
+          '"format": "prettier --write \\"{__tests__,src}/**\\""'
         );
         done();
       });

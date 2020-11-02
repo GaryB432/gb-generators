@@ -83,7 +83,7 @@ export default class extends Generator {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
       istanbul: this.answers?.library === "karma",
-      testsPath: this.answers?.library === "karma" ? "__tests__" : "tests",
+      testsPath: this.answers?.library === "karma" ? "__tests__" : "test",
       workbox: !!this.answers?.workbox,
     };
     this.fs.copy(

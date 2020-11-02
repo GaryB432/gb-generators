@@ -55,7 +55,7 @@ describe("generator-webpack-ts:app with workbox", () => {
         assert.fileContent(".gitignore", "junit.xml");
         assert.fileContent(
           "package.json",
-          '"format": "prettier --write \\"{tests,src}/**\\""'
+          '"format": "prettier --write \\"{test,src}/**\\""'
         );
         done();
       });

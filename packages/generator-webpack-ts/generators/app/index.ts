@@ -169,8 +169,8 @@ export default class extends Generator {
       this.destinationPath("tsconfig.json")
     );
     this.fs.copy(
-      this.templatePath(".eslintrc.js.template"),
-      this.destinationPath(".eslintrc.js")
+      this.templatePath(".eslintrc.json.template"),
+      this.destinationPath(".eslintrc.json")
     );
     this.fs.copyTpl(
       this.templatePath("webpack.config.js.template"),

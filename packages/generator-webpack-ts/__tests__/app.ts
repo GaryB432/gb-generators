@@ -3,7 +3,7 @@ import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
 const mostFiles = [
-  ".eslintrc.js",
+  ".eslintrc.json",
   ".gitignore",
   ".gitattributes",
   ".prettierignore",

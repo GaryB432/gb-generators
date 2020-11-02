@@ -13,7 +13,7 @@ const mostFiles = [
   ".vscode/tasks.json",
   "package.json",
   "README.md",
-  "src/public/index.html",
+  "src/index.html",
   "src/public/img/yeoman-003.png",
   "src/scripts/app.ts",
   "src/styles/app.scss",

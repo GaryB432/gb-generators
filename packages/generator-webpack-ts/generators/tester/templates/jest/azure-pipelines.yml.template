@@ -24,7 +24,7 @@ steps:
     customCommand: ci
 
 - task: Npm@1
-  displayName: 'test-ci'
+  displayName: 'test and build'
   inputs:
     command: custom
     customCommand: 'run webpack-prod'

@@ -23,7 +23,7 @@ describe("generator-webpack-ts:tester jest", () => {
       .withOptions({ library: "jest" });
     assert.file(["azure-pipelines.yml", "jest.config.js"]);
     assert.jsonFileContent("package.json", {
-      devDependencies: { jest: "^26.6.2" },
+      devDependencies: { jest: "^26.6.3" },
     });
     assert.noFile("karma.conf.js");
     done();

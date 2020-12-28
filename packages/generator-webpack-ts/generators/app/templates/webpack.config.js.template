@@ -3,7 +3,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-<% if (workbox) { %>const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin');<% } %>
+<% if (workbox) { %>const { InjectManifest } = require('workbox-webpack-plugin');<% } %>
 
 const { merge } = require('webpack-merge');
 
@@ -75,8 +75,8 @@ const prod = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      }
-    ]
+      },
+    ],
   },
   output: {
     publicPath: '/',
@@ -96,8 +96,8 @@ const dev = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-      }
-    ]
+      },
+    ],
   },
   output: {
     publicPath: 'http://localhost:8080/',

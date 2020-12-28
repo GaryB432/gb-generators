@@ -13,6 +13,7 @@ interface Context {
   appname: string;
   genstamp: string;
   workbox: boolean;
+  testsPath: string;
 }
 
 export default class extends Generator {
@@ -82,6 +83,7 @@ export default class extends Generator {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
       istanbul: this.answers?.library === "karma",
+      testsPath: this.answers?.library === "karma" ? "__tests__" : "tests",
       workbox: !!this.answers?.workbox,
     };
     this.fs.copy(

@@ -8,7 +8,7 @@ describe("generator-lerna-typescript:prettier", () => {
       .run(path.join(__dirname, "../generators/prettier"))
       .withPrompts({ someAnswer: true })
       .then(() => {
-        assert.file(["package.json", ".prettierrc"]);
+        assert.file(["package.json", ".prettierrc", ".prettierignore"]);
         done();
       });
   });

@@ -15,6 +15,7 @@ const mostFiles = [
   "README.md",
   "src/public/index.html",
   "src/public/img/yeoman-003.png",
+  "src/public/img/icon.svg",
   "src/scripts/app.ts",
   "src/styles/app.scss",
   "tsconfig.json",

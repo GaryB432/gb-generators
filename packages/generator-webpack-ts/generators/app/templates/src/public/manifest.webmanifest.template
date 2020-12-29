@@ -1,9 +1,21 @@
 {
   "short_name": "<%= appname %>",
   "name": "<%= appname %> as generated",
-  "description": "Fun SVG Compass",
   "description": "<%= appname %> PWA",
-  "icons": [],
+  "icons": [
+    {
+      "src": "/img/icon.svg",
+      "type": "image/svg",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/icon.svg",
+      "type": "image/svg",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
   "start_url": "/?source=pwa",
   "background_color": "#3367D6",
   "display": "standalone",

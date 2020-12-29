@@ -53,10 +53,7 @@ describe("generator-webpack-ts:app with workbox", () => {
           "src/public/manifest.json",
         ]);
         assert.fileContent(".gitignore", "junit.xml");
-        assert.fileContent(
-          "package.json",
-          '"format": "prettier --write .'
-        );
+        assert.fileContent("package.json", '"format": "prettier --write ."');
         done();
       });
   });
@@ -76,10 +73,7 @@ describe("generator-webpack-ts:app with workbox", () => {
         assert.fileContent("src/scripts/app.ts", "serviceWorker");
         assert.fileContent("webpack.config.js", "istanbul");
         assert.fileContent(".gitignore", "results");
-        assert.fileContent(
-          "package.json",
-          '"format": "prettier --write .'
-        );
+        assert.fileContent("package.json", '"format": "prettier --write ."');
         done();
       });
   });

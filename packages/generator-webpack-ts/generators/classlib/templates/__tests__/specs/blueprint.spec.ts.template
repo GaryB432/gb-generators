@@ -1,4 +1,4 @@
-import { <%= classTypeName %> } from '../../src/scripts/<%= classFileName %>';
+import { <%= classTypeName %> } from '<%= srcImportPath %>';
 
 describe('<%= classTypeName %>', (): void => {
   let <%= className %>: <%= classTypeName %>;

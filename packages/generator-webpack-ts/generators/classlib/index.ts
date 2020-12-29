@@ -26,18 +26,28 @@ export default class extends Generator {
       jest?: "OK";
       none?: "OK";
     }
+
+    const classNameInput = this.options.className as string;
+    const nameParts = classNameInput.split("/");
     const devDependencies: TestDependencies = { [this.opts.library]: "OK" };
     const pkg = this.fs.readJSON(this.destinationPath("package.json"), {
       devDependencies,
     });
 
-    const isJest = !!pkg.devDependencies.jest;
-    const specPath = isJest ? "test" : "__tests__/specs";
+    const isKarma = pkg.devDependencies.karma;
+    const specPath = isKarma ? "__tests__/specs" : "test";
+    const srcImportPathParts = [
+      ...Array<string>(nameParts.length + (isKarma ? 1 : 0)).fill(".."),
+      "src",
+      "scripts",
+      ...nameParts.map((p) => Case.kebab(p)),
+    ];
     const context = {
-      classFileName: Case.kebab(this.options.className),
-      className: Case.camel(this.options.className),
-      classTypeName: Case.pascal(this.options.className),
+      classFileName: nameParts.map((p) => Case.kebab(p)).join("/"),
+      className: Case.camel(nameParts[nameParts.length - 1]),
+      classTypeName: Case.pascal(nameParts[nameParts.length - 1]),
       genstamp: new Date().toString(),
+      srcImportPath: srcImportPathParts.join("/"),
     };
     this.fs.copyTpl(
       this.templatePath(`${specPath}/blueprint.spec.ts.template`),

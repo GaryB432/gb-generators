@@ -1,6 +1,6 @@
 # generator-webpack-ts
 [![NPM version][npm-image]][npm-url] 
-> A Yeoman Generator for creating websites with TypeScript, Sass, ESLint and Webpack
+> A Yeoman Generator for creating websites with TypeScript, Sass, ESLint and Webpack 5
 
 ## Installation
 
@@ -24,7 +24,7 @@ The generator will prompt if you want to include the [Workbox](https://developer
 You can add new classes any time with the subgenerator
 
 ```bash
-yo webpack-ts:classlib another-greeter
+yo webpack-ts:classlib path/to/another-greeter
 ```
 
 Build your project:

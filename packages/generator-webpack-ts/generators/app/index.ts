@@ -95,7 +95,7 @@ export default class extends Generator {
       this.destinationPath(".vscode/tasks.json")
     );
     this.fs.copyTpl(
-      this.templatePath("src/public/index.html"),
+      this.templatePath("src/public/index.html.template"),
       this.destinationPath("src/public/index.html"),
       context
     );
@@ -158,8 +158,13 @@ export default class extends Generator {
         context
       );
       this.fs.copyTpl(
-        this.templatePath("src/public/manifest.json.template"),
-        this.destinationPath("src/public/manifest.json"),
+        this.templatePath("src/public/manifest.webmanifest.template"),
+        this.destinationPath("src/public/manifest.webmanifest"),
+        context
+      );
+      this.fs.copyTpl(
+        this.templatePath("src/public/web.config.template"),
+        this.destinationPath("src/public/web.config"),
         context
       );
     }

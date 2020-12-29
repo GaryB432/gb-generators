@@ -1,0 +1,12 @@
+{
+  "short_name": "<%= appname %>",
+  "name": "<%= appname %> as generated",
+  "description": "Fun SVG Compass",
+  "description": "<%= appname %> PWA",
+  "icons": [],
+  "start_url": "/?source=pwa",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6"
+}

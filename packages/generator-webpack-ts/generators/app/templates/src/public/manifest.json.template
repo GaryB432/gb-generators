@@ -1,7 +1,0 @@
-{
-  "short_name": "<%= appname %>",
-  "version": "0.0.0",
-  "name": "<%= appname %> as generated",
-  "icons": [],
-  "start_url": "/"
-}

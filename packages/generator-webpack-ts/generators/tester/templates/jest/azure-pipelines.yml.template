@@ -1,36 +1,35 @@
 trigger:
-- master
-- jest-testing
+  - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0 
-  displayName: 'install node'
-  inputs:
-    versionSpec: '12.x'
+  - task: NodeTool@0
+    displayName: 'install node'
+    inputs:
+      versionSpec: '12.x'
 
-- task: Npm@1
-  displayName: 'ci'
-  inputs:
-    command: custom
-    customCommand: ci
+  - task: Npm@1
+    displayName: 'ci'
+    inputs:
+      command: custom
+      customCommand: ci
 
-- task: Npm@1
-  displayName: 'test-ci'
-  inputs:
-    command: custom
-    customCommand: 'run test-ci'
+  - task: Npm@1
+    displayName: 'test-ci'
+    inputs:
+      command: custom
+      customCommand: 'run test-ci'
 
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: 'junit.xml'
-    failTaskOnFailedTests: true
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: 'junit.xml'
+      failTaskOnFailedTests: true
 
-- task: PublishCodeCoverageResults@1
-  inputs: 
-    codeCoverageTool: Cobertura
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+  - task: PublishCodeCoverageResults@1
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'

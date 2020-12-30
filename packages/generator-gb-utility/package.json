@@ -2,28 +2,31 @@
   "name": "generator-gb-utility",
   "version": "1.0.0",
   "description": "Utility subgenerators",
+  "files": [
+    "generators/**/*.js",
+    "generators/**/templates/"
+  ],
+  "private": false,
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
   "keywords": [
     "yeoman-generator"
   ],
   "author": "Gary Bortosky <garybort@gmail.com>",
-  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-gb-utility",
   "license": "ISC",
-  "main": "lib/generator-gb-utility.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+  "dependencies": {
+    "case": "^1.6.3",
+    "chalk": "^4.0.0",
+    "yeoman-generator": "^4.9.0",
+    "yosay": "^2.0.2"
   },
-  "files": [
-    "lib"
-  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/garyb432/gb-generators.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "url": "https://github.com/GaryB432/gb-generators.git"
   },
   "bugs": {
-    "url": "https://github.com/garyb432/gb-generators/issues"
-  }
+    "url": "https://github.com/GaryB432/gb-generators/issues"
+  },
+  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-gb-utility"
 }

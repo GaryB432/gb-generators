@@ -99,11 +99,15 @@ export default class extends Generator {
       this.destinationPath("src/public/index.html"),
       context
     );
-    this.fs.copyTpl(
-      this.templatePath("src/public/img/icon.svg.template"),
-      this.destinationPath("src/public/img/icon.svg"),
-      context
-    );
+    ["144", "512"]
+      .map((f) => `icon-${f}.png`)
+      .forEach((f) => {
+        this.fs.copyTpl(
+          this.templatePath(`src/public/img/${f}`),
+          this.destinationPath(`src/public/img/${f}`),
+          context
+        );
+      });
     this.fs.copy(
       this.templatePath("src/public/img/yeoman-003.png"),
       this.destinationPath("src/public/img/yeoman-003.png"),

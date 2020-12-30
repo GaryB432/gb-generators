@@ -95,10 +95,19 @@ export default class extends Generator {
       this.destinationPath(".vscode/tasks.json")
     );
     this.fs.copyTpl(
-      this.templatePath("src/public/index.html"),
+      this.templatePath("src/public/index.html.template"),
       this.destinationPath("src/public/index.html"),
       context
     );
+    ["144", "512"]
+      .map((f) => `icon-${f}.png`)
+      .forEach((f) => {
+        this.fs.copyTpl(
+          this.templatePath(`src/public/img/${f}`),
+          this.destinationPath(`src/public/img/${f}`),
+          context
+        );
+      });
     this.fs.copy(
       this.templatePath("src/public/img/yeoman-003.png"),
       this.destinationPath("src/public/img/yeoman-003.png"),
@@ -128,6 +137,14 @@ export default class extends Generator {
       this.destinationPath(".gitattributes")
     );
     this.fs.copy(
+      this.templatePath(".prettierignore.template"),
+      this.destinationPath(".prettierignore")
+    );
+    this.fs.copy(
+      this.templatePath(".prettierrc.template"),
+      this.destinationPath(".prettierrc")
+    );
+    this.fs.copy(
       this.templatePath(".travis.yml.template"),
       this.destinationPath(".travis.yml")
     );
@@ -150,8 +167,13 @@ export default class extends Generator {
         context
       );
       this.fs.copyTpl(
-        this.templatePath("src/public/manifest.json.template"),
-        this.destinationPath("src/public/manifest.json"),
+        this.templatePath("src/public/manifest.webmanifest.template"),
+        this.destinationPath("src/public/manifest.webmanifest"),
+        context
+      );
+      this.fs.copyTpl(
+        this.templatePath("src/public/web.config.template"),
+        this.destinationPath("src/public/web.config"),
         context
       );
     }

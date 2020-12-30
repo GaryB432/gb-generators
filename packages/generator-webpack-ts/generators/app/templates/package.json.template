@@ -6,7 +6,7 @@
     "clean": "rimraf dist",
     "start": "webpack-dev-server --open",
     "watch": "webpack --watch",
-    "format": "prettier --write \"{<%= testsPath %>,src}/**/*.{js,ts,scss,html}\"",
+    "format": "prettier --write .",
     "lint": "eslint \"**/*.ts\" -f eslint-formatter-friendly",
     "prebuild": "npm run format",
     "pretest": "npm run lint",
@@ -39,10 +39,5 @@
   "dependencies": {},
   "engines": {
     "node": ">=8.0.0"
-  },
-  "prettier": {
-    "printWidth": 100,
-    "singleQuote": true,
-    "trailingComma": "es5"
   }
 }

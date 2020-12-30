@@ -4,7 +4,7 @@ import { Greeter } from './greeter';
 
 const greeter: Greeter = new Greeter('<%= appname %>');
 const app = document.getElementById('app');
-if (!!app) {
+if (app) {
   greeter.start(app);
 }
 <% if (workbox) { %>

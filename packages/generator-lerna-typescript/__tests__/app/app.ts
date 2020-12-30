@@ -25,6 +25,13 @@ describe("generator-lerna-typescript:app", () => {
           "packages/greeter/tsconfig.json",
         ]);
         assert.jsonFileContent("lerna.json", { version: "0.0.0" });
+        [
+          "packages/**/lib",
+          "package*.json",
+          "!packages/**/package.json",
+        ].forEach((noFormatting) =>
+          assert.fileContent(".prettierignore", noFormatting)
+        );
         done();
       });
   });

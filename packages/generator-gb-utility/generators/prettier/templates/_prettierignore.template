@@ -1,6 +1,0 @@
-dist
-img
-package*.json
-packages/**/lib
-package*.json
-!packages/**/package.json

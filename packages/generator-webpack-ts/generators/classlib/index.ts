@@ -34,10 +34,10 @@ export default class extends Generator {
       devDependencies,
     });
 
-    const isJest = !!pkg.devDependencies.jest;
-    const specPath = isJest ? "test" : "__tests__/specs";
+    const isKarma = pkg.devDependencies.karma;
+    const specPath = isKarma ? "__tests__/specs" : "test";
     const srcImportPathParts = [
-      ...Array(nameParts.length + (isJest ? 0 : 1)).fill(".."),
+      ...Array<string>(nameParts.length + (isKarma ? 1 : 0)).fill(".."),
       "src",
       "scripts",
       ...nameParts.map((p) => Case.kebab(p)),

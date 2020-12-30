@@ -83,7 +83,7 @@ export default class extends Generator {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
       istanbul: this.answers?.library === "karma",
-      testsPath: this.answers?.library === "karma" ? "__tests__" : "test",
+      testsPath: this.answers?.library === "karma" ? "__tests__" : "tests",
       workbox: !!this.answers?.workbox,
     };
     this.fs.copy(
@@ -95,10 +95,19 @@ export default class extends Generator {
       this.destinationPath(".vscode/tasks.json")
     );
     this.fs.copyTpl(
-      this.templatePath("src/index.html"),
-      this.destinationPath("src/index.html"),
+      this.templatePath("src/public/index.html.template"),
+      this.destinationPath("src/public/index.html"),
       context
     );
+    ["144", "512"]
+      .map((f) => `icon-${f}.png`)
+      .forEach((f) => {
+        this.fs.copyTpl(
+          this.templatePath(`src/public/img/${f}`),
+          this.destinationPath(`src/public/img/${f}`),
+          context
+        );
+      });
     this.fs.copy(
       this.templatePath("src/public/img/yeoman-003.png"),
       this.destinationPath("src/public/img/yeoman-003.png"),
@@ -128,6 +137,14 @@ export default class extends Generator {
       this.destinationPath(".gitattributes")
     );
     this.fs.copy(
+      this.templatePath(".prettierignore.template"),
+      this.destinationPath(".prettierignore")
+    );
+    this.fs.copy(
+      this.templatePath(".prettierrc.template"),
+      this.destinationPath(".prettierrc")
+    );
+    this.fs.copy(
       this.templatePath(".travis.yml.template"),
       this.destinationPath(".travis.yml")
     );
@@ -150,27 +167,24 @@ export default class extends Generator {
         context
       );
       this.fs.copyTpl(
-        this.templatePath("src/public/manifest.json.template"),
-        this.destinationPath("src/public/manifest.json"),
+        this.templatePath("src/public/manifest.webmanifest.template"),
+        this.destinationPath("src/public/manifest.webmanifest"),
+        context
+      );
+      this.fs.copyTpl(
+        this.templatePath("src/public/web.config.template"),
+        this.destinationPath("src/public/web.config"),
         context
       );
     }
 
     this.fs.copy(
-      this.templatePath(".prettierignore.template"),
-      this.destinationPath(".prettierignore")
-    );
-    this.fs.copy(
-      this.templatePath(".prettierrc.template"),
-      this.destinationPath(".prettierrc")
-    );
-    this.fs.copy(
       this.templatePath("tsconfig.json.template"),
       this.destinationPath("tsconfig.json")
     );
     this.fs.copy(
-      this.templatePath(".eslintrc.json.template"),
-      this.destinationPath(".eslintrc.json")
+      this.templatePath(".eslintrc.js.template"),
+      this.destinationPath(".eslintrc.js")
     );
     this.fs.copyTpl(
       this.templatePath("webpack.config.js.template"),

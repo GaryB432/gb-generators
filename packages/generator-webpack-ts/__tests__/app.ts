@@ -3,7 +3,7 @@ import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
 const mostFiles = [
-  ".eslintrc.json",
+  ".eslintrc.js",
   ".gitignore",
   ".gitattributes",
   ".prettierignore",
@@ -13,8 +13,10 @@ const mostFiles = [
   ".vscode/tasks.json",
   "package.json",
   "README.md",
-  "src/index.html",
+  "src/public/index.html",
   "src/public/img/yeoman-003.png",
+  "src/public/img/icon-144.png",
+  "src/public/img/icon-512.png",
   "src/scripts/app.ts",
   "src/styles/app.scss",
   "tsconfig.json",
@@ -34,6 +36,7 @@ describe("generator-webpack-ts:app", () => {
         assert.noFileContent("package.json", "workbox");
         assert.noFileContent("src/scripts/app.ts", "serviceWorker");
         assert.noFileContent("webpack.config.js", "istanbul");
+        assert.noFileContent("src/public/index.html", "manifest.webmanifest");
         assert.fileContent(".gitignore", "junit.xml");
         done();
       });
@@ -50,10 +53,12 @@ describe("generator-webpack-ts:app with workbox", () => {
           ...mostFiles,
           "server.js",
           "src/sw.js",
-          "src/public/manifest.json",
+          "src/public/manifest.webmanifest",
+          "src/public/web.config",
         ]);
         assert.fileContent(".gitignore", "junit.xml");
         assert.fileContent("package.json", '"format": "prettier --write ."');
+        assert.fileContent("src/public/index.html", "manifest.webmanifest");
         done();
       });
   });

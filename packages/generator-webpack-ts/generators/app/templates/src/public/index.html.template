@@ -15,7 +15,9 @@
   <body>
     <section id="app"></section>
     <section class="notice">
-      <div>Generated <%= genstamp %></div>
+      <div>
+        Generated <%= genstamp %>
+      </div>
     </section>
     <img src="img/yeoman-003.png" alt="logo" />
     <a

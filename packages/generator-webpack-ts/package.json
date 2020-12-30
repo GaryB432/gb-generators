@@ -1,6 +1,6 @@
 {
   "name": "generator-webpack-ts",
-  "version": "6.11.0",
+  "version": "6.12.0",
   "description": "A Yeoman Generator for creating websites with TypeScript, Sass and Webpack",
   "files": [
     "generators/**/*.js",

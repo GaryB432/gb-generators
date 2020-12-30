@@ -59,6 +59,15 @@ export default class extends Generator {
       )
     );
 
+    this.composeWith(
+      require.resolve("generator-gb-utility/generators/prettier"),
+      {}
+    );
+    this.composeWith(
+      require.resolve("generator-gb-utility/generators/eslint"),
+      {}
+    );
+
     this.log(chalk.gray("Coming right up"));
   }
 
@@ -137,14 +146,6 @@ export default class extends Generator {
       this.destinationPath(".gitattributes")
     );
     this.fs.copy(
-      this.templatePath(".prettierignore.template"),
-      this.destinationPath(".prettierignore")
-    );
-    this.fs.copy(
-      this.templatePath(".prettierrc.template"),
-      this.destinationPath(".prettierrc")
-    );
-    this.fs.copy(
       this.templatePath(".travis.yml.template"),
       this.destinationPath(".travis.yml")
     );
@@ -181,10 +182,6 @@ export default class extends Generator {
     this.fs.copy(
       this.templatePath("tsconfig.json.template"),
       this.destinationPath("tsconfig.json")
-    );
-    this.fs.copy(
-      this.templatePath(".eslintrc.js.template"),
-      this.destinationPath(".eslintrc.js")
     );
     this.fs.copyTpl(
       this.templatePath("webpack.config.js.template"),

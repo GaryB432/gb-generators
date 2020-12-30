@@ -24,6 +24,7 @@
   "dependencies": {
     "case": "^1.6.3",
     "chalk": "^4.0.0",
+    "generator-gb-utility": "^1.0.0",
     "yeoman-generator": "^4.9.0",
     "yosay": "^2.0.2"
   },

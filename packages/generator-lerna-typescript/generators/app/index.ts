@@ -31,8 +31,14 @@ export default class extends Generator {
     this.composeWith(require.resolve("../package"), {
       arguments: ["@myscope/greeter"],
     });
-    // this.composeWith(require.resolve("../prettier"), {});
-    // this.composeWith(require.resolve("../eslint"), {});
+    this.composeWith(
+      require.resolve("generator-gb-utility/generators/prettier"),
+      {}
+    );
+    this.composeWith(
+      require.resolve("generator-gb-utility/generators/eslint"),
+      {}
+    );
   }
 
   writing(): void {

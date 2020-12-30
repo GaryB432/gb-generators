@@ -9,7 +9,7 @@ describe("generator-lerna-typescript:app", () => {
       .withPrompts({ independent: false })
       .then(() => {
         assert.file([
-          ".eslintrc.js",
+          // ".eslintrc.js",
           ".github/workflows/lerna.yml",
           ".gitignore",
           "azure-pipelines.yml",

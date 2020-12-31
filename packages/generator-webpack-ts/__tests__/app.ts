@@ -3,7 +3,7 @@ import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
 const mostFiles = [
-  ".eslintrc.js",
+  ".eslintrc.json",
   ".gitignore",
   ".gitattributes",
   ".prettierignore",
@@ -59,6 +59,9 @@ describe("generator-webpack-ts:app with workbox", () => {
         assert.fileContent(".gitignore", "junit.xml");
         assert.fileContent("package.json", '"format": "prettier --write ."');
         assert.fileContent("src/public/index.html", "manifest.webmanifest");
+        ["dist", "img", "package*.json"].forEach((noFormatting) =>
+          assert.fileContent(".prettierignore", noFormatting)
+        );
         done();
       });
   });

@@ -1,4 +1,10 @@
 import Generator = require("yeoman-generator");
+import {
+  DependencyList,
+  lintGlob,
+  mergeDependencies,
+  PackageJsonDef,
+} from "../../util";
 
 export default class extends Generator {
   writing(): void {
@@ -7,10 +13,19 @@ export default class extends Generator {
       this.destinationPath(".eslintignore")
     );
     this.fs.copy(
-      this.templatePath("eslintrc.js.template"),
-      this.destinationPath(".eslintrc.js")
+      this.templatePath("eslintrc.json.template"),
+      this.destinationPath(".eslintrc.json")
     );
-    const pkgJson = {
+    const dependencies: DependencyList = {};
+    const devDependencies: DependencyList = {};
+    const pkg: PackageJsonDef = this.fs.readJSON(
+      this.destinationPath("package.json"),
+      {
+        dependencies,
+        devDependencies,
+      }
+    );
+    const pkgJson: Partial<PackageJsonDef> = {
       devDependencies: {
         "@typescript-eslint/eslint-plugin": "^2.6.1",
         "@typescript-eslint/parser": "^2.6.1",
@@ -20,8 +35,13 @@ export default class extends Generator {
         "eslint-plugin-prettier": "^3.1.1",
       },
       scripts: {
-        lint:
-          'eslint "packages/**/{src,__tests__}/**/*.ts" -f eslint-formatter-friendly',
+        lint: [
+          "eslint",
+          `"${lintGlob(
+            mergeDependencies(pkg.dependencies, pkg.devDependencies)
+          )}"`,
+          "-f eslint-formatter-friendly",
+        ].join(" "),
       },
     };
 

@@ -100,8 +100,8 @@ export default class extends Generator {
       this.destinationPath(".vscode/tasks.json")
     );
     this.fs.copyTpl(
-      this.templatePath("src/public/index.html.template"),
-      this.destinationPath("src/public/index.html"),
+      this.templatePath("src/index.html.template"),
+      this.destinationPath("src/index.html"),
       context
     );
     ["144", "512"]

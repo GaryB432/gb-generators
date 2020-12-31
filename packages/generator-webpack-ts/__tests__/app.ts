@@ -13,7 +13,7 @@ const mostFiles = [
   ".vscode/tasks.json",
   "package.json",
   "README.md",
-  "src/public/index.html",
+  "src/index.html",
   "src/public/img/yeoman-003.png",
   "src/public/img/icon-144.png",
   "src/public/img/icon-512.png",
@@ -32,11 +32,10 @@ describe("generator-webpack-ts:app", () => {
         assert.file(mostFiles);
         assert.noFile("server.js");
         assert.noFile("src/sw.js");
-        assert.noFile("src/public/manifest.json");
         assert.noFileContent("package.json", "workbox");
         assert.noFileContent("src/scripts/app.ts", "serviceWorker");
         assert.noFileContent("webpack.config.js", "istanbul");
-        assert.noFileContent("src/public/index.html", "manifest.webmanifest");
+        assert.noFileContent("src/index.html", "manifest.webmanifest");
         assert.fileContent(".gitignore", "junit.xml");
         done();
       });
@@ -58,7 +57,7 @@ describe("generator-webpack-ts:app with workbox", () => {
         ]);
         assert.fileContent(".gitignore", "junit.xml");
         assert.fileContent("package.json", '"format": "prettier --write ."');
-        assert.fileContent("src/public/index.html", "manifest.webmanifest");
+        assert.fileContent("src/index.html", "manifest.webmanifest");
         ["dist", "img", "package*.json"].forEach((noFormatting) =>
           assert.fileContent(".prettierignore", noFormatting)
         );

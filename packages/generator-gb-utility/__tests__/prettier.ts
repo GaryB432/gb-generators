@@ -1,7 +1,7 @@
 import path = require("path");
 import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
-import { ignorePaths, mergeDependencies } from "../generators/prettier";
+import { ignorePrettierPaths, mergeDependencies } from "../generators/utils";
 
 describe("generator-gb-utility:prettier", () => {
   it("creates files", (done) => {
@@ -15,7 +15,7 @@ describe("generator-gb-utility:prettier", () => {
   });
 
   it("gets lerna ignores", () => {
-    const ignored = ignorePaths({ lerna: "OK" });
+    const ignored = ignorePrettierPaths({ lerna: "OK" });
     const names = [
       "packages/**/lib",
       "package*.json",
@@ -27,7 +27,7 @@ describe("generator-gb-utility:prettier", () => {
   });
 
   it("gets webpack ignores", () => {
-    const ignored = ignorePaths({ webpack: "OK" });
+    const ignored = ignorePrettierPaths({ webpack: "OK" });
     const names = ["dist", "img", "package*.json"];
     names.forEach((name) =>
       assert.ok(ignored.includes(name), `"${name}" not ignored`)

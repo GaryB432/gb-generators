@@ -1,37 +1,10 @@
 import Generator = require("yeoman-generator");
-
-interface DependencyList {
-  [name: string]: string;
-}
-
-interface PackageJsonDef {
-  dependencies: DependencyList;
-  devDependencies: DependencyList;
-  scripts: DependencyList;
-}
-
-export function mergeDependencies(...deps: DependencyList[]): DependencyList {
-  const merged = {};
-  for (const d of deps) {
-    Object.assign(merged, d);
-  }
-  return merged;
-}
-
-export function ignorePaths(deps: DependencyList): string[] {
-  const ignore: string[] = [];
-  if (deps.lerna) {
-    ignore.push(
-      "packages/**/lib",
-      "package*.json",
-      "!packages/**/package.json"
-    );
-  }
-  if (deps.webpack) {
-    ignore.push("dist", "img", "package*.json");
-  }
-  return ignore;
-}
+import {
+  DependencyList,
+  ignorePrettierPaths,
+  mergeDependencies,
+  PackageJsonDef,
+} from "../utils";
 
 export default class extends Generator {
   writing(): void {
@@ -59,7 +32,9 @@ export default class extends Generator {
     );
     this.fs.write(
       ".prettierignore",
-      ignorePaths(mergeDependencies(pkg.dependencies, pkg.devDependencies))
+      ignorePrettierPaths(
+        mergeDependencies(pkg.dependencies, pkg.devDependencies)
+      )
         .map((fn) => `${fn}\n`)
         .join("")
     );

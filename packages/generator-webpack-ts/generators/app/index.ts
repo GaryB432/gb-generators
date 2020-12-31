@@ -52,11 +52,7 @@ export default class extends Generator {
 
   initializing(): void {
     this.log(
-      yosay(
-        "Welcome to the minimal " +
-          chalk.red("Webpack TypeScript") +
-          " generator!"
-      )
+      yosay(`Welcom to the ${chalk.red("Webpack TypeScript")} generator`)
     );
 
     this.composeWith(

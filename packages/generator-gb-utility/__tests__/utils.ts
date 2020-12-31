@@ -1,5 +1,5 @@
 import assert = require("assert");
-import { lintGlob, mergeDependencies } from "../generators/utils";
+import { lintGlob, mergeDependencies } from "../util";
 
 describe("generator-gb-utility:prettier", () => {
   it("lintGlobs", () => {

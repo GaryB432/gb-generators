@@ -1,7 +1,7 @@
 import path = require("path");
 import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
-import { ignorePrettierPaths, mergeDependencies } from "../generators/utils";
+import { ignorePrettierPaths, mergeDependencies } from "../util";
 
 describe("generator-gb-utility:prettier", () => {
   it("creates files", (done) => {

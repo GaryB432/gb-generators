@@ -4,7 +4,7 @@ import {
   ignorePrettierPaths,
   mergeDependencies,
   PackageJsonDef,
-} from "../utils";
+} from "../../util";
 
 export default class extends Generator {
   writing(): void {

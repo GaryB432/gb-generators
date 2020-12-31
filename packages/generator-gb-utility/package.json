@@ -4,7 +4,8 @@
   "description": "Utility subgenerators",
   "files": [
     "generators/**/*.js",
-    "generators/**/templates/"
+    "generators/**/templates/",
+    "util/**/*.js"
   ],
   "private": false,
   "scripts": {

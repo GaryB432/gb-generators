@@ -8,7 +8,13 @@ describe("generator-gb-utility:eslint", () => {
       .run(path.join(__dirname, "../generators/eslint"))
       .withPrompts({ someAnswer: true })
       .then(() => {
-        assert.file(["package.json", ".eslintrc.json", ".eslintignore"]);
+        assert.file([".eslintrc.json", ".eslintignore"]);
+        assert.jsonFileContent("package.json", {
+          scripts: {
+            lint:
+              'eslint "{src/scripts,test}/**/*.ts" -f eslint-formatter-friendly',
+          },
+        });
         done();
       });
   });

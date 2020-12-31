@@ -1,5 +1,10 @@
 import Generator = require("yeoman-generator");
-import { DependencyList, mergeDependencies, PackageJsonDef } from "../utils";
+import {
+  DependencyList,
+  lintGlob,
+  mergeDependencies,
+  PackageJsonDef,
+} from "../utils";
 
 export default class extends Generator {
   writing(): void {
@@ -20,14 +25,6 @@ export default class extends Generator {
         devDependencies,
       }
     );
-    const allDept = mergeDependencies(pkg.dependencies, pkg.devDependencies);
-    const glob = allDept.lerna
-      ? "packages/**/{src,__tests__}/**/*.ts"
-      : "{src/scripts,test}/**/*.ts";
-    const scripts = glob
-      ? { lint: `eslint "${glob}" -f eslint-formatter-friendly` }
-      : { lint: "echo nope" };
-
     const pkgJson: Partial<PackageJsonDef> = {
       devDependencies: {
         "@typescript-eslint/eslint-plugin": "^2.6.1",
@@ -37,7 +34,15 @@ export default class extends Generator {
         "eslint-formatter-friendly": "^7.0.0",
         "eslint-plugin-prettier": "^3.1.1",
       },
-      scripts,
+      scripts: {
+        lint: [
+          "eslint",
+          `"${lintGlob(
+            mergeDependencies(pkg.dependencies, pkg.devDependencies)
+          )}"`,
+          "-f eslint-formatter-friendly",
+        ].join(" "),
+      },
     };
 
     this.fs.extendJSON(this.destinationPath("package.json"), pkgJson);

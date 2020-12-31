@@ -30,3 +30,9 @@ export function ignorePrettierPaths(deps: DependencyList): string[] {
   }
   return ignore;
 }
+
+export function lintGlob(deps: DependencyList): string {
+  return deps.lerna
+    ? "packages/**/{src,__tests__}/**/*.ts"
+    : "{src/scripts,test}/**/*.ts";
+}

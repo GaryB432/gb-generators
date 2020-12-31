@@ -77,7 +77,7 @@ export default class extends Generator {
       this.fs.extendJSON(this.destinationPath("package.json"), {
         devDependencies: {
           express: "^4.17.1",
-          "workbox-webpack-plugin": "^4.3.1",
+          "workbox-webpack-plugin": "^6.0.2",
         },
       });
     }

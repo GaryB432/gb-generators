@@ -15,11 +15,11 @@ interface Context {
 const packageExtensions = {
   jest: {
     devDependencies: {
-      "@types/jest": "^26.0.7",
-      "@types/node": "^14.0.26",
-      jest: "^26.1.0",
-      "jest-junit": "^11.0.1",
-      "ts-jest": "^26.1.3",
+      "@types/jest": "^26.0.19",
+      "@types/node": "^14.14.17",
+      jest: "^26.6.3",
+      "jest-junit": "^12.0.0",
+      "ts-jest": "^26.4.4",
     },
     scripts: {
       test: "jest",

@@ -10,9 +10,7 @@
     "prebuild": "npm run format",
     "pretest": "npm run lint",
     "build": "webpack",
-    "webpack-prod": "npm run pretest && npm run test-ci && webpack --env production",
-    "test": "jest",
-    "test-ci": "jest --ci --coverage"
+    "webpack-prod": "npm run pretest && npm run test-ci && webpack --env production"
   },
   "license": "ISC",
   "devDependencies": {

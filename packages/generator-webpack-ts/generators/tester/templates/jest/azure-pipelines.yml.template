@@ -1,35 +1,46 @@
 trigger:
   - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+jobs:
+  - job: build
+    displayName: 'Build and Publish'
+    pool:
+      vmImage: 'ubuntu-latest'
 
-steps:
-  - task: NodeTool@0
-    displayName: 'install node'
-    inputs:
-      versionSpec: '12.x'
+    steps:
+      - task: NodeTool@0
+        displayName: 'Install Node'
+        inputs:
+          versionSpec: '12.x'
 
-  - task: Npm@1
-    displayName: 'ci'
-    inputs:
-      command: custom
-      customCommand: ci
+      - task: Npm@1
+        displayName: 'Install Packages'
+        inputs:
+          command: custom
+          customCommand: ci
 
-  - task: Npm@1
-    displayName: 'test-ci'
-    inputs:
-      command: custom
-      customCommand: 'run test-ci'
+      - task: Npm@1
+        displayName: 'Test and Build'
+        inputs:
+          command: custom
+          customCommand: 'run webpack-prod'
 
-  - task: PublishTestResults@2
-    condition: succeededOrFailed()
-    inputs:
-      testRunner: JUnit
-      testResultsFiles: 'junit.xml'
-      failTaskOnFailedTests: true
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Dist'
+        inputs:
+          PathtoPublish: dist
+          ArtifactName: 'dist-artifact'
 
-  - task: PublishCodeCoverageResults@1
-    inputs:
-      codeCoverageTool: Cobertura
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+      - task: PublishTestResults@2
+        displayName: 'Publish Test Results'
+        condition: succeededOrFailed()
+        inputs:
+          testRunner: JUnit
+          testResultsFiles: 'junit.xml'
+          failTaskOnFailedTests: true
+
+      - task: PublishCodeCoverageResults@1
+        displayName: 'Publish Coverage'
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'

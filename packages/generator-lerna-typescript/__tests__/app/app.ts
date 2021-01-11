@@ -9,7 +9,7 @@ describe("generator-lerna-typescript:app", () => {
       .withPrompts({ independent: false })
       .then(() => {
         assert.file([
-          ".eslintrc.js",
+          // ".eslintrc.js",
           ".github/workflows/lerna.yml",
           ".gitignore",
           "azure-pipelines.yml",
@@ -25,6 +25,13 @@ describe("generator-lerna-typescript:app", () => {
           "packages/greeter/tsconfig.json",
         ]);
         assert.jsonFileContent("lerna.json", { version: "0.0.0" });
+        [
+          "packages/**/lib",
+          "package*.json",
+          "!packages/**/package.json",
+        ].forEach((noFormatting) =>
+          assert.fileContent(".prettierignore", noFormatting)
+        );
         done();
       });
   });

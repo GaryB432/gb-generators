@@ -48,11 +48,10 @@ const base = {
         concurrency: 100,
       },
     }),
-
 <% if (workbox) { %>
 
     new InjectManifest({
-      swSrc: path.join('src', 'sw.js'),
+      swSrc: 'sw.js',
       swDest: 'service-worker.js',
     }),
 <% } %>

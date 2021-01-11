@@ -1,33 +1,24 @@
 {
-  "name": "generator-webpack-ts",
-  "version": "6.14.0",
-  "description": "A Yeoman Generator for creating websites with TypeScript, Sass and Webpack",
+  "name": "generator-gb-utility",
+  "version": "1.1.1",
+  "description": "Utility subgenerators",
   "files": [
     "generators/**/*.js",
-    "generators/**/templates/"
+    "generators/**/templates/",
+    "util/**/*.js"
   ],
   "private": false,
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "keywords": [
-    "yeoman-generator",
-    "typescript",
-    "webpack",
-    "workbox",
-    "sass",
-    "scss",
-    "eslint"
+    "yeoman-generator"
   ],
   "author": "Gary Bortosky <garybort@gmail.com>",
   "license": "ISC",
-  "engines": {
-    "npm": ">= 4.0.0"
-  },
   "dependencies": {
     "case": "^1.6.3",
     "chalk": "^4.0.0",
-    "generator-gb-utility": "^1.1.1",
     "yeoman-generator": "^4.9.0",
     "yosay": "^2.0.2"
   },
@@ -38,5 +29,5 @@
   "bugs": {
     "url": "https://github.com/GaryB432/gb-generators/issues"
   },
-  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-webpack-ts"
+  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-gb-utility"
 }

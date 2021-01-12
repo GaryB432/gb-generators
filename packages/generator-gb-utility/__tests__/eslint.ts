@@ -11,8 +11,7 @@ describe("generator-gb-utility:eslint", () => {
         assert.file([".eslintrc.json", ".eslintignore"]);
         assert.jsonFileContent("package.json", {
           scripts: {
-            lint:
-              'eslint "{src/scripts,test}/**/*.ts" -f eslint-formatter-friendly',
+            lint: 'eslint "**/*.ts"',
           },
         });
         done();

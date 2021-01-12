@@ -27,12 +27,11 @@ export default class extends Generator {
     );
     const pkgJson: Partial<PackageJsonDef> = {
       devDependencies: {
-        "@typescript-eslint/eslint-plugin": "^4.11.1",
-        "@typescript-eslint/parser": "^4.11.1",
-        eslint: "^7.16.0",
+        "@typescript-eslint/eslint-plugin": "^4.13.0",
+        "@typescript-eslint/parser": "^4.13.0",
+        eslint: "^7.17.0",
         "eslint-config-prettier": "^7.1.0",
-        "eslint-formatter-friendly": "^7.0.0",
-        "eslint-plugin-prettier": "^3.3.0",
+        "eslint-plugin-prettier": "^3.3.1",
       },
       scripts: {
         lint: [
@@ -40,7 +39,6 @@ export default class extends Generator {
           `"${lintGlob(
             mergeDependencies(pkg.dependencies, pkg.devDependencies)
           )}"`,
-          "-f eslint-formatter-friendly",
         ].join(" "),
       },
     };

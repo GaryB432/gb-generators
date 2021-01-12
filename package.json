@@ -7,7 +7,7 @@
     "@types/node": "^13.13.4",
     "@types/yeoman-assert": "^3.1.1",
     "@types/yeoman-generator": "^3.1.4",
-    "@types/yeoman-test": "^2.0.3",
+    "@types/yeoman-test": "^2.0.5",
     "@types/yosay": "0.0.29",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
@@ -21,7 +21,7 @@
     "ts-jest": "^25.4.0",
     "typescript": "^3.8.3",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^2.4.1"
+    "yeoman-test": "^2.7.0"
   },
   "scripts": {
     "build": "tsc --pretty --listEmittedFiles",

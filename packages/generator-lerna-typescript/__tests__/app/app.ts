@@ -34,5 +34,5 @@ describe("generator-lerna-typescript:app", () => {
         );
         done();
       });
-  });
+  }, 10000);
 });

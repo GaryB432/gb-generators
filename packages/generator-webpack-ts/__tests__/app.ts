@@ -39,7 +39,7 @@ describe("generator-webpack-ts:app", () => {
         assert.fileContent(".gitignore", "junit.xml");
         done();
       });
-  });
+  }, 10000);
 });
 
 describe("generator-webpack-ts:app with workbox", () => {
@@ -63,7 +63,7 @@ describe("generator-webpack-ts:app with workbox", () => {
         );
         done();
       });
-  });
+  }, 10000);
 
   it("adds dependencies", (done) => {
     const pkgJson = {

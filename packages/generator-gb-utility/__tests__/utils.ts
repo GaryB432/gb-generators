@@ -3,7 +3,7 @@ import { lintGlob, mergeDependencies } from "../util";
 
 describe("generator-gb-utility:prettier", () => {
   it("lintGlobs", () => {
-    assert.strictEqual(lintGlob({}), "{src/scripts,test}/**/*.ts");
+    assert.strictEqual(lintGlob({}), "**/*.ts");
     assert.strictEqual(
       lintGlob({ lerna: "OK" }),
       "packages/**/{src,__tests__}/**/*.ts"

@@ -11,5 +11,5 @@ describe("generator-lerna-typescript:app", () => {
         assert.jsonFileContent("lerna.json", { version: "independent" });
         done();
       });
-  });
+  }, 10000);
 });

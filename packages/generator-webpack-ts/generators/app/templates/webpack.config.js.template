@@ -19,8 +19,13 @@ const base = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        loader: 'ts-loader',
+        test: /\.ts/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: { onlyCompileBundledFiles: true },
+          },
+        ],
       },
 <% if (istanbul) { %>
       {

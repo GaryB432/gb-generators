@@ -19,13 +19,13 @@
   "author": "Gary Bortosky <garybort@gmail.com>",
   "license": "ISC",
   "engines": {
-    "npm": ">= 4.0.0"
+    "node": ">=10"
   },
   "dependencies": {
     "case": "^1.6.3",
     "chalk": "^4.0.0",
     "generator-gb-utility": "^1.2.0",
-    "yeoman-generator": "^4.9.0",
+    "yeoman-generator": "^4.12.0",
     "yosay": "^2.0.2"
   },
   "repository": {

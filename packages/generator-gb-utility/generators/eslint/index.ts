@@ -24,7 +24,7 @@ export default class extends Generator {
         dependencies,
         devDependencies,
       }
-    );
+    ) as PackageJsonDef;
     const pkgJson: Partial<PackageJsonDef> = {
       devDependencies: {
         "@typescript-eslint/eslint-plugin": "^4.13.0",

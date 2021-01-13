@@ -115,8 +115,7 @@ export default class extends Generator {
       });
     this.fs.copy(
       this.templatePath("src/public/img/yeoman-003.png"),
-      this.destinationPath("src/public/img/yeoman-003.png"),
-      context
+      this.destinationPath("src/public/img/yeoman-003.png")
     );
     this.fs.copyTpl(
       this.templatePath("src/scripts/app.ts.template"),

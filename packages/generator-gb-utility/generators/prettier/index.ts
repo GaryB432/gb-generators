@@ -16,7 +16,7 @@ export default class extends Generator {
         dependencies,
         devDependencies,
       }
-    );
+    ) as PackageJsonDef;
     const pkgJson: Partial<PackageJsonDef> = {
       devDependencies: {
         prettier: "^2.2.1",

@@ -1,6 +1,7 @@
 import Generator = require("yeoman-generator");
 import chalk = require("chalk");
 import Case = require("case");
+import { PackageJsonDef } from "generator-gb-utility/util";
 
 interface Options {
   library: "jest" | "karma" | "none";
@@ -32,7 +33,7 @@ export default class extends Generator {
     const devDependencies: TestDependencies = { [this.opts.library]: "OK" };
     const pkg = this.fs.readJSON(this.destinationPath("package.json"), {
       devDependencies,
-    });
+    }) as PackageJsonDef;
 
     const isKarma = pkg.devDependencies.karma;
     const specPath = isKarma ? "__tests__/specs" : "test";

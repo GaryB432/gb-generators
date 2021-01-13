@@ -2,6 +2,10 @@ import utils = require("../../utils");
 import Generator = require("yeoman-generator");
 import path = require("path");
 
+interface LernaJson {
+  version: string;
+}
+
 export default class extends Generator {
   constructor(args: string | string[], opts: object) {
     super(args, opts);
@@ -23,7 +27,7 @@ export default class extends Generator {
 
     const lernaJson = this.fs.readJSON("lerna.json", {
       version: "independent",
-    });
+    }) as LernaJson;
 
     const packageJson = {
       author: "",

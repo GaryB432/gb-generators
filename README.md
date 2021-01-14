@@ -1,6 +1,8 @@
 # gb-generators
 
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![Build Status](https://travis-ci.com/GaryB432/gb-generators.svg?branch=master)](https://travis-ci.com/GaryB432/gb-generators)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Lerna Test](https://github.com/GaryB432/gb-generators/workflows/Lerna%20Test/badge.svg)](https://github.com/GaryB432/gb-generators/actions)
 
 This monorepo contains my [`Yeoman`](https://yeoman.io/) generators. 
 

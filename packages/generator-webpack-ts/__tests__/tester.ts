@@ -37,7 +37,7 @@ describe("generator-webpack-ts:tester none", () => {
       .withOptions({ library: "none" });
     assert.noFile(["azure-pipelines.yml", "jest.config.js", "karma.conf.js"]);
     assert.jsonFileContent("package.json", {
-      scripts: { test: "echo no tests" },
+      scripts: { test: "echo no tests", "test-ci": "echo no tests" },
     });
     done();
   });

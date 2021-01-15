@@ -49,6 +49,7 @@ const packageExtensions = {
   none: {
     scripts: {
       test: "echo no tests",
+      "test-ci": "echo no tests",
     },
   },
 };

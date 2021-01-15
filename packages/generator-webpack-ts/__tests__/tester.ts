@@ -29,3 +29,16 @@ describe("generator-webpack-ts:tester jest", () => {
     done();
   });
 });
+
+describe("generator-webpack-ts:tester none", () => {
+  it("creates files", async (done) => {
+    await helpers
+      .run(path.join(__dirname, "../generators/tester"))
+      .withOptions({ library: "none" });
+    assert.noFile(["azure-pipelines.yml", "jest.config.js", "karma.conf.js"]);
+    assert.jsonFileContent("package.json", {
+      scripts: { test: "echo no tests" },
+    });
+    done();
+  });
+});

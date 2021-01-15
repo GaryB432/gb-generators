@@ -49,6 +49,7 @@ const packageExtensions = {
   none: {
     scripts: {
       test: "echo no tests",
+      "test-ci": "echo no tests",
     },
   },
 };
@@ -100,15 +101,14 @@ export default class extends Generator {
           this.destinationPath("azure-pipelines.yml")
         );
         break;
-      default: {
-        throw new Error(JSON.stringify(this.opts, undefined, 2));
-      }
     }
 
     this._writePackageJson();
   }
 
   install(): void {
-    this.installDependencies({ bower: false, npm: true, yarn: false });
+    if (this.opts.library !== "none") {
+      this.installDependencies({ bower: false, npm: true, yarn: false });
+    }
   }
 }

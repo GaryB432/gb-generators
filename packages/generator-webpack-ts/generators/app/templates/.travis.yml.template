@@ -1,4 +1,4 @@
 language: node_js
 node_js:
-  - v13
-  - V12
+  - v15
+  - V14

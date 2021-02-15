@@ -10,7 +10,7 @@ This monorepo contains my registry packages using
 * eslint
 * Typescript
 
-You can make one yourself using the [`Yeoman`](https://yeoman.io/) [`generator`](https://github.com/GaryB432/generator-lerna-typescript). 
+You can make one yourself using the [`Yeoman`](https://yeoman.io/) [`generator`](https://github.com/GaryB432/gb-generators/tree/master/packages/generator-lerna-typescript). 
 
 ## Packages (this may contain one day)
 

@@ -5,11 +5,17 @@ import { PackageJsonDef } from "generator-gb-utility/util";
 
 interface Options {
   library: "jest" | "karma" | "none";
+  skipStyles: boolean;
 }
 
 export default class extends Generator {
   constructor(args: string | string[], private opts: Options) {
     super(args, opts);
+    this.option("skip-styles", {
+      default: false,
+      description: "Do not generate style definitions",
+      type: Boolean,
+    });
     this.argument("className", {
       description: "the name of the class",
       required: true,
@@ -19,6 +25,7 @@ export default class extends Generator {
 
   initializing(): void {
     this.log(chalk.gray(`${this.options.className} coming right up`));
+    this.log(this.opts);
   }
 
   writing(): void {
@@ -60,10 +67,12 @@ export default class extends Generator {
       this.destinationPath(`src/scripts/${context.classFileName}.ts`),
       context
     );
-    this.fs.copyTpl(
-      this.templatePath("src/styles/blueprint.scss.template"),
-      this.destinationPath(`src/styles/${context.classFileName}.scss`),
-      context
-    );
+    if (!this.opts.skipStyles) {
+      this.fs.copyTpl(
+        this.templatePath("src/styles/blueprint.scss.template"),
+        this.destinationPath(`src/styles/${context.classFileName}.scss`),
+        context
+      );
+    }
   }
 }

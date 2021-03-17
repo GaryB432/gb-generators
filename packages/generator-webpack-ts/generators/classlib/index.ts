@@ -25,7 +25,6 @@ export default class extends Generator {
 
   initializing(): void {
     this.log(chalk.gray(`${this.options.className} coming right up`));
-    this.log(this.opts);
   }
 
   writing(): void {

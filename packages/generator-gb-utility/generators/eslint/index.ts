@@ -14,7 +14,7 @@ export default class extends Generator {
     );
     this.fs.copy(
       this.templatePath("eslintrc.json.template"),
-      this.destinationPath(".eslintrc.json")
+      this.destinationPath(".eslintrc.js")
     );
     const dependencies: DependencyList = {};
     const devDependencies: DependencyList = {};

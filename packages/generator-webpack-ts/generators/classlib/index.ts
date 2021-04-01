@@ -4,12 +4,13 @@ import Case = require("case");
 import { PackageJsonDef } from "generator-gb-utility/util";
 
 interface Options {
+  className: string;
   library: "jest" | "karma" | "none";
   skipStyles: boolean;
 }
 
-export default class extends Generator {
-  constructor(args: string | string[], private opts: Options) {
+export default class extends Generator<Options> {
+  constructor(args: string | string[], opts: Options) {
     super(args, opts);
     this.option("skip-styles", {
       default: false,
@@ -36,7 +37,7 @@ export default class extends Generator {
 
     const classNameInput = this.options.className as string;
     const nameParts = classNameInput.split("/");
-    const devDependencies: TestDependencies = { [this.opts.library]: "OK" };
+    const devDependencies: TestDependencies = { [this.options.library]: "OK" };
     const pkg = this.fs.readJSON(this.destinationPath("package.json"), {
       devDependencies,
     }) as PackageJsonDef;
@@ -66,7 +67,7 @@ export default class extends Generator {
       this.destinationPath(`src/scripts/${context.classFileName}.ts`),
       context
     );
-    if (!this.opts.skipStyles) {
+    if (!this.options.skipStyles) {
       this.fs.copyTpl(
         this.templatePath("src/styles/blueprint.scss.template"),
         this.destinationPath(`src/styles/${context.classFileName}.scss`),

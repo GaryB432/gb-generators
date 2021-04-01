@@ -3,8 +3,13 @@ import Generator = require("yeoman-generator");
 import Case = require("case");
 import path = require("path");
 
-export default class extends Generator {
-  constructor(args: string | string[], opts: object) {
+interface Options {
+  packageName: string;
+  className: string;
+}
+
+export default class extends Generator<Options> {
+  constructor(args: string | string[], opts: Options) {
     super(args, opts);
     this.argument("packageName", {
       description: "the name of the package",

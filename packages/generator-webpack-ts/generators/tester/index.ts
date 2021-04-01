@@ -54,15 +54,15 @@ const packageExtensions = {
   },
 };
 
-export default class extends Generator {
+export default class extends Generator<Options> {
   private cwd = path.basename(process.cwd());
-  constructor(args: string | string[], private opts: Options) {
+  constructor(args: string | string[], opts: Options) {
     super(args, opts);
   }
   _writePackageJson(): void {
     this.fs.extendJSON(
       this.destinationPath("package.json"),
-      packageExtensions[this.opts.library],
+      packageExtensions[this.options.library],
       undefined,
       2
     );
@@ -74,7 +74,7 @@ export default class extends Generator {
       genstamp: new Date().toString(),
       workbox: false, // TODO: add workbox handling
     };
-    switch (this.opts.library) {
+    switch (this.options.library) {
       case "jest":
         this.fs.copy(
           this.templatePath("jest/jest.config.js.template"),
@@ -107,7 +107,7 @@ export default class extends Generator {
   }
 
   install(): void {
-    if (this.opts.library !== "none") {
+    if (this.options.library !== "none") {
       this.installDependencies({ bower: false, npm: true, yarn: false });
     }
   }

@@ -6,8 +6,12 @@ interface LernaJson {
   version: string;
 }
 
-export default class extends Generator {
-  constructor(args: string | string[], opts: object) {
+interface Options {
+  packageName: string;
+}
+
+export default class extends Generator<Options> {
+  constructor(args: string | string[], opts: Options) {
     super(args, opts);
     this.argument("packageName", {
       description: "the name of the package",

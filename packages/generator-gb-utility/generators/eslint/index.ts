@@ -13,7 +13,7 @@ export default class extends Generator {
       this.destinationPath(".eslintignore")
     );
     this.fs.copy(
-      this.templatePath("eslintrc.json.template"),
+      this.templatePath("eslintrc.js.template"),
       this.destinationPath(".eslintrc.js")
     );
     const dependencies: DependencyList = {};

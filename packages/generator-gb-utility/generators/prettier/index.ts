@@ -10,13 +10,13 @@ export default class extends Generator {
   writing(): void {
     const dependencies: DependencyList = {};
     const devDependencies: DependencyList = {};
-    const pkg: PackageJsonDef = this.fs.readJSON(
+    const pkg: PackageJsonDef = (this.fs.readJSON(
       this.destinationPath("package.json"),
       {
         dependencies,
         devDependencies,
       }
-    ) as PackageJsonDef;
+    ) as unknown) as PackageJsonDef;
     const pkgJson: Partial<PackageJsonDef> = {
       devDependencies: {
         prettier: "^2.2.1",

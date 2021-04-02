@@ -29,9 +29,9 @@ export default class extends Generator<Options> {
         : pkgInfo.name,
     };
 
-    const lernaJson = this.fs.readJSON("lerna.json", {
+    const lernaJson = (this.fs.readJSON("lerna.json", {
       version: "independent",
-    }) as LernaJson;
+    }) as unknown) as LernaJson;
 
     const packageJson = {
       author: "",

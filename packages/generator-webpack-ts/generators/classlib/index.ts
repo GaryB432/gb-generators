@@ -29,18 +29,18 @@ export default class extends Generator<Options> {
   }
 
   writing(): void {
-    interface TestDependencies {
+    type TestDependencies = {
       karma?: "OK";
       jest?: "OK";
       none?: "OK";
-    }
+    };
 
     const classNameInput = this.options.className as string;
     const nameParts = classNameInput.split("/");
     const devDependencies: TestDependencies = { [this.options.library]: "OK" };
-    const pkg = this.fs.readJSON(this.destinationPath("package.json"), {
+    const pkg = (this.fs.readJSON(this.destinationPath("package.json"), {
       devDependencies,
-    }) as PackageJsonDef;
+    }) as unknown) as PackageJsonDef;
 
     const isKarma = pkg.devDependencies.karma;
     const specPath = isKarma ? "__tests__/specs" : "test";

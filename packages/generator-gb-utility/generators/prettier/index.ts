@@ -39,8 +39,4 @@ export default class extends Generator {
         .join("")
     );
   }
-
-  install(): void {
-    this.npmInstall();
-  }
 }

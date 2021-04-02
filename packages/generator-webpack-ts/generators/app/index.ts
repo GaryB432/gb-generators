@@ -184,8 +184,4 @@ export default class extends Generator {
       context
     );
   }
-
-  install(): void {
-    this.installDependencies({ bower: false, npm: true, yarn: false });
-  }
 }

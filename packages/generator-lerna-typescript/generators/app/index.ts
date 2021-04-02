@@ -84,11 +84,6 @@ export default class extends Generator {
       this.destinationPath("tsconfig.json")
     );
   }
-
-  install(): void {
-    this.installDependencies({ bower: false, npm: true, yarn: false });
-  }
-
   end(): void {
     this.log(
       `Create a new package with ${chalk.green(

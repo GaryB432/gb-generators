@@ -45,8 +45,4 @@ export default class extends Generator {
 
     this.fs.extendJSON(this.destinationPath("package.json"), pkgJson);
   }
-
-  install(): void {
-    this.npmInstall();
-  }
 }

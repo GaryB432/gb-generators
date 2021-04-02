@@ -105,10 +105,4 @@ export default class extends Generator<Options> {
 
     this._writePackageJson();
   }
-
-  install(): void {
-    if (this.options.library !== "none") {
-      this.installDependencies({ bower: false, npm: true, yarn: false });
-    }
-  }
 }

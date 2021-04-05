@@ -1,6 +1,6 @@
 import path = require("path");
-import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
+import { deepStrictEqual, strict as assert } from "assert";
 import { ignorePrettierPaths, mergeDependencies } from "../util";
 
 describe("generator-gb-utility:prettier", () => {
@@ -31,7 +31,7 @@ describe("other", () => {
       "!packages/**/package.json",
     ];
     names.forEach((name) =>
-      assert.ok(ignored.includes(name), `"${name}" not ignored`)
+      assert(ignored.includes(name), `"${name}" not ignored`)
     );
   });
 
@@ -39,12 +39,12 @@ describe("other", () => {
     const ignored = ignorePrettierPaths({ webpack: "OK" });
     const names = ["dist", "img", "package*.json"];
     names.forEach((name) =>
-      assert.ok(ignored.includes(name), `"${name}" not ignored`)
+      assert(ignored.includes(name), `"${name}" not ignored`)
     );
   });
 
   it("merges dependencies", () => {
-    assert.deepStrictEqual(
+    deepStrictEqual(
       mergeDependencies(
         {
           aaaaaaaaaaaaaaaaaa: "0.0.0",

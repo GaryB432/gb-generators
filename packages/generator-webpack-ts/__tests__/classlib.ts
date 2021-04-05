@@ -1,122 +1,155 @@
 import path = require("path");
-import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
 describe("classlib skipStyle", () => {
-  describe("generator-webpack-ts:classlib", () => {
-    it("creates files", (done) => {
-      return helpers
-        .run(path.join(__dirname, "../generators/classlib"))
+  describe("test", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/classlib"))
         .withArguments(["CustomerInventoryItem"])
         .withOptions({ library: "jest", skipStyles: true })
-        .then(() => {
-          assert.noFile("src/styles/customer-inventory-item.scss");
-          assert.fileContent(
-            "src/scripts/customer-inventory-item.ts",
-            "export class CustomerInventoryItem"
-          );
-          assert.fileContent(
-            "test/customer-inventory-item.spec.ts",
-            "let customerInventoryItem"
-          );
-          done();
-        });
+        .run();
+    });
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertNoFile("src/styles/customer-inventory-item.scss");
+      runResult.assertFileContent(
+        "src/scripts/customer-inventory-item.ts",
+        "export class CustomerInventoryItem"
+      );
+      runResult.assertFileContent(
+        "test/customer-inventory-item.spec.ts",
+        "let customerInventoryItem"
+      );
     });
   });
 });
 
 describe("Jest classlib", () => {
-  describe("generator-webpack-ts:classlib", () => {
-    it("creates files", (done) => {
-      return helpers
-        .run(path.join(__dirname, "../generators/classlib"))
+  describe("test", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/classlib"))
         .withArguments(["CustomerInventoryItem"])
         .withOptions({ library: "jest" })
-        .then(() => {
-          assert.file("src/styles/customer-inventory-item.scss");
-          assert.fileContent(
-            "src/scripts/customer-inventory-item.ts",
-            "export class CustomerInventoryItem"
-          );
-          assert.fileContent(
-            "test/customer-inventory-item.spec.ts",
-            "let customerInventoryItem"
-          );
-          done();
-        });
+        .run();
+    });
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertFile("src/styles/customer-inventory-item.scss");
+      runResult.assertFileContent(
+        "src/scripts/customer-inventory-item.ts",
+        "export class CustomerInventoryItem"
+      );
+      runResult.assertFileContent(
+        "test/customer-inventory-item.spec.ts",
+        "let customerInventoryItem"
+      );
     });
   });
+});
 
-  describe("generator-webpack-ts:classlib subfolder", () => {
-    it("creates files", (done) => {
-      return helpers
-        .run(path.join(__dirname, "../generators/classlib"))
+describe("generator-webpack-ts:classlib subfolder", () => {
+  describe("test", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/classlib"))
         .withArguments(["a/b/c/CustomerInventoryItem"])
         .withOptions({ library: "jest" })
-        .then(() => {
-          assert.file("src/styles/a/b/c/customer-inventory-item.scss");
-          assert.fileContent(
-            "src/scripts/a/b/c/customer-inventory-item.ts",
-            "export class CustomerInventoryItem"
-          );
-          assert.fileContent(
-            "test/a/b/c/customer-inventory-item.spec.ts",
-            "let customerInventoryItem"
-          );
-          assert.fileContent(
-            "test/a/b/c/customer-inventory-item.spec.ts",
-            "import { CustomerInventoryItem } from '../../../../src/scripts/a/b/c/customer-inventory-item';"
-          );
-          done();
-        });
+        .run();
+    });
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertFile("src/styles/a/b/c/customer-inventory-item.scss");
+      runResult.assertFileContent(
+        "src/scripts/a/b/c/customer-inventory-item.ts",
+        "export class CustomerInventoryItem"
+      );
+      runResult.assertFileContent(
+        "test/a/b/c/customer-inventory-item.spec.ts",
+        "let customerInventoryItem"
+      );
+      runResult.assertFileContent(
+        "test/a/b/c/customer-inventory-item.spec.ts",
+        "import { CustomerInventoryItem } from '../../../../src/scripts/a/b/c/customer-inventory-item';"
+      );
     });
   });
 });
 
 describe("Karma classlib", () => {
-  describe("generator-webpack-ts:classlib", () => {
-    it("creates files", (done) => {
-      return helpers
-        .run(path.join(__dirname, "../generators/classlib"))
+  describe("root folder", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/classlib"))
         .withArguments(["CustomerInventoryItem"])
         .withOptions({ library: "karma" })
-        .then(() => {
-          assert.file("src/styles/customer-inventory-item.scss");
-          assert.fileContent(
-            "src/scripts/customer-inventory-item.ts",
-            "export class CustomerInventoryItem"
-          );
-          assert.fileContent(
-            "__tests__/specs/customer-inventory-item.spec.ts",
-            "let customerInventoryItem"
-          );
-          done();
-        });
+        .run();
+    });
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertFile("src/styles/customer-inventory-item.scss");
+      runResult.assertFileContent(
+        "src/scripts/customer-inventory-item.ts",
+        "export class CustomerInventoryItem"
+      );
+      runResult.assertFileContent(
+        "__tests__/specs/customer-inventory-item.spec.ts",
+        "let customerInventoryItem"
+      );
     });
   });
+});
 
-  describe("generator-webpack-ts:classlib subfolder", () => {
-    it("creates files", (done) => {
-      return helpers
-        .run(path.join(__dirname, "../generators/classlib"))
+describe("Karma classlib", () => {
+  describe("subfolder", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/classlib"))
         .withArguments(["a/b/c/CustomerInventoryItem"])
         .withOptions({ library: "karma" })
-        .then(() => {
-          assert.file("src/styles/a/b/c/customer-inventory-item.scss");
-          assert.fileContent(
-            "src/scripts/a/b/c/customer-inventory-item.ts",
-            "export class CustomerInventoryItem"
-          );
-          assert.fileContent(
-            "__tests__/specs/a/b/c/customer-inventory-item.spec.ts",
-            "let customerInventoryItem"
-          );
-          assert.fileContent(
-            "__tests__/specs/a/b/c/customer-inventory-item.spec.ts",
-            "import { CustomerInventoryItem } from '../../../../../src/scripts/a/b/c/customer-inventory-item';"
-          );
-          done();
-        });
+        .run();
+    });
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertFile("src/styles/a/b/c/customer-inventory-item.scss");
+      runResult.assertFileContent(
+        "src/scripts/a/b/c/customer-inventory-item.ts",
+        "export class CustomerInventoryItem"
+      );
+      runResult.assertFileContent(
+        "__tests__/specs/a/b/c/customer-inventory-item.spec.ts",
+        "let customerInventoryItem"
+      );
+      runResult.assertFileContent(
+        "__tests__/specs/a/b/c/customer-inventory-item.spec.ts",
+        "import { CustomerInventoryItem } from '../../../../../src/scripts/a/b/c/customer-inventory-item';"
+      );
     });
   });
 });

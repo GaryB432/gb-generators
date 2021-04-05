@@ -4,16 +4,25 @@ import helpers = require("yeoman-test");
 import { ignorePrettierPaths, mergeDependencies } from "../util";
 
 describe("generator-gb-utility:prettier", () => {
-  it("creates files", (done) => {
-    helpers
-      .run(path.join(__dirname, "../generators/prettier"))
-      .withPrompts({ someAnswer: true })
-      .then(() => {
-        assert.file(["package.json", ".prettierrc", ".prettierignore"]);
-        done();
-      });
+  describe("test", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/prettier"), {}, {})
+        .run();
+    });
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertFile(["package.json", ".prettierrc", ".prettierignore"]);
+    });
   });
+});
 
+describe("other", () => {
   it("gets lerna ignores", () => {
     const ignored = ignorePrettierPaths({ lerna: "OK" });
     const names = [

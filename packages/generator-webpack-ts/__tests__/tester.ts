@@ -1,44 +1,81 @@
 import path = require("path");
-import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
-describe("generator-webpack-ts:tester karma", () => {
-  it("creates files", async (done) => {
-    await helpers
-      .run(path.join(__dirname, "../generators/tester"))
-      .withOptions({ library: "karma" });
-    assert.file(["azure-pipelines.yml", "__tests__/index.ts", "karma.conf.js"]);
-    assert.jsonFileContent("package.json", {
-      devDependencies: { karma: "^5.1.0" },
+describe("generator-webpack-ts:tester", () => {
+  describe("karma", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/tester"))
+        .withOptions({ library: "karma" })
+        .run();
     });
-    assert.noFile("jest.config.js");
-    done();
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertFile([
+        "azure-pipelines.yml",
+        "__tests__/index.ts",
+        "karma.conf.js",
+      ]);
+      runResult.assertJsonFileContent("package.json", {
+        devDependencies: { karma: "^5.1.0" },
+      });
+      runResult.assertNoFile("jest.config.js");
+    });
   });
 });
 
-describe("generator-webpack-ts:tester jest", () => {
-  it("creates files", async (done) => {
-    await helpers
-      .run(path.join(__dirname, "../generators/tester"))
-      .withOptions({ library: "jest" });
-    assert.file(["azure-pipelines.yml", "jest.config.js"]);
-    assert.jsonFileContent("package.json", {
-      devDependencies: { jest: "^26.6.3" },
+describe("generator-webpack-ts:tester", () => {
+  describe("jest", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/tester"))
+        .withOptions({ library: "jest" })
+        .run();
     });
-    assert.noFile("karma.conf.js");
-    done();
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertFile(["azure-pipelines.yml", "jest.config.js"]);
+      runResult.assertJsonFileContent("package.json", {
+        devDependencies: { jest: "^26.6.3" },
+      });
+      runResult.assertNoFile("karma.conf.js");
+    });
   });
 });
 
-describe("generator-webpack-ts:tester none", () => {
-  it("creates files", async (done) => {
-    await helpers
-      .run(path.join(__dirname, "../generators/tester"))
-      .withOptions({ library: "none" });
-    assert.noFile(["azure-pipelines.yml", "jest.config.js", "karma.conf.js"]);
-    assert.jsonFileContent("package.json", {
-      scripts: { test: "echo no tests", "test-ci": "echo no tests" },
+describe("generator-webpack-ts:tester", () => {
+  describe("none", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/tester"))
+        .withOptions({ library: "none" })
+        .run();
     });
-    done();
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertNoFile([
+        "azure-pipelines.yml",
+        "jest.config.js",
+        "karma.conf.js",
+      ]);
+      runResult.assertJsonFileContent("package.json", {
+        scripts: { test: "echo no tests", "test-ci": "echo no tests" },
+      });
+    });
   });
 });

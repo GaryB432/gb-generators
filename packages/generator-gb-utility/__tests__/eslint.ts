@@ -1,20 +1,26 @@
 import path = require("path");
-import assert = require("yeoman-assert");
 import helpers = require("yeoman-test");
 
 describe("generator-gb-utility:eslint", () => {
-  it("creates files", (done) => {
-    helpers
-      .run(path.join(__dirname, "../generators/eslint"))
-      .withPrompts({ someAnswer: true })
-      .then(() => {
-        assert.file([".eslintrc.js", ".eslintignore"]);
-        assert.jsonFileContent("package.json", {
-          scripts: {
-            lint: 'eslint "**/*.ts"',
-          },
-        });
-        done();
+  describe("test", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/eslint"))
+        .run();
+    });
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertFile([".eslintrc.js", ".eslintignore"]);
+      runResult.assertJsonFileContent("package.json", {
+        scripts: {
+          lint: 'eslint "**/*.ts"',
+        },
       });
+    });
   });
 });

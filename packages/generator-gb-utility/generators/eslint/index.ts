@@ -6,15 +6,37 @@ import {
   PackageJsonDef,
 } from "../../util";
 
-export default class extends Generator {
+interface Options {
+  browser: boolean;
+  node: boolean;
+}
+
+export default class extends Generator<Options> {
+  constructor(args: string | string[], opts: Options) {
+    super(args, opts);
+
+    this.option("browser", {
+      description: "Use browser environment",
+      default: false,
+      type: Boolean,
+    });
+    this.option("node", {
+      description: "Use node environment",
+      default: false,
+      type: Boolean,
+    });
+  }
+
   writing(): void {
+    const { browser, node } = this.options;
     this.fs.copy(
       this.templatePath("eslintignore.template"),
       this.destinationPath(".eslintignore")
     );
-    this.fs.copy(
+    this.fs.copyTpl(
       this.templatePath("eslintrc.js.template"),
-      this.destinationPath(".eslintrc.js")
+      this.destinationPath(".eslintrc.js"),
+      { browser, node }
     );
     const dependencies: DependencyList = {};
     const devDependencies: DependencyList = {};

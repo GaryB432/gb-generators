@@ -7,6 +7,7 @@ describe("generator-gb-utility:eslint", () => {
     beforeEach(async () => {
       runResult = await helpers
         .create(path.join(__dirname, "../generators/eslint"))
+        .withOptions({ node: true })
         .run();
     });
     afterEach(() => {
@@ -21,6 +22,8 @@ describe("generator-gb-utility:eslint", () => {
           lint: 'eslint "**/*.ts"',
         },
       });
+      runResult.assertFileContent(".eslintrc.js", /env:.*node: true/s);
+      runResult.assertNoFileContent(".eslintrc.js", /env:.*browser/s);
     });
   });
 });

@@ -34,7 +34,9 @@ export default class extends Generator<Options> {
     }) as unknown) as LernaJson;
 
     const packageJson = {
-      author: "",
+      name: context.packageName,
+      version:
+        lernaJson.version === "independent" ? "0.0.0" : lernaJson.version,
       description: "",
       devDependencies: {
         typescript: "^3.7.2",
@@ -43,15 +45,11 @@ export default class extends Generator<Options> {
       keywords: [],
       license: "ISC",
       main: "lib/index.js",
-      name: context.packageName,
-      private: false,
       scripts: {
         build: "tsc --pretty",
         prepare: "npm run build",
       },
       typings: "lib/index.d.ts",
-      version:
-        lernaJson.version === "independent" ? "0.0.0" : lernaJson.version,
     };
 
     const pfn: (fname: string) => string = (fname) =>

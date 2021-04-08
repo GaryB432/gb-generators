@@ -4,11 +4,9 @@ import path = require("path");
 import Case = require("case");
 
 interface Answers {
-  library: "jest" | "karma" | "none";
   workbox: boolean;
 }
 interface Context {
-  istanbul: boolean;
   appname: string;
   genstamp: string;
   workbox: boolean;
@@ -29,22 +27,12 @@ export default class extends Generator {
         name: "workbox",
         type: "confirm",
       },
-      {
-        choices: ["Jest", "Karma", "None"],
-        default: "karma",
-        filter: (val: string): string => val.toLowerCase(),
-        message: "Which testing library?",
-        name: "library",
-        type: "list",
-      },
     ]);
     this.answers = answers;
-    const { library } = answers;
-    const opts = { library };
-    this.composeWith(require.resolve("../tester"), { ...opts });
+    this.composeWith(require.resolve("../tester"), { ...answers });
     this.composeWith(require.resolve("../classlib"), {
       arguments: ["Greeter"],
-      ...opts,
+      ...answers,
     });
     return answers;
   }
@@ -80,8 +68,7 @@ export default class extends Generator {
     const context: Context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
-      istanbul: this.answers?.library === "karma",
-      testsPath: this.answers?.library === "karma" ? "__tests__" : "tests",
+      testsPath: "tests",
       workbox: !!this.answers?.workbox,
     };
     this.fs.copy(
@@ -119,9 +106,7 @@ export default class extends Generator {
       this.templatePath("src/styles/app.scss.template"),
       this.destinationPath("src/styles/app.scss")
     );
-    const ignore = context.istanbul
-      ? ["node_modules", "dist", "results"]
-      : ["node_modules", "dist", "coverage", "junit.xml"];
+    const ignore = ["node_modules", "dist", "coverage", "junit.xml"];
     this.fs.write(
       ".gitignore",
       ignore

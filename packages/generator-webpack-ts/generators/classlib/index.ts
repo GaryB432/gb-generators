@@ -5,7 +5,6 @@ import { PackageJsonDef } from "generator-gb-utility/util";
 
 interface Options {
   className: string;
-  library: "jest" | "karma" | "none";
   skipStyles: boolean;
 }
 
@@ -25,23 +24,10 @@ export default class extends Generator<Options> {
   }
 
   writing(): void {
-    type TestDependencies = {
-      karma?: "OK";
-      jest?: "OK";
-      none?: "OK";
-    };
-
     const classNameInput = this.options.className as string;
     const nameParts = classNameInput.split("/");
-    const devDependencies: TestDependencies = { [this.options.library]: "OK" };
-    const pkg = (this.fs.readJSON(this.destinationPath("package.json"), {
-      devDependencies,
-    }) as unknown) as PackageJsonDef;
-
-    const isKarma = pkg.devDependencies.karma;
-    const specPath = isKarma ? "__tests__/specs" : "test";
     const srcImportPathParts = [
-      ...Array<string>(nameParts.length + (isKarma ? 1 : 0)).fill(".."),
+      ...Array<string>(nameParts.length).fill(".."),
       "src",
       "scripts",
       ...nameParts.map((p) => Case.kebab(p)),
@@ -54,8 +40,8 @@ export default class extends Generator<Options> {
       srcImportPath: srcImportPathParts.join("/"),
     };
     this.fs.copyTpl(
-      this.templatePath(`${specPath}/blueprint.spec.ts.template`),
-      this.destinationPath(`${specPath}/${context.classFileName}.spec.ts`),
+      this.templatePath(`test/blueprint.spec.ts.template`),
+      this.destinationPath(`test/${context.classFileName}.spec.ts`),
       context
     );
     this.fs.copyTpl(

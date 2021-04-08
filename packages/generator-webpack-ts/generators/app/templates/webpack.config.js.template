@@ -27,17 +27,6 @@ const base = {
           },
         ],
       },
-<% if (istanbul) { %>
-      {
-        test: /\.ts$/,
-        exclude: [path.resolve(__dirname, '__tests__')],
-        enforce: 'post',
-        use: {
-          loader: 'istanbul-instrumenter-loader',
-          options: { esModules: true },
-        },
-      },
-<% } %>
     ],
   },
   plugins: [

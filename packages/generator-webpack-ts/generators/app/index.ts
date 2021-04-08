@@ -1,6 +1,5 @@
 import Generator = require("yeoman-generator");
 import chalk = require("chalk");
-import yosay = require("yosay");
 import path = require("path");
 import Case = require("case");
 
@@ -51,10 +50,6 @@ export default class extends Generator {
   }
 
   initializing(): void {
-    this.log(
-      yosay(`Welcom to the ${chalk.red("Webpack TypeScript")} generator`)
-    );
-
     this.composeWith(
       require.resolve("generator-gb-utility/generators/prettier"),
       {}
@@ -63,8 +58,6 @@ export default class extends Generator {
       require.resolve("generator-gb-utility/generators/eslint"),
       {}
     );
-
-    this.log(chalk.gray("Coming right up"));
   }
 
   _writePackageJson(context: Context): void {

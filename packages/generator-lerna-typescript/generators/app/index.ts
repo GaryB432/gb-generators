@@ -1,6 +1,5 @@
 import Generator = require("yeoman-generator");
 import chalk = require("chalk");
-import yosay = require("yosay");
 import Case = require("case");
 import path = require("path");
 
@@ -24,10 +23,6 @@ export default class extends Generator {
   }
 
   initializing(): void {
-    this.log(
-      yosay(`Welcome to the rad ${chalk.red("lerna-typescript")} generator!`)
-    );
-
     this.composeWith(require.resolve("../package"), {
       arguments: ["@myscope/greeter"],
     });

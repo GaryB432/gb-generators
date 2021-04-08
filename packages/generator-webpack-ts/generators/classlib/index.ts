@@ -24,10 +24,6 @@ export default class extends Generator<Options> {
     });
   }
 
-  initializing(): void {
-    this.log(chalk.gray(`${this.options.className} coming right up`));
-  }
-
   writing(): void {
     type TestDependencies = {
       karma?: "OK";

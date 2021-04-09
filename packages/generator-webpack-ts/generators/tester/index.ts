@@ -1,6 +1,7 @@
 import Generator = require("yeoman-generator");
 import path = require("path");
 import Case = require("case");
+import chalk = require("chalk");
 
 interface Options {
   library: "karma" | "jest" | "none";
@@ -86,6 +87,12 @@ export default class extends Generator<Options> {
         );
         break;
       case "karma":
+        this.log(chalk.yellowBright("Karma has been deprecated"));
+        this.log(
+          chalk.redBright(
+            "Your tests will need karma-related packages upgrades"
+          )
+        );
         this.fs.copyTpl(
           this.templatePath("karma/__tests__/index.ts.template"),
           this.destinationPath("__tests__/index.ts"),

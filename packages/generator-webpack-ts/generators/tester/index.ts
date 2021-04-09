@@ -69,6 +69,15 @@ export default class extends Generator<Options> {
     );
   }
 
+  end(): void {
+    if (this.options.library === "karma") {
+      this.log(chalk.yellowBright("Karma support is deprecated"));
+      this.log(
+        chalk.redBright("Your tests will need karma-related package upgrades")
+      );
+    }
+  }
+
   writing(): void {
     const context: Context = {
       appname: Case.kebab(this.cwd),
@@ -87,12 +96,6 @@ export default class extends Generator<Options> {
         );
         break;
       case "karma":
-        this.log(chalk.yellowBright("Karma has been deprecated"));
-        this.log(
-          chalk.redBright(
-            "Your tests will need karma-related packages upgrades"
-          )
-        );
         this.fs.copyTpl(
           this.templatePath("karma/__tests__/index.ts.template"),
           this.destinationPath("__tests__/index.ts"),

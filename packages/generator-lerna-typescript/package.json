@@ -1,6 +1,6 @@
 {
   "name": "generator-lerna-typescript",
-  "version": "2.7.2",
+  "version": "2.7.3",
   "description": "Get started with Lerna using TypeScript",
   "files": [
     "{generators,utils}/**/*.js",
@@ -24,7 +24,7 @@
   "dependencies": {
     "case": "^1.6.3",
     "chalk": "^4.0.0",
-    "generator-gb-utility": "^1.5.2",
+    "generator-gb-utility": "^1.5.3",
     "yeoman-environment": "^3.2.0",
     "yeoman-generator": "^5.2.0"
   },

@@ -24,7 +24,13 @@
   "engines": {
     "node": ">=10"
   },
-  "dependencies": {},
+  "dependencies": {
+    "case": "^1.6.3",
+    "chalk": "^4.0.0",
+    "generator-gb-utility": "^1.5.3",
+    "yeoman-environment": "^3.2.0",
+    "yeoman-generator": "^5.2.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/GaryB432/gb-generators.git"
@@ -32,6 +38,5 @@
   "bugs": {
     "url": "https://github.com/GaryB432/gb-generators/issues"
   },
-  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-web-modules",
-  "gitHead": "347e389b2c6f24414b460547d9840d70201c2717"
+  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-web-modules"
 }

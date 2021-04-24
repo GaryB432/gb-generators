@@ -17,11 +17,14 @@ export default class extends Generator {
       genstamp: new Date().toString(),
       tbd: false,
     };
+    this.fs.copyTpl(this.templatePath("_eslintignore.template"),this.destinationPath(".eslintignore"),context);
+    this.fs.copyTpl(this.templatePath("_eslintrc.js.template"),this.destinationPath(".eslintrc.js"),context);
     this.fs.copyTpl(this.templatePath("_prettierignore.template"),this.destinationPath(".prettierignore"),context);
     this.fs.copyTpl(this.templatePath("_prettierrc.template"),this.destinationPath(".prettierrc"),context);
     this.fs.copyTpl(this.templatePath(".gitattributes.template"),this.destinationPath(".gitattributes"),context);
     this.fs.copyTpl(this.templatePath("gulpfile.js.template"),this.destinationPath("gulpfile.js"),context);
     this.fs.copyTpl(this.templatePath("package.json.template"),this.destinationPath("package.json"),context);
+    this.fs.copyTpl(this.templatePath("jest.config.js.template"),this.destinationPath("jest.config.js"),context);
     this.fs.copyTpl(
       this.templatePath("README.md.template"),
       this.destinationPath("README.md"),

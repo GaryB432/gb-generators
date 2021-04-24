@@ -15,10 +15,13 @@ describe("generator-web-modules", () => {
   });
   it("runs correctly", () => {
     runResult.assertFile([
+      ".eslintignore",
+      ".eslintrc.js",
       ".prettierignore",
       ".prettierrc",
       ".gitattributes",
       "gulpfile.js",
+      "jest.config.js",
       "package.json",
       "README.md",
       "tsconfig.json",

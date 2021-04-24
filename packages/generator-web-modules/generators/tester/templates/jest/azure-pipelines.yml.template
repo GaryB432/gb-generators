@@ -1,0 +1,46 @@
+trigger:
+  - master
+
+jobs:
+  - job: build
+    displayName: 'Build and Publish'
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+      - task: NodeTool@0
+        displayName: 'Install Node'
+        inputs:
+          versionSpec: '12.x'
+
+      - task: Npm@1
+        displayName: 'Install Packages'
+        inputs:
+          command: custom
+          customCommand: ci
+
+      - task: Npm@1
+        displayName: 'Test and Build'
+        inputs:
+          command: custom
+          customCommand: 'run webpack-prod'
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Dist'
+        inputs:
+          PathtoPublish: dist
+          ArtifactName: 'dist-artifact'
+
+      - task: PublishTestResults@2
+        displayName: 'Publish Test Results'
+        condition: succeededOrFailed()
+        inputs:
+          testRunner: JUnit
+          testResultsFiles: 'junit.xml'
+          failTaskOnFailedTests: true
+
+      - task: PublishCodeCoverageResults@1
+        displayName: 'Publish Coverage'
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'

@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "ES2015",
+    "target": "ES2017",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "strict": true,
+    "noEmitHelpers": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "lib": ["DOM", "DOM.Iterable", "ES2017"]
+  }
+}

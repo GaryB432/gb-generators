@@ -15,13 +15,15 @@ describe("generator-web-modules", () => {
   });
   it("runs correctly", () => {
     runResult.assertFile([
-      "_prettierignore",
-      "_prettierrc",
+      ".prettierignore",
+      ".prettierrc",
       ".gitattributes",
       "gulpfile.js",
       "package.json",
       "README.md",
       "tsconfig.json",
+      ".vscode/settings.json",
+      ".vscode/tasks.json",
       "assets/index.html",
       "assets/manifest.webmanifest",
       "assets/web.config",
@@ -34,8 +36,6 @@ describe("generator-web-modules", () => {
       "src/sass/_math.scss",
       "src/sass/_star.scss",
       "src/sass/styles.scss",
-      "_vscode/settings.json",
-      "_vscode/tasks.json",
     ]);
   });
 });

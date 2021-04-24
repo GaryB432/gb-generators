@@ -17,8 +17,8 @@ export default class extends Generator {
       genstamp: new Date().toString(),
       tbd: false,
     };
-    this.fs.copyTpl(this.templatePath("_prettierignore.template"),this.destinationPath("_prettierignore"),context);
-    this.fs.copyTpl(this.templatePath("_prettierrc.template"),this.destinationPath("_prettierrc"),context);
+    this.fs.copyTpl(this.templatePath("_prettierignore.template"),this.destinationPath(".prettierignore"),context);
+    this.fs.copyTpl(this.templatePath("_prettierrc.template"),this.destinationPath(".prettierrc"),context);
     this.fs.copyTpl(this.templatePath(".gitattributes.template"),this.destinationPath(".gitattributes"),context);
     this.fs.copyTpl(this.templatePath("gulpfile.js.template"),this.destinationPath("gulpfile.js"),context);
     this.fs.copyTpl(this.templatePath("package.json.template"),this.destinationPath("package.json"),context);
@@ -28,6 +28,8 @@ export default class extends Generator {
       context
     );
     this.fs.copyTpl(this.templatePath("tsconfig.json.template"),this.destinationPath("tsconfig.json"),context);
+    this.fs.copyTpl(this.templatePath("_vscode/settings.json.template"),this.destinationPath(".vscode/settings.json"),context);
+    this.fs.copyTpl(this.templatePath("_vscode/tasks.json.template"),this.destinationPath(".vscode/tasks.json"),context);
     this.fs.copyTpl(this.templatePath("assets/index.html.template"),this.destinationPath("assets/index.html"),context);
     this.fs.copyTpl(this.templatePath("assets/manifest.webmanifest.template"),this.destinationPath("assets/manifest.webmanifest"),context);
     this.fs.copyTpl(this.templatePath("assets/web.config.template"),this.destinationPath("assets/web.config"),context);
@@ -40,8 +42,6 @@ export default class extends Generator {
     this.fs.copyTpl(this.templatePath("src/sass/_math.scss.template"),this.destinationPath("src/sass/_math.scss"),context);
     this.fs.copyTpl(this.templatePath("src/sass/_star.scss.template"),this.destinationPath("src/sass/_star.scss"),context);
     this.fs.copyTpl(this.templatePath("src/sass/styles.scss.template"),this.destinationPath("src/sass/styles.scss"),context);
-    this.fs.copyTpl(this.templatePath("_vscode/settings.json.template"),this.destinationPath("_vscode/settings.json"),context);
-    this.fs.copyTpl(this.templatePath("_vscode/tasks.json.template"),this.destinationPath("_vscode/tasks.json"),context);
   }
   end(): void {
     this.log(chalk.whiteBright("Generator is coming soon!"));

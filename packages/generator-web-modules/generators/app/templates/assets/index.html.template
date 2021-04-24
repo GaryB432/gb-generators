@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>appname</title>
+    <title><%= appname %></title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -11,10 +11,10 @@
     <script type="module" src="app.js"></script>
   </head>
   <body>
-    <h1>appname</h1>
+    <h1><%= appname %></h1>
     <section class="notice">
       <div>
-        Generated Fri Apr 16 2021 13:21:22 GMT-0500 (Central Daylight Time)
+        Generated <%= genstamp %>
       </div>
     </section>
     <app-adder addends="1,1"></app-adder>

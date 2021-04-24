@@ -1,8 +1,7 @@
 module.exports = {
-  preset: 'ts-jest',
   coverageDirectory: 'coverage',
   coverageReporters: ['cobertura', 'text'],
-  collectCoverageFrom: ['src/scripts/**/*.ts', '!**/app.ts'],
+  collectCoverageFrom: ['./src/**/*.ts'],
   reporters: [
     'default',
     [
@@ -10,10 +9,7 @@ module.exports = {
       { suiteName: 'jest tests', suiteNameTemplate: '{filepath}' },
     ],
   ],
+  moduleFileExtensions: ['ts', 'js'],
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['/node_modules/', '/dist/'],
-  testMatch: ['**/test/**/*.ts'],
-  globals: {
-    skipBabel: true,
-  },
+  transform: { '^.+\\.(ts|js|json|html)$': 'ts-jest' },
 };

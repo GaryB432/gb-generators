@@ -1,46 +1,29 @@
-trigger:
-  - master
+pool:
+  vmImage: ubuntu-latest
 
-jobs:
-  - job: build
-    displayName: 'Build and Publish'
-    pool:
-      vmImage: 'ubuntu-latest'
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
 
-    steps:
-      - task: NodeTool@0
-        displayName: 'Install Node'
-        inputs:
-          versionSpec: '12.x'
+  - script: |
+      npm install -g gulp-cli jest
+      npm install
+      npm test -- --coverage
+      gulp
+    displayName: 'npm install and build'
 
-      - task: Npm@1
-        displayName: 'Install Packages'
-        inputs:
-          command: custom
-          customCommand: ci
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: 'junit.xml'
+      failTaskOnFailedTests: true
 
-      - task: Npm@1
-        displayName: 'Test and Build'
-        inputs:
-          command: custom
-          customCommand: 'run webpack-prod'
-
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish Dist'
-        inputs:
-          PathtoPublish: dist
-          ArtifactName: 'dist-artifact'
-
-      - task: PublishTestResults@2
-        displayName: 'Publish Test Results'
-        condition: succeededOrFailed()
-        inputs:
-          testRunner: JUnit
-          testResultsFiles: 'junit.xml'
-          failTaskOnFailedTests: true
-
-      - task: PublishCodeCoverageResults@1
-        displayName: 'Publish Coverage'
-        inputs:
-          codeCoverageTool: Cobertura
-          summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish Coverage'
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/coverage/cobertura-coverage.xml'

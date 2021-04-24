@@ -8,7 +8,6 @@ steps:
     displayName: 'Install Node.js'
 
   - script: |
-      npm install -g gulp-cli jest
       npm install
       npm test -- --coverage
       gulp

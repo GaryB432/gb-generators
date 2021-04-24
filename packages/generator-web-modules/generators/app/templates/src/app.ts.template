@@ -1,0 +1,9 @@
+import { AdderElement } from './modules/adder.element';
+
+customElements.define('app-adder', AdderElement);
+
+const adder = document.querySelector<AdderElement>('app-adder');
+
+if (adder) {
+  adder.setAttribute('addends', '10,12,20');
+}

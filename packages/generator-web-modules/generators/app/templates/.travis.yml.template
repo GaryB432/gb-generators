@@ -1,4 +1,0 @@
-language: node_js
-node_js:
-  - v15
-  - V14

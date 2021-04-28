@@ -20,6 +20,7 @@ describe("generator-web-modules", () => {
       ".prettierignore",
       ".prettierrc",
       ".gitattributes",
+      ".gitignore",
       "gulpfile.js",
       "jest.config.js",
       "package.json",

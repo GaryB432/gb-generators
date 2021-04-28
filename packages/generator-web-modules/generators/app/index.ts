@@ -22,14 +22,11 @@ export default class extends Generator {
     this.fs.copyTpl(this.templatePath("_prettierignore.template"),this.destinationPath(".prettierignore"),context);
     this.fs.copyTpl(this.templatePath("_prettierrc.template"),this.destinationPath(".prettierrc"),context);
     this.fs.copyTpl(this.templatePath(".gitattributes.template"),this.destinationPath(".gitattributes"),context);
+    this.fs.copyTpl(this.templatePath(".gitignore.template"),this.destinationPath(".gitignore"),context);
     this.fs.copyTpl(this.templatePath("gulpfile.js.template"),this.destinationPath("gulpfile.js"),context);
     this.fs.copyTpl(this.templatePath("package.json.template"),this.destinationPath("package.json"),context);
     this.fs.copyTpl(this.templatePath("jest.config.js.template"),this.destinationPath("jest.config.js"),context);
-    this.fs.copyTpl(
-      this.templatePath("README.md.template"),
-      this.destinationPath("README.md"),
-      context
-    );
+    this.fs.copyTpl(this.templatePath("README.md.template"), this.destinationPath("README.md"), context);
     this.fs.copyTpl(this.templatePath("tsconfig.json.template"),this.destinationPath("tsconfig.json"),context);
     this.fs.copyTpl(this.templatePath("_vscode/settings.json.template"),this.destinationPath(".vscode/settings.json"),context);
     this.fs.copyTpl(this.templatePath("_vscode/tasks.json.template"),this.destinationPath(".vscode/tasks.json"),context);

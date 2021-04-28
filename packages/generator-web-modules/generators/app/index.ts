@@ -47,6 +47,12 @@ export default class extends Generator {
     this.fs.copyTpl(this.templatePath("src/sass/styles.scss.template"),this.destinationPath("src/sass/styles.scss"),context);
   }
   end(): void {
-    this.log(chalk.whiteBright("Generator is coming soon!"));
+    this.log(
+      chalk.whiteBright(
+        `See ${chalk.greenBright(
+          "README.md"
+        )} for information on working with your new project.`
+      )
+    );
   }
 }

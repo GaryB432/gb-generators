@@ -17,6 +17,7 @@ export default class extends Generator {
       genstamp: new Date().toString(),
       tbd: false,
     };
+    this.composeWith(require.resolve("../pipeline"), {});
     this.fs.copyTpl(this.templatePath("_eslintignore.template"),this.destinationPath(".eslintignore"),context);
     this.fs.copyTpl(this.templatePath("_eslintrc.js.template"),this.destinationPath(".eslintrc.js"),context);
     this.fs.copyTpl(this.templatePath("_prettierignore.template"),this.destinationPath(".prettierignore"),context);

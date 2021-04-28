@@ -33,8 +33,6 @@ describe("generator-web-modules", () => {
       "assets/web.config",
       "assets/img/yeoman-003.png",
       "src/app.ts",
-      "src/modules/adder.element.spec.ts",
-      "src/modules/adder.element.ts",
       "src/modules/math.spec.ts",
       "src/modules/math.ts",
       "src/sass/_math.scss",

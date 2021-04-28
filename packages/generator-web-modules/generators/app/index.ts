@@ -18,6 +18,7 @@ export default class extends Generator {
       tbd: false,
     };
     this.composeWith(require.resolve("../pipeline"), {});
+    this.composeWith(require.resolve("../element"), {});
     this.fs.copyTpl(this.templatePath("_eslintignore.template"),this.destinationPath(".eslintignore"),context);
     this.fs.copyTpl(this.templatePath("_eslintrc.js.template"),this.destinationPath(".eslintrc.js"),context);
     this.fs.copyTpl(this.templatePath("_prettierignore.template"),this.destinationPath(".prettierignore"),context);
@@ -36,8 +37,6 @@ export default class extends Generator {
     this.fs.copyTpl(this.templatePath("assets/web.config.template"),this.destinationPath("assets/web.config"),context);
     this.fs.copyTpl(this.templatePath("assets/img/yeoman-003.png.template"),this.destinationPath("assets/img/yeoman-003.png"),context);
     this.fs.copyTpl(this.templatePath("src/app.ts.template"),this.destinationPath("src/app.ts"),context);
-    this.fs.copyTpl(this.templatePath("src/modules/adder.element.spec.ts.template"),this.destinationPath("src/modules/adder.element.spec.ts"),context);
-    this.fs.copyTpl(this.templatePath("src/modules/adder.element.ts.template"),this.destinationPath("src/modules/adder.element.ts"),context);
     this.fs.copyTpl(this.templatePath("src/modules/math.spec.ts.template"),this.destinationPath("src/modules/math.spec.ts"),context);
     this.fs.copyTpl(this.templatePath("src/modules/math.ts.template"),this.destinationPath("src/modules/math.ts"),context);
     this.fs.copyTpl(this.templatePath("src/sass/_math.scss.template"),this.destinationPath("src/sass/_math.scss"),context);

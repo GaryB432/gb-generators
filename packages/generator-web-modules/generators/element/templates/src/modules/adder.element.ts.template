@@ -1,0 +1,62 @@
+import { adder, parse } from './math';
+
+const template = document.createElement('template');
+template.innerHTML = `
+    <style>
+      :host {
+        cursor: default;
+      }
+      div {
+        padding: 1em;
+        margin: 1em;
+        border: 3px solid green;
+      }
+    </style>
+    <div></div>
+  `;
+
+export class AdderElement extends HTMLElement {
+  private contentDiv: HTMLDivElement | null = null;
+  public static get observedAttributes(): string[] {
+    return ['addends'];
+  }
+
+  public constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    if (this.shadowRoot) {
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
+      this.contentDiv = this.shadowRoot.querySelector('div');
+    }
+  }
+  public get addends(): string {
+    const value = this.getAttribute('addends');
+    return value === null ? '' : value;
+  }
+
+  public set addends(value: string) {
+    this.setAttribute('addends', value);
+  }
+
+  public attributeChangedCallback(
+    _name: string,
+    _oldVal: string,
+    _newVal: string
+  ): void {
+    this.update();
+  }
+
+  public connectedCallback(): void {
+    this.update();
+  }
+
+  private update(): void {
+    Promise.resolve().then((_) => {
+      if (this.contentDiv) {
+        this.contentDiv.textContent = `The answer is ${adder(
+          ...parse(this.addends)
+        )}`;
+      }
+    });
+  }
+}

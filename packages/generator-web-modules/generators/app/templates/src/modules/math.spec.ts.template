@@ -1,0 +1,33 @@
+import { adder, parse } from './math';
+
+describe('adder', () => {
+  it('adds', () => {
+    expect(adder(1, 2, 3)).toEqual(6);
+  });
+  it('parses', () => {
+    expect(parse('1,2,3')).toEqual([1, 2, 3]);
+  });
+
+  it('matches regex for gulp-insert', () => {
+    const content = `
+    import * as a from 'gulp-sass';
+    import 'inspector';
+    import {b} from 'jest-junit'
+    import {e,f,g,hasExtension} from './add_xys.js' 
+    import {e,f,g,hasAnother} from './add_xys.js';
+    const c = b;
+    export const f = 'tbd';
+    import c from 'json-schema';`;
+    expect(
+      content.replace(/(import\s+.*(?<!\.[tj]s))(['"];?\s*$)/gm, '$1.TEST$2')
+    ).toEqual(`
+    import * as a from 'gulp-sass.TEST';
+    import 'inspector.TEST';
+    import {b} from 'jest-junit.TEST'
+    import {e,f,g,hasExtension} from './add_xys.js' 
+    import {e,f,g,hasAnother} from './add_xys.js';
+    const c = b;
+    export const f = 'tbd';
+    import c from 'json-schema.TEST';`);
+  });
+});

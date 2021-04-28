@@ -3,9 +3,8 @@ const orderingRule = require('@typescript-eslint/eslint-plugin/dist/rules/member
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  env: {<% if (browser) { %>
-    browser: true,<% } %><% if (node) { %>
-    node: true,<% } %>
+  env: {
+    node: true,
     es2021: true,
     jest: true,
   },
@@ -25,6 +24,6 @@ module.exports = {
         },
       },
     ],
-    '@typescript-eslint/explicit-member-accessibility': 'warn',
+    '@typescript-eslint/explicit-member-accessibility': 'error',
   },
 };

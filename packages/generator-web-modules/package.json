@@ -1,9 +1,9 @@
 {
-  "name": "generator-lerna-typescript",
-  "version": "2.7.4",
-  "description": "Get started with Lerna using TypeScript",
+  "name": "generator-web-modules",
+  "version": "1.0.0-alpha.1",
+  "description": "A Yeoman Generator for creating websites with TypeScript, Sass and ES6 modules",
   "files": [
-    "{generators,utils}/**/*.js",
+    "generators/**/*.js",
     "generators/**/templates/"
   ],
   "private": false,
@@ -11,10 +11,13 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "keywords": [
-    "lerna",
+    "yeoman-generator",
     "typescript",
-    "monorepo",
-    "yeoman-generator"
+    "es6",
+    "modules",
+    "sass",
+    "scss",
+    "eslint"
   ],
   "author": "Gary Bortosky <garybort@gmail.com>",
   "license": "ISC",
@@ -35,6 +38,5 @@
   "bugs": {
     "url": "https://github.com/GaryB432/gb-generators/issues"
   },
-  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-lerna-typescript",
-  "gitHead": "347e389b2c6f24414b460547d9840d70201c2717"
+  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-web-modules"
 }

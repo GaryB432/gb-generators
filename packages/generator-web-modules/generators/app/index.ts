@@ -18,7 +18,7 @@ export default class extends Generator {
       tbd: false,
     };
     this.composeWith(require.resolve("../pipeline"), {});
-    this.composeWith(require.resolve("../element"), {});
+    this.composeWith(require.resolve("../element"), { arguments: ["Adder"] });
     this.fs.copyTpl(this.templatePath("_eslintignore.template"),this.destinationPath(".eslintignore"),context);
     this.fs.copyTpl(this.templatePath("_eslintrc.js.template"),this.destinationPath(".eslintrc.js"),context);
     this.fs.copyTpl(this.templatePath("_prettierignore.template"),this.destinationPath(".prettierignore"),context);

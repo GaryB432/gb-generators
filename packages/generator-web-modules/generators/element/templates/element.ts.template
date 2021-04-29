@@ -15,7 +15,7 @@ template.innerHTML = `
     <div></div>
   `;
 
-export class AdderElement extends HTMLElement {
+export class <%= className %>Element extends HTMLElement {
   private contentDiv: HTMLDivElement | null = null;
   public static get observedAttributes(): string[] {
     return ['addends'];

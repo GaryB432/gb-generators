@@ -7,6 +7,7 @@ describe("generator-web-modules:pipeline", () => {
     beforeEach(async () => {
       runResult = await helpers
         .create(path.join(__dirname, "../generators/element"))
+        .withArguments(["CustomerInventory"])
         .run();
     });
     afterEach(() => {
@@ -15,10 +16,18 @@ describe("generator-web-modules:pipeline", () => {
       }
     });
     it("runs correctly", () => {
-      runResult.assertFile([
-        "src/modules/adder.element.spec.ts",
-        "src/modules/adder.element.ts",
-      ]);
+      runResult.assertFileContent(
+        "src/modules/customer-inventory.element.ts",
+        "export class CustomerInventoryElement"
+      );
+      runResult.assertFileContent(
+        "src/modules/customer-inventory.element.spec.ts",
+        "let customerInventoryEl"
+      );
+      runResult.assertFileContent(
+        "src/modules/customer-inventory.element.spec.ts",
+        "import { CustomerInventoryElement } from './customer-inventory.element';"
+      );
     });
   });
 });

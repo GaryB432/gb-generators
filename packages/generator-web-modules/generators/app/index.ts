@@ -39,7 +39,6 @@ export default class extends Generator {
     this.fs.copyTpl(this.templatePath("src/app.ts.template"),this.destinationPath("src/app.ts"),context);
     this.fs.copyTpl(this.templatePath("src/modules/math.spec.ts.template"),this.destinationPath("src/modules/math.spec.ts"),context);
     this.fs.copyTpl(this.templatePath("src/modules/math.ts.template"),this.destinationPath("src/modules/math.ts"),context);
-    this.fs.copyTpl(this.templatePath("src/sass/_math.scss.template"),this.destinationPath("src/sass/_math.scss"),context);
     this.fs.copyTpl(this.templatePath("src/sass/_star.scss.template"),this.destinationPath("src/sass/_star.scss"),context);
     this.fs.copyTpl(this.templatePath("src/sass/styles.scss.template"),this.destinationPath("src/sass/styles.scss"),context);
   }

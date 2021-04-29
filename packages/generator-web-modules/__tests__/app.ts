@@ -35,7 +35,6 @@ describe("generator-web-modules", () => {
       "src/app.ts",
       "src/modules/math.spec.ts",
       "src/modules/math.ts",
-      "src/sass/_math.scss",
       "src/sass/_star.scss",
       "src/sass/styles.scss",
     ]);

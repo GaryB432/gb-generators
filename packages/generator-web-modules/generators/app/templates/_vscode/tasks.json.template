@@ -3,12 +3,6 @@
   "tasks": [
     {
       "type": "npm",
-      "label": "clean",
-      "script": "clean",
-      "problemMatcher": []
-    },
-    {
-      "type": "npm",
       "label": "build",
       "script": "build",
       "group": {

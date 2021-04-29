@@ -1,5 +1,23 @@
 import { adder, parse } from '<%= mathImport %>';
 
+// If the above functions are no longer exported you can use these local implementations
+// function parse(values: string): number[] {
+//   return values.split(',').map((n) => Number(n));
+// }
+// function adder(...addends: number[]): number {
+//   return addends.reduce((a, b) => (a += b), 0);
+// }
+
+// Add the custom element to your markup
+// <app-<%= classKebab %> addends="1,1"></app-<%= classKebab %>>
+
+// Define the element in your app
+// customElements.define('app-<%= classKebab %>', <%= className %>Element);
+
+// Change the observed attributes of the element
+// const el = document.querySelector<<%= className %>Element>('app-<%= classKebab %>')!;
+// el.setAttribute('addends', '10,12,20');
+
 const template = document.createElement('template');
 template.innerHTML = `
     <style>

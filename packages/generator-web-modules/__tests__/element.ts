@@ -55,7 +55,7 @@ describe("generator-web-modules:element", () => {
       );
       runResult.assertFileContent(
         "src/modules/a/b/c/customer-inventory.element.ts",
-        "import { adder, parse } from '../../../../math';"
+        "import { adder, parse } from '../../../math';"
       );
       runResult.assertFileContent(
         "src/modules/a/b/c/customer-inventory.element.spec.ts",
@@ -75,7 +75,7 @@ describe("generator-web-modules:element", () => {
         classKebab: "new-class",
         className: "NewClass",
         filePath: "/a/b/",
-        mathImport: "../../../math",
+        mathImport: "../../math",
       });
     });
     it("gets context subfolders", () => {
@@ -84,7 +84,7 @@ describe("generator-web-modules:element", () => {
         classKebab: "new-class",
         className: "NewClass",
         filePath: "/a/b/c/",
-        mathImport: "../../../../math",
+        mathImport: "../../../math",
       });
     });
     it("gets context", () => {

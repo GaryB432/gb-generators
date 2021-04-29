@@ -19,7 +19,7 @@ export function getContext(className: string): Context {
   const parts = className.split(/[\\/]/g);
   const name = parts.slice(-1)[0];
   const mathParts: string[] =
-    parts.length === 1 ? ["."] : Array(parts.length).fill("..");
+    parts.length === 1 ? ["."] : Array(parts.length - 1).fill("..");
   const mathImport = [...mathParts, "math"].join("/");
   return {
     className: Case.pascal(name),

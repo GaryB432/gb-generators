@@ -1,5 +1,7 @@
 # generator-web-modules
-[![NPM version][npm-image]][npm-url] 
+
+[![NPM version][npm-image]][npm-url]
+
 > A Yeoman Generator for creating websites with TypeScript, Sass, ESLint, [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) and [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
 
 ## Installation
@@ -20,10 +22,10 @@ yo web-modules
 
 See `my-project/README.md` for information on working with your new project.
 
-You can add a new web component any time with the subgenerator. `Element` will be appended to the name given so don't include that yourself.
+You can add a new web component any time with the subgenerator. A preceeding path is optional. `Element` will be appended to the name given so don't include that yourself.
 
 ```bash
-yo web-modules:element path/to/todo-panel
+yo web-modules:element [optional/path/to/]todo-panel
 ```
 
 ## License

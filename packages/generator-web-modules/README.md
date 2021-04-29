@@ -20,6 +20,12 @@ yo web-modules
 
 See `my-project/README.md` for information on working with your new project.
 
+You can add a new web component any time with the subgenerator. `Element` will be appended to the name given so don't include that yourself.
+
+```bash
+yo web-modules:element path/to/todo-panel
+```
+
 ## License
 
 ISC © [Gary Bortosky](https://github.com/GaryB432)

@@ -6,11 +6,28 @@ interface Context {
   className: string;
   classKebab: string;
   classCamel: string;
+  filePath: string;
+  mathImport: string;
 }
 
 interface Options {
   className: string;
   tbd: never;
+}
+
+export function getContext(className: string): Context {
+  const parts = className.split(/[\\/]/g);
+  const name = parts.slice(-1)[0];
+  const mathParts: string[] =
+    parts.length === 1 ? ["."] : Array(parts.length).fill("..");
+  const mathImport = [...mathParts, "math"].join("/");
+  return {
+    className: Case.pascal(name),
+    classKebab: Case.kebab(name),
+    classCamel: Case.camel(name),
+    filePath: ["", ...parts.slice(0, -1), ""].join("/"),
+    mathImport,
+  };
 }
 
 export default class extends Generator<Options> {
@@ -23,19 +40,19 @@ export default class extends Generator<Options> {
     });
   }
   writing(): void {
-    const context: Context = {
-      className: Case.pascal(this.options.className),
-      classKebab: Case.kebab(this.options.className),
-      classCamel: Case.camel(this.options.className),
-    };
+    const context = getContext(this.options.className);
     this.fs.copyTpl(
       this.templatePath("element.spec.ts.template"),
-      this.destinationPath(`src/modules/${context.classKebab}.element.spec.ts`),
+      this.destinationPath(
+        `src/modules${context.filePath}${context.classKebab}.element.spec.ts`
+      ),
       context
     );
     this.fs.copyTpl(
       this.templatePath("element.ts.template"),
-      this.destinationPath(`src/modules/${context.classKebab}.element.ts`),
+      this.destinationPath(
+        `src/modules${context.filePath}${context.classKebab}.element.ts`
+      ),
       context
     );
   }

@@ -1,4 +1,4 @@
-import { adder, parse } from './math';
+import { adder, parse } from '<%= mathImport %>';
 
 const template = document.createElement('template');
 template.innerHTML = `

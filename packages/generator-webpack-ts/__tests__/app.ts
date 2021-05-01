@@ -29,7 +29,7 @@ describe("generator-webpack-ts:app", () => {
     beforeEach(async () => {
       runResult = await helpers
         .create(sut)
-        .withPrompts({ library: "jest", workbox: true })
+        .withPrompts({ workbox: true })
         .run();
     });
     afterEach(() => {
@@ -61,7 +61,7 @@ describe("generator-webpack-ts:app", () => {
     beforeEach(async () => {
       runResult = await helpers
         .create(sut)
-        .withPrompts({ library: "jest", workbox: false })
+        .withPrompts({ workbox: false })
         .run();
     });
     afterEach(() => {
@@ -78,35 +78,6 @@ describe("generator-webpack-ts:app", () => {
       runResult.assertNoFileContent("webpack.config.js", "istanbul");
       runResult.assertNoFileContent("src/index.html", "manifest.webmanifest");
       runResult.assertFileContent(".gitignore", "junit.xml");
-    });
-  });
-  describe("workbox karma", () => {
-    let runResult: helpers.RunResult;
-    beforeEach(async () => {
-      runResult = await helpers
-        .create(sut)
-        .withPrompts({ library: "karma", workbox: true })
-        .run();
-    });
-    afterEach(() => {
-      if (runResult) {
-        runResult.restore();
-      }
-    });
-    it("runs correctly", () => {
-      runResult.assertJsonFileContent("package.json", {
-        devDependencies: {
-          express: "^4.17.1",
-          "workbox-webpack-plugin": "^6.1.0",
-        },
-      });
-      runResult.assertFileContent("src/scripts/app.ts", "serviceWorker");
-      runResult.assertFileContent("webpack.config.js", "istanbul");
-      runResult.assertFileContent(".gitignore", "results");
-      runResult.assertFileContent(
-        "package.json",
-        '"format": "prettier --write ."'
-      );
     });
   });
 });

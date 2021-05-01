@@ -1,7 +1,6 @@
 import Generator = require("yeoman-generator");
 import chalk = require("chalk");
 import Case = require("case");
-import { PackageJsonDef } from "generator-gb-utility/util";
 
 interface Options {
   className: string;

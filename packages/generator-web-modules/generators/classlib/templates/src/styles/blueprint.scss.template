@@ -1,9 +1,0 @@
-.<%= className %> {
-  h1 {
-    font-size: 3rem;
-    background-color: green;
-    border: 10px solid cornflowerblue;
-    padding: 3rem;
-    text-align: center;
-  }
-}

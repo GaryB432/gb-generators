@@ -1,6 +1,6 @@
 {
   "name": "generator-gb-utility",
-  "version": "1.4.3",
+  "version": "1.5.5",
   "description": "Utility subgenerators",
   "files": [
     "generators/**/*.js",
@@ -29,5 +29,6 @@
   "bugs": {
     "url": "https://github.com/GaryB432/gb-generators/issues"
   },
-  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-gb-utility"
+  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-gb-utility",
+  "gitHead": "347e389b2c6f24414b460547d9840d70201c2717"
 }

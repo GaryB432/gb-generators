@@ -1,0 +1,12 @@
+import { <%= className %>Element } from './<%= classKebab %>.element';
+
+describe('<%= className %>Element', () => {
+  let <%= classCamel %>El: <%= className %>Element;
+  beforeEach(() => {
+    customElements.define('test-<%= classKebab %>', <%= className %>Element);
+    <%= classCamel %>El = new <%= className %>Element();
+  });
+  it('creates', () => {
+    expect(<%= classCamel %>El).toBeDefined();
+  });
+});

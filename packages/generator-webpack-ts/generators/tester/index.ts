@@ -2,6 +2,11 @@ import Generator = require("yeoman-generator");
 import path = require("path");
 import Case = require("case");
 import { Dictionary } from "yeoman-test";
+import chalk = require("chalk");
+
+interface Options {
+  library: "karma" | "jest" | "none";
+}
 
 interface Context {
   appname: string;
@@ -33,6 +38,15 @@ export default class extends Generator {
       undefined,
       2
     );
+  }
+
+  end(): void {
+    if (this.options.library === "karma") {
+      this.log(chalk.yellowBright("Karma support is deprecated"));
+      this.log(
+        chalk.redBright("Your tests will need karma-related package upgrades")
+      );
+    }
   }
 
   writing(): void {

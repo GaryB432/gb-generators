@@ -32,7 +32,7 @@ export default class extends Generator {
     );
     this.composeWith(
       require.resolve("generator-gb-utility/generators/eslint"),
-      {}
+      { browser: false, node: true }
     );
   }
 

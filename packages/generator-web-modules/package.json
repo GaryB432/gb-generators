@@ -1,0 +1,42 @@
+{
+  "name": "generator-web-modules",
+  "version": "1.2.1",
+  "description": "A Yeoman Generator for creating websites with TypeScript, Sass and ES6 modules",
+  "files": [
+    "generators/**/*.js",
+    "generators/**/templates/"
+  ],
+  "private": false,
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "typescript",
+    "es6",
+    "modules",
+    "sass",
+    "scss",
+    "eslint"
+  ],
+  "author": "Gary Bortosky <garybort@gmail.com>",
+  "license": "ISC",
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "case": "^1.6.3",
+    "chalk": "^4.0.0",
+    "generator-gb-utility": "^1.5.5",
+    "yeoman-environment": "^3.2.0",
+    "yeoman-generator": "^5.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GaryB432/gb-generators.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GaryB432/gb-generators/issues"
+  },
+  "homepage": "https://github.com/GaryB432/gb-generators/tree/master/packages/generator-web-modules"
+}

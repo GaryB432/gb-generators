@@ -1,0 +1,12 @@
+import { AdderElement } from './adder.element';
+
+describe('adder', () => {
+  let adderElement: AdderElement;
+  beforeEach(() => {
+    customElements.define('test-me', AdderElement);
+    adderElement = new AdderElement();
+  });
+  it('creates', () => {
+    expect(adderElement).toBeDefined();
+  });
+});

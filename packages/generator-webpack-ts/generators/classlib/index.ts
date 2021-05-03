@@ -30,7 +30,7 @@ export default class extends Generator<Options> {
   writing(): void {
     const classNameInput = this.options.className as string;
     const nameParts = classNameInput.split("/");
-    const kind = "class";
+    const kind = this.options.element ? "element" : "class";
     const srcImportPathParts = [
       ...Array<string>(nameParts.length).fill(".."),
       "src",

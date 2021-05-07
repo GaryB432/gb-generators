@@ -8,7 +8,7 @@ describe("classlib skipStyle", () => {
       runResult = await helpers
         .create(path.join(__dirname, "../generators/classlib"))
         .withArguments(["CustomerInventoryItem"])
-        .withOptions({ library: "jest", skipStyles: true })
+        .withOptions({ skipStyles: true })
         .run();
     });
     afterEach(() => {
@@ -30,8 +30,8 @@ describe("classlib skipStyle", () => {
   });
 });
 
-describe("Jest classlib", () => {
-  describe("test", () => {
+describe("classlib", () => {
+  describe("plain class", () => {
     let runResult: helpers.RunResult;
     beforeEach(async () => {
       runResult = await helpers
@@ -56,10 +56,36 @@ describe("Jest classlib", () => {
       );
     });
   });
+  describe("element", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/classlib"))
+        .withOptions({ element: true })
+        .withArguments(["CustomerInventoryItem"])
+        .run();
+    });
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      // runResult.assertFile("src/styles/customer-inventory-item.scss");
+      runResult.assertFileContent(
+        "src/scripts/customer-inventory-item.ts",
+        "export class customerInventoryItemElement extends HTMLElement"
+      );
+      runResult.assertFileContent(
+        "test/customer-inventory-item.spec.ts",
+        "let customerInventoryItemEl: CustomerInventoryItemElement;"
+      );
+    });
+  });
 });
 
 describe("generator-webpack-ts:classlib subfolder", () => {
-  describe("test", () => {
+  describe("plain", () => {
     let runResult: helpers.RunResult;
     beforeEach(async () => {
       runResult = await helpers

@@ -27,6 +27,11 @@ export default class extends Generator<Options> {
     });
   }
 
+  _elementTagName(className: string): string {
+    const k = Case.kebab(className);
+    return k.indexOf("-") < 0 ? `app-${k}` : k;
+  }
+
   writing(): void {
     const classNameInput = this.options.className as string;
     const nameParts = classNameInput.split("/");
@@ -41,6 +46,7 @@ export default class extends Generator<Options> {
       classFileName: nameParts.map((p) => Case.kebab(p)).join("/"),
       className: Case.camel(nameParts[nameParts.length - 1]),
       classTypeName: Case.pascal(nameParts[nameParts.length - 1]),
+      classTagName: this._elementTagName(nameParts[nameParts.length - 1]),
       genstamp: new Date().toString(),
       srcImportPath: srcImportPathParts.join("/"),
     };
@@ -54,7 +60,7 @@ export default class extends Generator<Options> {
       this.destinationPath(`src/scripts/${context.classFileName}.ts`),
       context
     );
-    if (!this.options.skipStyles) {
+    if (!this.options.skipStyles && kind === "class") {
       this.fs.copyTpl(
         this.templatePath(`${kind}/src/styles/scss.template`),
         this.destinationPath(`src/styles/${context.classFileName}.scss`),

@@ -21,10 +21,15 @@ yo webpack-ts
 
 The generator will prompt if you want to include the [Workbox](https://developers.google.com/web/tools/workbox/) service worker helper.
 
+See `my-project/README.md` for information on working with your new project.
+
+## Subgenerator: classlib
+
 You can add new classes any time with the subgenerator. Add the `--skip-styles` flag to skip generating the SCSS file when it is not desired.
+Add the `--element` flag to generate a [Web Component](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements). `Element` will be appended to the class name you supply.
 
 ```bash
-yo webpack-ts:classlib path/to/another-greeter [--skip-styles]
+yo webpack-ts:classlib [optional/path/]another-greeter [--skip-styles] [--element]
 ```
 
 Build your project:

@@ -69,12 +69,17 @@ export class <%= className %>Element extends HTMLElement {
   }
 
   private update(): void {
-    Promise.resolve().then((_) => {
-      if (this.contentDiv) {
-        this.contentDiv.textContent = `The answer is ${adder(
-          ...parse(this.addends)
-        )}`;
+    Promise.resolve().then(
+      () => {
+        if (this.contentDiv) {
+          this.contentDiv.textContent = `The answer is ${adder(
+            ...parse(this.addends)
+          )}`;
+        }
+      },
+      () => {
+        console.error('error in update');
       }
-    });
+    );
   }
 }

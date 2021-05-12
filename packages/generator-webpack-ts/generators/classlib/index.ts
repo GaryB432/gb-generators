@@ -52,12 +52,20 @@ export default class extends Generator<Options> {
     };
     this.fs.copyTpl(
       this.templatePath(`${kind}/test/spec.ts.template`),
-      this.destinationPath(`test/${context.classFileName}.spec.ts`),
+      this.destinationPath(
+        `test/${context.classFileName}${
+          kind === "element" ? ".element" : ""
+        }.spec.ts`
+      ),
       context
     );
     this.fs.copyTpl(
       this.templatePath(`${kind}/src/scripts/ts.template`),
-      this.destinationPath(`src/scripts/${context.classFileName}.ts`),
+      this.destinationPath(
+        `src/scripts/${context.classFileName}${
+          kind === "element" ? ".element" : ""
+        }.ts`
+      ),
       context
     );
     if (!this.options.skipStyles && kind === "class") {

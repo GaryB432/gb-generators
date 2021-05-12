@@ -9,10 +9,10 @@ function adder(...addends: number[]): number {
 // <<%= classTagName %> addends="1,1"></<%= classTagName %>>
 
 // Define the element in your app
-// customElements.define('<%= classTagName %>', <%= className %>Element);
+// customElements.define('<%= classTagName %>', <%= classTypeName %>Element);
 
 // Change an observed attribute of the element
-// const el = document.querySelector<<%= className %>Element>('<%= classTagName %>')!;
+// const el = document.querySelector<<%= classTypeName %>Element>('<%= classTagName %>')!;
 // el.setAttribute('addends', '10,12,20');
 
 const template = document.createElement('template');
@@ -30,7 +30,7 @@ template.innerHTML = `
     <div></div>
   `;
 
-export class <%= className %>Element extends HTMLElement {
+export class <%= classTypeName %>Element extends HTMLElement {
   private contentDiv: HTMLDivElement | null = null;
   public static get observedAttributes(): string[] {
     return ['addends'];

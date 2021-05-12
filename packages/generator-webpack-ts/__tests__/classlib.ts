@@ -71,13 +71,12 @@ describe("classlib", () => {
       }
     });
     it("runs correctly", () => {
-      // runResult.assertFile("src/styles/customer-inventory-item.scss");
       runResult.assertFileContent(
-        "src/scripts/customer-inventory-item.ts",
-        "export class customerInventoryItemElement extends HTMLElement"
+        "src/scripts/customer-inventory-item.element.ts",
+        "export class CustomerInventoryItemElement extends HTMLElement {"
       );
       runResult.assertFileContent(
-        "test/customer-inventory-item.spec.ts",
+        "test/customer-inventory-item.element.spec.ts",
         "let customerInventoryItemEl: CustomerInventoryItemElement;"
       );
     });

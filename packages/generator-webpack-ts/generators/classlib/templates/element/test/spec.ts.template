@@ -2,11 +2,14 @@ import { <%= classTypeName %>Element } from '<%= srcImportPath %>.element';
 
 describe('<%= classTypeName %>Element', () => {
   let <%= className %>El: <%= classTypeName %>Element;
-  beforeEach(() => {
+  beforeAll(() => {
     customElements.define('<%= classTagName %>', <%= classTypeName %>Element);
+  });
+  beforeEach(() => {
     <%= className %>El = new <%= classTypeName %>Element();
   });
   it('creates', () => {
     expect(<%= className %>El).toBeDefined();
+    expect(<%= className %>El.shadowRoot).toBeDefined();
   });
 });

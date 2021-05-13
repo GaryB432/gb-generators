@@ -22,6 +22,11 @@ describe("generator-gb-utility:eslint", () => {
           lint: 'eslint "**/*.ts"',
         },
       });
+      runResult.assertJsonFileContent("package.json", {
+        devDependencies: {
+          "eslint-plugin-jest": "^24.3.6",
+        },
+      });
       runResult.assertFileContent(".eslintrc.js", /env:.*node: true/s);
       runResult.assertNoFileContent(".eslintrc.js", /env:.*browser/s);
     });

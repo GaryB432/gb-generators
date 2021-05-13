@@ -54,6 +54,7 @@ export default class extends Generator<Options> {
         eslint: "^7.23.0",
         "eslint-config-prettier": "^8.1.0",
         "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-jest": "^24.3.6",
       },
       scripts: {
         lint: [

@@ -19,15 +19,13 @@ export default class extends Generator {
     };
     this.composeWith(require.resolve("../pipeline"), {});
     this.composeWith(require.resolve("../element"), { arguments: ["Adder"] });
-    this.fs.copyTpl(
-      this.templatePath("_eslintignore.template"),
-      this.destinationPath(".eslintignore"),
-      context
+    this.composeWith(
+      require.resolve("generator-gb-utility/generators/prettier"),
+      {}
     );
-    this.fs.copyTpl(
-      this.templatePath("_eslintrc.js.template"),
-      this.destinationPath(".eslintrc.js"),
-      context
+    this.composeWith(
+      require.resolve("generator-gb-utility/generators/eslint"),
+      { browser: true, node: false }
     );
     this.fs.copyTpl(
       this.templatePath("_prettierignore.template"),

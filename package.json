@@ -10,7 +10,6 @@
     "@typescript-eslint/parser": "^4.21.0",
     "eslint": "^7.23.0",
     "eslint-config-prettier": "^8.1.0",
-    "eslint-formatter-friendly": "^7.0.0",
     "eslint-plugin-prettier": "^3.3.1",
     "jest": "^26.6.3",
     "lerna": "^4.0.0",
@@ -24,7 +23,6 @@
   "scripts": {
     "build": "tsc --pretty --listEmittedFiles",
     "prepare": "npm run build",
-    "pretest-f": "npm run pretest -- -f eslint-formatter-friendly",
     "pretest": "eslint \"packages/**/*.ts\"",
     "test": "jest",
     "test-ci": "jest --coverage",

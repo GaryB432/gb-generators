@@ -28,16 +28,6 @@ export default class extends Generator {
       { browser: true, node: false }
     );
     this.fs.copyTpl(
-      this.templatePath("_prettierignore.template"),
-      this.destinationPath(".prettierignore"),
-      context
-    );
-    this.fs.copyTpl(
-      this.templatePath("_prettierrc.template"),
-      this.destinationPath(".prettierrc"),
-      context
-    );
-    this.fs.copyTpl(
       this.templatePath(".gitattributes.template"),
       this.destinationPath(".gitattributes"),
       context

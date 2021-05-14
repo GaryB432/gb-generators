@@ -56,7 +56,6 @@ export default class extends Generator<Options> {
         "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-jest": "^24.3.6",
       },
-      // TODO: needed? add pretest or postest etc to app package.json template instead.
       scripts: {
         lint: [
           "eslint",

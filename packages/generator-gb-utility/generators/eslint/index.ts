@@ -8,6 +8,7 @@ import {
 
 interface Options {
   browser: boolean;
+  eslintConfig: boolean;
   node: boolean;
 }
 
@@ -25,10 +26,15 @@ export default class extends Generator<Options> {
       default: false,
       type: Boolean,
     });
+    this.option("eslintConfig", {
+      description: "Use eslint tsconfig for parserOptions",
+      default: false,
+      type: Boolean,
+    });
   }
 
   writing(): void {
-    const { browser, node } = this.options;
+    const { browser, node, eslintConfig } = this.options;
     this.fs.copy(
       this.templatePath("eslintignore.template"),
       this.destinationPath(".eslintignore")
@@ -36,7 +42,7 @@ export default class extends Generator<Options> {
     this.fs.copyTpl(
       this.templatePath("eslintrc.js.template"),
       this.destinationPath(".eslintrc.js"),
-      { browser, node }
+      { browser, node, eslintConfig }
     );
     const dependencies: DependencyList = {};
     const devDependencies: DependencyList = {};

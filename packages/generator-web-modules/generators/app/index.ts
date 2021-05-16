@@ -58,6 +58,11 @@ export default class extends Generator {
       context
     );
     this.fs.copyTpl(
+      this.templatePath("tsconfig.eslint.json.template"),
+      this.destinationPath("tsconfig.eslint.json"),
+      context
+    );
+    this.fs.copyTpl(
       this.templatePath("tsconfig.json.template"),
       this.destinationPath("tsconfig.json"),
       context

@@ -25,6 +25,7 @@ describe("generator-web-modules", () => {
       "jest.config.js",
       "package.json",
       "README.md",
+      "tsconfig.eslint.json",
       "tsconfig.json",
       ".vscode/settings.json",
       ".vscode/tasks.json",

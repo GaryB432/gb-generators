@@ -5,26 +5,19 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp",
-    "pretest": "eslint . --ext .ts",
-    "test": "jest",
-    "format": "prettier --write ."
+    "pretest": "npm run lint",
+    "test": "jest"
   },
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^26.0.22",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
     "del": "^6.0.0",
-    "eslint": "^7.24.0",
-    "eslint-config-prettier": "^8.2.0",
-    "eslint-plugin-prettier": "^3.4.0",
     "gulp": "^4.0.2",
     "gulp-insert": "^0.5.0",
     "gulp-sass": "^4.1.0",
     "gulp-typescript": "^5.0.1",
     "jest": "^26.6.3",
     "jest-junit": "^12.0.0",
-    "prettier": "^2.2.1",
     "sass": "^1.32.8",
     "ts-jest": "^26.5.5",
     "typescript": "^4.2.4"

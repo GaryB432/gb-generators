@@ -16,13 +16,6 @@ The project uses the [gulp toolkit](https://gulpjs.com/docs/en/getting-started/q
 npm install --global gulp-cli
 ```
 
-Add a custom element to your project:
-
-```bash
-yo web-modules:element [optional/path/to/]my-tab-panel
-```
-`Element` will be automatically appended so don't include that.
-
 Build your project:
 
 ```bash

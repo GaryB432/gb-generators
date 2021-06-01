@@ -2,11 +2,19 @@ import { <%= className %>Element } from './<%= classKebab %>.element';
 
 describe('<%= className %>Element', () => {
   let <%= classCamel %>El: <%= className %>Element;
-  beforeEach(() => {
+  beforeAll(() => {
     customElements.define('test-<%= classKebab %>', <%= className %>Element);
+  });
+  beforeEach(() => {
     <%= classCamel %>El = new <%= className %>Element();
   });
   it('creates', () => {
     expect(<%= classCamel %>El).toBeDefined();
+  });
+  it('reflects addends', () => {
+    <%= classCamel %>El.setAttribute('addends', '1,2');
+    expect(<%= classCamel %>El.addends).toEqual('1,2');
+    <%= classCamel %>El.addends = '3,4';
+    expect(<%= classCamel %>El.getAttribute('addends')).toEqual('3,4');
   });
 });

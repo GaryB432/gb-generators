@@ -12,4 +12,10 @@ describe('<%= classTypeName %>Element', () => {
     expect(<%= className %>El).toBeDefined();
     expect(<%= className %>El.shadowRoot).toBeDefined();
   });
+  it('reflects addends', () => {
+    <%= className %>El.setAttribute('addends', '1,2');
+    expect(<%= className %>El.addends).toEqual('1,2');
+    <%= className %>El.addends = '3,4';
+    expect(<%= className %>El.getAttribute('addends')).toEqual('3,4');
+  });
 });

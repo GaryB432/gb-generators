@@ -6,11 +6,11 @@ export default class extends Generator {
       this.destinationPath("package.json"),
       {
         devDependencies: {
-          "@types/jest": "^26.0.20",
-          "@types/node": "^14.14.22",
-          jest: "^26.6.3",
-          "jest-junit": "^12.0.0",
-          "ts-jest": "^26.5.0",
+          "@types/jest": "^27.0.1",
+          "@types/node": "^16.6.1",
+          jest: "^27.0.6",
+          "jest-junit": "^12.2.0",
+          "ts-jest": "^27.0.4",
         },
         scripts: {
           test: "jest",

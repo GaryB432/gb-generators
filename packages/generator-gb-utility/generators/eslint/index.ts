@@ -46,13 +46,13 @@ export default class extends Generator<Options> {
     );
     const dependencies: DependencyList = {};
     const devDependencies: DependencyList = {};
-    const pkg: PackageJsonDef = (this.fs.readJSON(
+    const pkg: PackageJsonDef = this.fs.readJSON(
       this.destinationPath("package.json"),
       {
         dependencies,
         devDependencies,
       }
-    ) as unknown) as PackageJsonDef;
+    ) as unknown as PackageJsonDef;
     const pkgJson: Partial<PackageJsonDef> = {
       devDependencies: {
         "@typescript-eslint/eslint-plugin": "^4.29.1",

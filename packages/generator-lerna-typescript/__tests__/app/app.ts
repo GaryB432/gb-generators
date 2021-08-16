@@ -32,12 +32,9 @@ describe("generator-lerna-typescript:app", () => {
         "packages/greeter/package.json",
         "packages/greeter/tsconfig.json",
       ]);
-      [
-        "packages/**/lib",
-        "package*.json",
-        "!packages/**/package.json",
-      ].forEach((noFormatting) =>
-        runResult.assertFileContent(".prettierignore", noFormatting)
+      ["packages/**/lib", "package*.json", "!packages/**/package.json"].forEach(
+        (noFormatting) =>
+          runResult.assertFileContent(".prettierignore", noFormatting)
       );
     });
   });

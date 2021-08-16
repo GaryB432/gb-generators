@@ -16,7 +16,7 @@ describe("generator-webpack-ts:tester", () => {
   it("runs correctly", () => {
     runResult.assertFile(["azure-pipelines.yml", "jest.config.js"]);
     runResult.assertJsonFileContent("package.json", {
-      devDependencies: { jest: "^26.6.3" },
+      devDependencies: { jest: "^27.0.6" },
     });
   });
 });

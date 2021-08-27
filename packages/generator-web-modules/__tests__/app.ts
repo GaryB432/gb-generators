@@ -29,15 +29,15 @@ describe("generator-web-modules", () => {
       "tsconfig.json",
       ".vscode/settings.json",
       ".vscode/tasks.json",
-      "assets/index.html",
       "assets/manifest.webmanifest",
       "assets/web.config",
       "assets/img/yeoman-003.png",
-      "src/app.ts",
-      "src/modules/math.spec.ts",
-      "src/modules/math.ts",
-      "src/sass/_star.scss",
-      "src/sass/styles.scss",
+      "src/app/app.ts",
+      "src/app/math.spec.ts",
+      "src/app/math.ts",
+      "src/app/_star.scss",
+      "src/app/app.scss",
+      "src/index.html",
     ]);
   });
 });

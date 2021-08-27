@@ -78,8 +78,8 @@ export default class extends Generator {
       context
     );
     this.fs.copyTpl(
-      this.templatePath("assets/index.html.template"),
-      this.destinationPath("assets/index.html"),
+      this.templatePath("src/index.html.template"),
+      this.destinationPath("src/index.html"),
       context
     );
     this.fs.copyTpl(
@@ -98,28 +98,28 @@ export default class extends Generator {
       context
     );
     this.fs.copyTpl(
-      this.templatePath("src/app.ts.template"),
-      this.destinationPath("src/app.ts"),
+      this.templatePath("src/app/app.ts.template"),
+      this.destinationPath("src/app/app.ts"),
       context
     );
     this.fs.copyTpl(
-      this.templatePath("src/modules/math.spec.ts.template"),
-      this.destinationPath("src/modules/math.spec.ts"),
+      this.templatePath("src/app/math.spec.ts.template"),
+      this.destinationPath("src/app/math.spec.ts"),
       context
     );
     this.fs.copyTpl(
-      this.templatePath("src/modules/math.ts.template"),
-      this.destinationPath("src/modules/math.ts"),
+      this.templatePath("src/app/math.ts.template"),
+      this.destinationPath("src/app/math.ts"),
       context
     );
     this.fs.copyTpl(
-      this.templatePath("src/sass/_star.scss.template"),
-      this.destinationPath("src/sass/_star.scss"),
+      this.templatePath("src/app/_star.scss.template"),
+      this.destinationPath("src/app/_star.scss"),
       context
     );
     this.fs.copyTpl(
-      this.templatePath("src/sass/styles.scss.template"),
-      this.destinationPath("src/sass/styles.scss"),
+      this.templatePath("src/app/app.scss.template"),
+      this.destinationPath("src/app/app.scss"),
       context
     );
   }

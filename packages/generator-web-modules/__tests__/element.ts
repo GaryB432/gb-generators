@@ -1,8 +1,8 @@
-import { getContext } from "../generators/element";
+import { getContext, getFilePath } from "../generators/element";
 import path = require("path");
 import helpers = require("yeoman-test");
 
-describe("generator-web-modules:element", () => {
+describe("generator-web-customer-inventory:element", () => {
   describe("basics", () => {
     let runResult: helpers.RunResult;
     beforeEach(async () => {
@@ -18,19 +18,19 @@ describe("generator-web-modules:element", () => {
     });
     it("runs correctly", () => {
       runResult.assertFileContent(
-        "src/modules/customer-inventory.element.ts",
+        "src/customer-inventory/customer-inventory.element.ts",
         "export class CustomerInventoryElement"
       );
       runResult.assertFileContent(
-        "src/modules/customer-inventory.element.ts",
-        "import { adder, parse } from './math';"
+        "src/customer-inventory/customer-inventory.element.ts",
+        "import { adder, parse } from '../app/math';"
       );
       runResult.assertFileContent(
-        "src/modules/customer-inventory.element.spec.ts",
+        "src/customer-inventory/customer-inventory.element.spec.ts",
         "let customerInventoryEl"
       );
       runResult.assertFileContent(
-        "src/modules/customer-inventory.element.spec.ts",
+        "src/customer-inventory/customer-inventory.element.spec.ts",
         "import { CustomerInventoryElement } from './customer-inventory.element';"
       );
     });
@@ -50,19 +50,19 @@ describe("generator-web-modules:element", () => {
     });
     it("runs correctly", () => {
       runResult.assertFileContent(
-        "src/modules/a/b/c/customer-inventory.element.ts",
+        "src/a/b/c/customer-inventory/customer-inventory.element.ts",
         "export class CustomerInventoryElement"
       );
       runResult.assertFileContent(
-        "src/modules/a/b/c/customer-inventory.element.ts",
-        "import { adder, parse } from '../../../math';"
+        "src/a/b/c/customer-inventory/customer-inventory.element.ts",
+        "import { adder, parse } from '../../../../app/math';"
       );
       runResult.assertFileContent(
-        "src/modules/a/b/c/customer-inventory.element.spec.ts",
+        "src/a/b/c/customer-inventory/customer-inventory.element.spec.ts",
         "let customerInventoryEl"
       );
       runResult.assertFileContent(
-        "src/modules/a/b/c/customer-inventory.element.spec.ts",
+        "src/a/b/c/customer-inventory/customer-inventory.element.spec.ts",
         "import { CustomerInventoryElement } from './customer-inventory.element';"
       );
     });
@@ -75,7 +75,7 @@ describe("generator-web-modules:element", () => {
         classKebab: "new-class",
         className: "NewClass",
         filePath: "/a/b/",
-        mathImport: "../../math",
+        mathImport: "../../../app/math",
       });
     });
     it("gets context subfolders", () => {
@@ -84,7 +84,7 @@ describe("generator-web-modules:element", () => {
         classKebab: "new-class",
         className: "NewClass",
         filePath: "/a/b/c/",
-        mathImport: "../../../math",
+        mathImport: "../../../../app/math",
       });
     });
     it("gets context", () => {
@@ -93,8 +93,17 @@ describe("generator-web-modules:element", () => {
         classKebab: "new-class",
         className: "NewClass",
         filePath: "/",
-        mathImport: "./math",
+        mathImport: "../app/math",
       });
+    });
+
+    it("gets paths", () => {
+      expect(getFilePath("NewClass", "readme.txt")).toEqual(
+        "src/new-class/readme.txt"
+      );
+      expect(getFilePath("a/b/c/NewClass", "readme.txt")).toEqual(
+        "src/a/b/c/new-class/readme.txt"
+      );
     });
   });
 });

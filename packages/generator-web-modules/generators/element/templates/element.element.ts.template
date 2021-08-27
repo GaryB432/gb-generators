@@ -1,12 +1,12 @@
 import { adder, parse } from '<%= mathImport %>';
 
 // If the above functions are no longer exported you can use these local implementations
-// function parse(values: string): number[] {
-//   return values.split(',').map((n) => Number(n));
-// }
-// function adder(...addends: number[]): number {
-//   return addends.reduce((a, b) => (a += b), 0);
-// }
+function parse(values: string): number[] {
+  return values.split(',').map((n) => Number(n));
+}
+function adder(...addends: number[]): number {
+  return addends.reduce((a, b) => (a += b), 0);
+}
 
 // Add the custom element to your markup
 // <app-<%= classKebab %> addends="1,1"></app-<%= classKebab %>>

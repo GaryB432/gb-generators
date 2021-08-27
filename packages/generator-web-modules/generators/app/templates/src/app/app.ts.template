@@ -1,4 +1,4 @@
-import { AdderElement } from './modules/adder.element';
+import { AdderElement } from '../adder/adder.element';
 
 customElements.define('app-adder', AdderElement);
 

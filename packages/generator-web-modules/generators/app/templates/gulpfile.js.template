@@ -1,23 +1,21 @@
 const { dest, src, parallel, series, watch } = require('gulp');
 const { transform } = require('gulp-insert');
-const { sync, logError } = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const { createProject } = require('gulp-typescript');
 const del = require('del');
 
-const destFolder = 'public';
-
 function assets() {
-  return src(['assets/**/*']).pipe(dest(destFolder));
+  return src(['assets/**/*', 'src/**/*', '!**/*.{t,scs}s']).pipe(dest('dist'));
 }
 
 function clean() {
-  return del([destFolder]);
+  return del(['dist']);
 }
 
-function sass() {
-  return src('src/sass/*.scss')
-    .pipe(sync().on('error', logError))
-    .pipe(dest(destFolder));
+function styles() {
+  return src('src/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(dest('dist'));
 }
 
 function javascript() {
@@ -30,15 +28,15 @@ function javascript() {
         content.replace(/(import\s+.*(?<!\.[tj]s))(['"];?\s*$)/gm, '$1.js$2')
       )
     )
-    .pipe(dest(destFolder));
+    .pipe(dest('dist'));
 }
 
 function watcher(cb) {
   watch('src/**/!(*.spec).ts', javascript);
-  watch('src/sass/*.scss', sass);
+  watch('src/**/*.scss', styles);
   cb();
 }
 
 exports.watch = watcher;
 
-exports.default = series(clean, parallel(assets, javascript, sass));
+exports.default = series(clean, parallel(assets, javascript, styles));

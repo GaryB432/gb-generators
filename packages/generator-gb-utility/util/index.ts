@@ -28,6 +28,9 @@ export function ignorePrettierPaths(deps: DependencyList): string[] {
   if (deps.webpack) {
     ignore.push("dist", "img", "package*.json");
   }
+  if (deps.gulp) {
+    ignore.push("dist");
+  }
   return ignore;
 }
 

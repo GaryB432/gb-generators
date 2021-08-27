@@ -4,7 +4,7 @@
 import { <%= className %>Element } from './<%= classKebab %>.element';
 
 // Define the element in your app
-customElements.define('app-app-<%= classKebab %>', <%= className %>Element);
+customElements.define('app-<%= classKebab %>', <%= className %>Element);
 
 // Change the observed attributes of the element
 const el = document.querySelector<<%= className %>Element>('app-<%= classKebab %>');

@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <title><%= appname %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
-    <meta http-equiv="cleartype" content="on" />
     <link rel="stylesheet" href="app/app.css" />
     <script type="module" src="app/app.js"></script>
   </head>

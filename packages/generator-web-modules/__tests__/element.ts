@@ -9,6 +9,7 @@ describe("generator-web-customer-inventory:element", () => {
       runResult = await helpers
         .create(path.join(__dirname, "../generators/element"))
         .withArguments(["CustomerInventory"])
+        .withOptions({ minimal: false })
         .run();
     });
     afterEach(() => {
@@ -17,6 +18,13 @@ describe("generator-web-customer-inventory:element", () => {
       }
     });
     it("runs correctly", () => {
+      runResult.assertFile([
+        "src/customer-inventory/index.html",
+        "src/customer-inventory/customer-inventory.app.ts",
+        "src/customer-inventory/customer-inventory.element.spec.ts",
+        "src/customer-inventory/customer-inventory.element.ts",
+        "src/customer-inventory/customer-inventory.scss",
+      ]);
       runResult.assertFileContent(
         "src/customer-inventory/customer-inventory.element.ts",
         "export class CustomerInventoryElement"
@@ -41,6 +49,7 @@ describe("generator-web-customer-inventory:element", () => {
       runResult = await helpers
         .create(path.join(__dirname, "../generators/element"))
         .withArguments(["a/b/c/CustomerInventory"])
+        .withOptions({ minimal: false })
         .run();
     });
     afterEach(() => {
@@ -65,6 +74,33 @@ describe("generator-web-customer-inventory:element", () => {
         "src/a/b/c/customer-inventory/customer-inventory.element.spec.ts",
         "import { CustomerInventoryElement } from './customer-inventory.element';"
       );
+    });
+  });
+
+  describe("basics minimal", () => {
+    let runResult: helpers.RunResult;
+    beforeEach(async () => {
+      runResult = await helpers
+        .create(path.join(__dirname, "../generators/element"))
+        .withArguments(["CustomerInventory"])
+        .withOptions({ minimal: true })
+        .run();
+    });
+    afterEach(() => {
+      if (runResult) {
+        runResult.restore();
+      }
+    });
+    it("runs correctly", () => {
+      runResult.assertFile([
+        "src/customer-inventory/customer-inventory.element.spec.ts",
+        "src/customer-inventory/customer-inventory.element.ts",
+      ]);
+      runResult.assertNoFile([
+        "src/customer-inventory/customer-inventory.app.ts",
+        "src/customer-inventory/index.html",
+        "src/customer-inventory/customer-inventory.scss",
+      ]);
     });
   });
 

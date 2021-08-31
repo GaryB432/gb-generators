@@ -12,6 +12,7 @@ interface Context {
 
 interface Options {
   className: string;
+  minimal: boolean;
   tbd: never;
 }
 
@@ -44,22 +45,38 @@ export default class extends Generator<Options> {
       required: true,
       type: String,
     });
+    this.option("minimal", {
+      alias: "m",
+      default: false,
+      description: "generate only the basics",
+      type: Boolean,
+    });
   }
   writing(): void {
     const context = getContext(this.options.className);
 
-    this.fs.copyTpl(
-      this.templatePath("index.html.template"),
-      this.destinationPath(getFilePath(this.options.className, "index.html")),
-      context
-    );
-    this.fs.copyTpl(
-      this.templatePath("element.app.ts.template"),
-      this.destinationPath(
-        getFilePath(this.options.className, `${context.classKebab}.app.ts`)
-      ),
-      context
-    );
+    if (!this.options.minimal) {
+      this.fs.copyTpl(
+        this.templatePath("element.app.ts.template"),
+        this.destinationPath(
+          getFilePath(this.options.className, `${context.classKebab}.app.ts`)
+        ),
+        context
+      );
+      this.fs.copyTpl(
+        this.templatePath("index.html.template"),
+        this.destinationPath(getFilePath(this.options.className, "index.html")),
+        context
+      );
+      this.fs.copyTpl(
+        this.templatePath("element.scss.template"),
+        this.destinationPath(
+          getFilePath(this.options.className, `${context.classKebab}.scss`)
+        ),
+        context
+      );
+    }
+
     this.fs.copyTpl(
       this.templatePath("element.element.spec.ts.template"),
       this.destinationPath(
@@ -74,13 +91,6 @@ export default class extends Generator<Options> {
       this.templatePath("element.element.ts.template"),
       this.destinationPath(
         getFilePath(this.options.className, `${context.classKebab}.element.ts`)
-      ),
-      context
-    );
-    this.fs.copyTpl(
-      this.templatePath("element.scss.template"),
-      this.destinationPath(
-        getFilePath(this.options.className, `${context.classKebab}.scss`)
       ),
       context
     );

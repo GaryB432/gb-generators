@@ -32,6 +32,7 @@ function javascript() {
 }
 
 function watcher(cb) {
+  watch('src/**/*.html', assets);
   watch('src/**/!(*.spec).ts', javascript);
   watch('src/**/*.scss', styles);
   cb();

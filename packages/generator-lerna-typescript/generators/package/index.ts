@@ -39,7 +39,7 @@ export default class extends Generator<Options> {
         lernaJson.version === "independent" ? "0.0.0" : lernaJson.version,
       description: "",
       devDependencies: {
-        typescript: "^3.7.2",
+        typescript: "^4.3.5",
       },
       files: ["lib"],
       keywords: [],

@@ -19,8 +19,8 @@
   "dependencies": {
     "case": "^1.6.3",
     "chalk": "^4.0.0",
-    "yeoman-environment": "^3.2.0",
-    "yeoman-generator": "^5.2.0"
+    "yeoman-environment": "^3.6.0",
+    "yeoman-generator": "^5.4.2"
   },
   "repository": {
     "type": "git",

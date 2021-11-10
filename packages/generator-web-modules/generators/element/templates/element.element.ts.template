@@ -35,9 +35,6 @@ template.innerHTML = `
 
 export class <%= className %>Element extends HTMLElement {
   private contentDiv: HTMLDivElement | null = null;
-  public static get observedAttributes(): string[] {
-    return ['addends'];
-  }
 
   public constructor() {
     super();
@@ -47,6 +44,11 @@ export class <%= className %>Element extends HTMLElement {
       this.contentDiv = this.shadowRoot.querySelector('div');
     }
   }
+
+  public static get observedAttributes(): string[] {
+    return ['addends'];
+  }
+
   public get addends(): string {
     const value = this.getAttribute('addends');
     return value === null ? '' : value;

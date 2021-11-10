@@ -1,5 +1,7 @@
 # generator-webpack-ts
-[![NPM version][npm-image]][npm-url] 
+
+[![NPM version][npm-image]][npm-url]
+
 > A Yeoman Generator for creating websites with TypeScript, Sass, ESLint and Webpack 5
 
 ## Installation

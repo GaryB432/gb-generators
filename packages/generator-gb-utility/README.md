@@ -1,6 +1,6 @@
 # generator-gb-utility
 
-[![NPM version][npm-image]][npm-url] 
+[![NPM version][npm-image]][npm-url]
 
 > Subgenerators for my other generators
 

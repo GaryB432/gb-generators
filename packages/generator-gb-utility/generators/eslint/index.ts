@@ -55,12 +55,13 @@ export default class extends Generator<Options> {
     ) as unknown as PackageJsonDef;
     const pkgJson: Partial<PackageJsonDef> = {
       devDependencies: {
-        "@typescript-eslint/eslint-plugin": "^4.29.1",
-        "@typescript-eslint/parser": "^4.29.1",
-        eslint: "^7.32.0",
+        "@typescript-eslint/eslint-plugin": "^5.3.1",
+        "@typescript-eslint/parser": "^5.3.1",
+        eslint: "^8.2.0",
         "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-prettier": "^3.4.0",
-        "eslint-plugin-jest": "^24.4.0",
+        "eslint-plugin-gb": "^1.0.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-jest": "^25.2.4",
       },
       scripts: {
         lint: [

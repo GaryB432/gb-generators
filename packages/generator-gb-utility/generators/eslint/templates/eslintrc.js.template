@@ -1,5 +1,3 @@
-const orderingRule = require('@typescript-eslint/eslint-plugin/dist/rules/member-ordering');
-
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
@@ -12,13 +10,8 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  plugins: ['@typescript-eslint', 'jest'],
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:prettier/recommended',
-  ],
+  plugins: ['gb', 'jest'],
+  extends: ['plugin:gb/recommended', 'plugin:prettier/recommended'],
   overrides: [
     {
       files: ['**/*.spec.ts'],
@@ -30,17 +23,6 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': 'warn',
-    '@typescript-eslint/explicit-member-accessibility': 'warn',
-    '@typescript-eslint/no-unused-vars': 'off',
-    '@typescript-eslint/member-ordering': [
-      'warn',
-      {
-        default: {
-          memberTypes: orderingRule.defaultOrder,
-          order: 'alphabetically',
-        },
-      },
-    ],
     '@typescript-eslint/unbound-method': 'error',
   },
 };

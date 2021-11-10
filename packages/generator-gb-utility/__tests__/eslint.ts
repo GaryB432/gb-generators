@@ -24,7 +24,7 @@ describe("generator-gb-utility:eslint", () => {
       });
       runResult.assertJsonFileContent("package.json", {
         devDependencies: {
-          "eslint-plugin-jest": "^24.4.0",
+          "eslint-plugin-jest": "^25.2.4",
         },
       });
       runResult.assertFileContent(".eslintrc.js", /env:.*node: true/s);

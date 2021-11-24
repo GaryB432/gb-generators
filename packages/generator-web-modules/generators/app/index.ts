@@ -11,7 +11,7 @@ interface Context {
 
 export default class extends Generator {
   private cwd = path.basename(process.cwd());
-  writing(): void {
+  protected writing(): void {
     const context: Context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),
@@ -123,7 +123,7 @@ export default class extends Generator {
       context
     );
   }
-  end(): void {
+  protected end(): void {
     this.log(
       chalk.whiteBright(
         `See ${chalk.greenBright(

@@ -38,7 +38,7 @@ export function getFilePath(className: string, fileName: string): string {
 }
 
 export default class extends Generator<Options> {
-  constructor(args: string | string[], opts: Options) {
+  protected constructor(args: string | string[], opts: Options) {
     super(args, opts);
     this.argument("className", {
       description: "the class name of the element",
@@ -52,7 +52,7 @@ export default class extends Generator<Options> {
       type: Boolean,
     });
   }
-  writing(): void {
+  protected writing(): void {
     const context = getContext(this.options.className);
 
     if (!this.options.minimal) {

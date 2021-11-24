@@ -1,7 +1,7 @@
 import Generator = require("yeoman-generator");
 
 export default class extends Generator {
-  _writePackageJson(): void {
+  private _writePackageJson(): void {
     this.fs.extendJSON(
       this.destinationPath("package.json"),
       {
@@ -22,7 +22,7 @@ export default class extends Generator {
     );
   }
 
-  writing(): void {
+  protected writing(): void {
     this.fs.copy(
       this.templatePath("jest/jest.config.js.template"),
       this.destinationPath("jest.config.js")

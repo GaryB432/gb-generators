@@ -11,4 +11,7 @@ module.exports = {
     'plugin:gb/recommended',
     'plugin:prettier/recommended',
   ],
+  rules: {
+    '@typescript-eslint/member-ordering': 'off'
+  }
 };

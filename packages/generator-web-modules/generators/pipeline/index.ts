@@ -14,7 +14,7 @@ interface Context {
 export default class extends Generator<Options> {
   private cwd = path.basename(process.cwd());
 
-  writing(): void {
+  protected writing(): void {
     const context: Context = {
       appname: Case.kebab(this.cwd),
     };

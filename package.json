@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsc --pretty --listEmittedFiles",
     "prepare": "npm run build",
-    "pretest": "eslint \"packages/**/*.ts\"",
+    "pretest": "eslint \"**/*.ts\"",
     "test": "jest",
     "test-ci": "jest --coverage",
     "format": "prettier --write \"**/*.ts\"  \"!**/templates/**\""

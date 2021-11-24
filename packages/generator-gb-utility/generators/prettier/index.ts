@@ -7,7 +7,7 @@ import {
 } from "../../util";
 
 export default class extends Generator {
-  writing(): void {
+  protected writing(): void {
     const dependencies: DependencyList = {};
     const devDependencies: DependencyList = {};
     const pkg: PackageJsonDef = this.fs.readJSON(

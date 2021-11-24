@@ -9,7 +9,7 @@ interface Options {
 }
 
 export default class extends Generator<Options> {
-  constructor(args: string | string[], opts: Options) {
+  protected constructor(args: string | string[], opts: Options) {
     super(args, opts);
     this.argument("packageName", {
       description: "the name of the package",
@@ -23,7 +23,7 @@ export default class extends Generator<Options> {
     });
   }
 
-  writing(): void {
+  protected writing(): void {
     const pkgInfo = utils.getPackageInfo(this.options.packageName);
     const context = {
       className: Case.pascal(this.options.className),

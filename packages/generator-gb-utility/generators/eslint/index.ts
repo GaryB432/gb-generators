@@ -13,7 +13,7 @@ interface Options {
 }
 
 export default class extends Generator<Options> {
-  constructor(args: string | string[], opts: Options) {
+  protected constructor(args: string | string[], opts: Options) {
     super(args, opts);
 
     this.option("browser", {
@@ -33,7 +33,7 @@ export default class extends Generator<Options> {
     });
   }
 
-  writing(): void {
+  protected writing(): void {
     const { browser, node, eslintConfig } = this.options;
     this.fs.copy(
       this.templatePath("eslintignore.template"),

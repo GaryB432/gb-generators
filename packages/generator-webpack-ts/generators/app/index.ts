@@ -17,7 +17,7 @@ export default class extends Generator {
   private answers?: Answers;
   private cwd = path.basename(process.cwd());
 
-  async prompting(): Promise<void | Answers> {
+  protected async prompting(): Promise<void | Answers> {
     const answers = await this.prompt<Answers>([
       {
         default: true,
@@ -37,7 +37,7 @@ export default class extends Generator {
     return answers;
   }
 
-  initializing(): void {
+  protected initializing(): void {
     this.composeWith(
       require.resolve("generator-gb-utility/generators/prettier"),
       {}
@@ -48,7 +48,7 @@ export default class extends Generator {
     );
   }
 
-  _writePackageJson(context: Context): void {
+  private _writePackageJson(context: Context): void {
     this.fs.copyTpl(
       this.templatePath("package.json.template"),
       this.destinationPath("package.json"),
@@ -64,7 +64,7 @@ export default class extends Generator {
     }
   }
 
-  writing(): void {
+  protected writing(): void {
     const context: Context = {
       appname: Case.kebab(this.cwd),
       genstamp: new Date().toString(),

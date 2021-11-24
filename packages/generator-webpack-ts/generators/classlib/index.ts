@@ -8,7 +8,7 @@ interface Options {
 }
 
 export default class extends Generator<Options> {
-  constructor(args: string | string[], opts: Options) {
+  protected constructor(args: string | string[], opts: Options) {
     super(args, opts);
     this.option("skip-styles", {
       default: false,
@@ -27,12 +27,12 @@ export default class extends Generator<Options> {
     });
   }
 
-  _elementTagName(className: string): string {
+  private _elementTagName(className: string): string {
     const k = Case.kebab(className);
     return k.indexOf("-") < 0 ? `app-${k}` : k;
   }
 
-  writing(): void {
+  protected writing(): void {
     const classNameInput = this.options.className as string;
     const nameParts = classNameInput.split("/");
     const kind = this.options.element ? "element" : "class";

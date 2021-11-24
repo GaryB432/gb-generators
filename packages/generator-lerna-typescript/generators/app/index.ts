@@ -10,7 +10,7 @@ interface Answers {
 export default class extends Generator {
   private answers?: Answers;
   private cwd = path.basename(process.cwd());
-  async prompting(): Promise<Answers | void> {
+  protected async prompting(): Promise<Answers | void> {
     const answers = await this.prompt([
       {
         default: false,
@@ -22,7 +22,7 @@ export default class extends Generator {
     this.answers = answers;
   }
 
-  initializing(): void {
+  protected initializing(): void {
     this.composeWith(require.resolve("../package"), {
       arguments: ["@myscope/greeter"],
     });
@@ -36,7 +36,7 @@ export default class extends Generator {
     );
   }
 
-  writing(): void {
+  protected writing(): void {
     const context = {
       appname: Case.kebab(this.cwd),
     };
@@ -79,7 +79,7 @@ export default class extends Generator {
       this.destinationPath("tsconfig.json")
     );
   }
-  end(): void {
+  protected end(): void {
     this.log(
       `Create a new package with ${chalk.green(
         "yo lerna-typescript:package @my-scope/my-new-package"

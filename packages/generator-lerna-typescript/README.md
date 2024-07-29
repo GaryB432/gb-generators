@@ -1,5 +1,7 @@
 # generator-lerna-typescript
 
+[![No Maintenance Intended](https://unmaintained.tech/badge.svg)](https://unmaintained.tech/)
+
 [![NPM version][npm-image]][npm-url] 
 
 > Get started with Lerna using TypeScript

@@ -1,5 +1,7 @@
 # generator-webpack-ts
 
+[![No Maintenance Intended](https://unmaintained.tech/badge.svg)](https://unmaintained.tech/)
+
 [![NPM version][npm-image]][npm-url]
 
 > A Yeoman Generator for creating websites with TypeScript, Sass, ESLint and Webpack 5

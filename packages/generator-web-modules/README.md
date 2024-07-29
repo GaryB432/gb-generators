@@ -1,5 +1,7 @@
 # generator-web-modules
 
+[![No Maintenance Intended](https://unmaintained.tech/badge.svg)](https://unmaintained.tech/)
+
 [![NPM version][npm-image]][npm-url]
 
 > A Yeoman Generator for creating websites with TypeScript, Sass, ESLint, [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) and [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)

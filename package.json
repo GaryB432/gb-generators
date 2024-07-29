@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "gb-generators-root",
   "private": true,
   "devDependencies": {
     "@types/jest": "^27.0.1",
@@ -21,6 +21,7 @@
     "yeoman-generator": "^5.4.2",
     "yeoman-test": "^6.2.0"
   },
+  "repository": "github:GaryB432/gb-generators",
   "scripts": {
     "build": "tsc --pretty --listEmittedFiles",
     "prepare": "npm run build",

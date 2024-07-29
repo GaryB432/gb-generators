@@ -1,5 +1,7 @@
 # generator-gb-utility
 
+[![No Maintenance Intended](https://unmaintained.tech/badge.svg)](https://unmaintained.tech/)
+
 [![NPM version][npm-image]][npm-url]
 
 > Subgenerators for my other generators

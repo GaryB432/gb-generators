@@ -3,6 +3,7 @@
   "private": true,
   "devDependencies": {
     "@types/jest": "^27.0.1",
+    "@types/mem-fs-editor": "^10.0.1",
     "@types/node": "^16.6.1",
     "@types/yeoman-generator": "^5.2.7",
     "@types/yeoman-test": "^4.0.2",
@@ -14,6 +15,8 @@
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.6",
     "lerna": "^4.0.0",
+    "mem-fs": "^1.2.0 || ^2.0.0",
+    "mem-fs-editor": "^8.1.2 || ^9.0.0",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.4",
     "typescript": "^4.3.5",
@@ -24,10 +27,14 @@
   "repository": "github:GaryB432/gb-generators",
   "scripts": {
     "build": "tsc --pretty --listEmittedFiles",
-    "prepare": "npm run build",
+    "x-prepare": "npm run build",
     "pretest": "eslint \"**/*.ts\"",
     "test": "jest",
     "test-ci": "jest --coverage",
     "format": "prettier --write \"**/*.ts\"  \"!**/templates/**\""
+  },
+  "packageManager": "pnpm@10.7.1",
+  "dependencies": {
+    "mem-fs": "^2.3.0"
   }
 }
